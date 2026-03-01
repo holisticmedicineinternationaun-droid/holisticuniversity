@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords"
+        content="الطب الشمولي الحديث، العلوم التطبيقية، الدراسات العليا الافتراضية، الطب التكميلي، الجامعة العالمية الافتراضية للطب الشمولي والعلوم التطبيقية، الحجامة العلمية، الكايروبراكتيك">
+    <meta name="description"
+        content="أول جامعة افتراضية عالمية متخصصة في الطب الشمولي والعلوم التطبيقية، نقدم دراسات عليا وبرامج تدريبية احترافية تحت إشراف نخبة من العلماء والباحثين">
+    <title>الجامعة العالمية الافتراضية للطب الشمولي والعلوم التطبيقية</title>
+    <link rel="icon" type="image/png" href="Albums/University_Assets/university-brand-mark.png">
+    <!-- Modern Typography -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Leaflet Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Load pre-generated albums data -->
+    <script src="albums_data.js"></script>
+    <script src="i18n.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body>
+    <div class="brand-mark-overlay"></div>
+    <header class="header">
+        <!-- Special News Ticker -->
+        <div class="news-ticker">
+            <div class="news-ticker-title" data-i18n="urgent">
+                <i class="fas fa-bullhorn"></i> عاجل
+            </div>
+            <div class="news-ticker-content">
+                <div class="ticker-scroll">
+                    <!-- Ticker Items -->
+                    <span class="ticker-item" data-i18n="ticker_item1"><i class="fas fa-certificate"
+                            style="color: var(--gold-main); margin-inline-end: 8px;"></i>اعتماد أبحاث جديدة في "مدرسة
+                        الإدراك
+                        وتطوير القدرات العقلية" وسيتم نشرها قريباً</span>
+                    <span class="ticker-divider">♦</span>
+                    <span class="ticker-item" data-i18n="ticker_item2"><i class="fas fa-calendar-alt"
+                            style="color: var(--gold-main); margin-inline-end: 8px;"></i>ترقبوا: موعد مناقشة رسائل
+                        الماجستير في
+                        فقه الطب الشمولي نهاية الشهر القادم</span>
+                    <span class="ticker-divider">♦</span>
+                    <span class="ticker-item" data-i18n="ticker_item3"><i class="fas fa-handshake"
+                            style="color: var(--gold-main); margin-inline-end: 8px;"></i>تم توقيع شراكة أكاديمية جديدة
+                        مع كبرى
+                        المؤسسات الطبية لتعزيز التدريب السريري</span>
+                    <span class="ticker-divider">♦</span>
+                    <span class="ticker-item" data-i18n="ticker_item4"><i class="fas fa-microscope"
+                            style="color: var(--gold-main); margin-inline-end: 8px;"></i>فتح باب التسجيل للدورة المتقدمة
+                        في
+                        "التشخيص الكيميائي وتدبير الدواء والعلاج"</span>
+                    <span class="ticker-divider">♦</span>
+                    <span class="ticker-item" data-i18n="ticker_item5"><i class="fas fa-bullhorn"
+                            style="color: var(--gold-main); margin-inline-end: 8px;"></i>الجامعة تعلن عن بدء مراجعة 25
+                        منهجاً دراسياً جديداً للمصادقة العلمية النهائية</span>
+                    <span class="ticker-divider">♦</span>
+                    <span class="ticker-item" data-i18n="ticker_item6"><i class="fas fa-hospital"
+                            style="color: var(--gold-main); margin-inline-end: 8px;"></i>ترقبوا إطلاق النسخة المبتكرة من
+                        استمارة التشخيص الطبي الشمولي قريباً</span>
+                    <!-- Duplicate for infinite scroll -->
+                    <span class="ticker-item" data-i18n="ticker_item1"><i class="fas fa-certificate"
+                            style="color: var(--gold-main); margin-inline-end: 8px;"></i>اعتماد أبحاث جديدة في "مدرسة
+                        الإدراك وتطوير القدرات العقلية" وسيتم نشرها قريباً</span>
+                    <span class="ticker-divider">♦</span>
+                    <span class="ticker-item" data-i18n="ticker_item2"><i class="fas fa-calendar-alt"
+                            style="color: var(--gold-main); margin-inline-end: 8px;"></i>ترقبوا: موعد مناقشة رسائل
+                        الماجستير في فقه الطب الشمولي نهاية الشهر القادم</span>
+                    <span class="ticker-divider">♦</span>
+                    <span class="ticker-item" data-i18n="ticker_item3"><i class="fas fa-handshake"
+                            style="color: var(--gold-main); margin-inline-end: 8px;"></i>تم توقيع شراكة أكاديمية جديدة
+                        مع كبرى المؤسسات الطبية لتعزيز التدريب السريري</span>
+                    <span class="ticker-divider">♦</span>
+                    <span class="ticker-item" data-i18n="ticker_item4"><i class="fas fa-microscope"
+                            style="color: var(--gold-main); margin-inline-end: 8px;"></i>فتح باب التسجيل للدورة المتقدمة
+                        في "التشخيص الكيميائي وتدبير الدواء والعلاج"</span>
+                    <span class="ticker-divider">♦</span>
+                    <span class="ticker-item" data-i18n="ticker_item5"><i class="fas fa-bullhorn"
+                            style="color: var(--gold-main); margin-inline-end: 8px;"></i>الجامعة تعلن عن بدء مراجعة 25
+                        منهجاً دراسياً جديداً للمصادقة العلمية النهائية</span>
+                    <span class="ticker-divider">♦</span>
+                    <span class="ticker-item" data-i18n="ticker_item6"><i class="fas fa-hospital"
+                            style="color: var(--gold-main); margin-inline-end: 8px;"></i>ترقبوا إطلاق النسخة المبتكرة من
+                        استمارة التشخيص الطبي الشمولي قريباً</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Contact Bar -->
+        <div class="top-contact-bar"
+            style="background: var(--primary-color); padding: 8px 0; border-bottom: 2px solid var(--gold-main); font-size: 0.95rem;">
+            <div class="container"
+                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+
+
+                <div class="top-nav-links"
+                    style="display: flex; gap: 15px; align-items: center; flex: 1; justify-content: flex-start;">
+                    <a href="course-details.html?post=من نحن" data-i18n="about"
+                        style="color: var(--white); text-decoration: none; font-size: 0.85rem;">من نحن</a>
+                    <span style="color: rgba(255,255,255,0.3);">|</span>
+                    <a href="ethics.html" data-i18n="ethics_title"
+                        style="color: var(--white); text-decoration: none; font-size: 0.85rem;">أخلاقيات الممارسة</a>
+                    <span style="color: rgba(255,255,255,0.3);">|</span>
+                    <a href="#contact-footer" data-i18n="contact"
+                        style="color: var(--white); text-decoration: none; font-size: 0.85rem;">اتصل بنا</a>
+                    <a href="mailto:holisticmedicineinternationaun@gmail.com"
+                        style="color: var(--gold-light); display: flex; align-items: center; margin-inline-start: 10px;"><i
+                            class="fas fa-envelope"></i></a>
+                </div>
+
+                <div class="top-brand-mark" style="flex: 1; display: flex; justify-content: center;">
+                    <img src="Albums/University_Assets/university-brand-mark.png" alt="University Brand Mark"
+                        style="height: 65px; filter: contrast(110%) brightness(120%);">
+                </div>
+
+                <div class="top-social-links"
+                    style="flex: 1; display: flex; align-items: center; justify-content: flex-end;">
+                    <div class="lang-dropdown">
+                        <button class="lang-dropdown-btn">
+                            <i class="fas fa-globe"></i>
+                            <span id="current-lang-text">العربية</span>
+                            <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                        </button>
+                        <div class="lang-dropdown-content">
+                            <button onclick="setLanguage('ar')" class="active">العربية</button>
+                            <button onclick="setLanguage('en')">English</button>
+                            <button onclick="setLanguage('fr')">Français</button>
+                        </div>
+                    </div>
+                    <a href="https://chat.whatsapp.com/KRol8QEQDD19LUhJ6BSoKi?mode=gi_t" target="_blank"
+                        style="color: var(--gold-light); transition: opacity 0.3s;" onmouseover="this.style.opacity=0.7"
+                        onmouseout="this.style.opacity=1"><i class="fab fa-whatsapp" style="font-size: 1rem;"></i></a>
+                    <a href="https://t.me/+_xQw-l_cFcpmNTU0" target="_blank"
+                        style="color: var(--gold-light); transition: opacity 0.3s;" onmouseover="this.style.opacity=0.7"
+                        onmouseout="this.style.opacity=1"><i class="fab fa-telegram-plane"
+                            style="font-size: 1rem;"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61576702401322" target="_blank"
+                        style="color: var(--gold-light); transition: opacity 0.3s;" onmouseover="this.style.opacity=0.7"
+                        onmouseout="this.style.opacity=1"><i class="fab fa-facebook-f" style="font-size: 1rem;"></i></a>
+                    <a href="https://www.youtube.com/@InternationalVirtuelUniversity" target="_blank"
+                        style="color: var(--gold-light); transition: opacity 0.3s;" onmouseover="this.style.opacity=0.7"
+                        onmouseout="this.style.opacity=1"><i class="fab fa-youtube" style="font-size: 1rem;"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+                    <img src="Albums/University_Assets/university-full-emblem.png" alt="University Logo"
+                        class="logo-image" data-i18n="logo_alt"
+                        style="max-width: 100%; object-fit: contain; filter: drop-shadow(0 2px 10px rgba(0,0,0,0.6));">
+                </a>
+            </div>
+            <div class="header-brand-mark" style="margin-inline-start: 15px;"><img
+                    src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark"></div>
+
+            <button class="mobile-menu-btn" aria-label="القائمة">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" data-i18n="home">الرئيسية</a></li>
+                    <li class="dropdown">
+                        <a href="#" data-i18n="med_schools">المدارس الطبية <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="course-details.html?post=أقسام الجامعة" data-i18n="perception">مدرسة
+                                    الإدراك</a></li>
+                            <li><a href="course-details.html?post=دورة الصحة النفسية" data-i18n="mental_health">مدرسة
+                                    الصحة النفسية</a></li>
+                            <li><a href="course-details.html?post=الطب الشمولي" data-i18n="holistic_medicine">مدرسة الطب
+                                    الشمولي</a></li>
+                        </ul>
+                    </li>
+
+
+
+                    <li><a href="medical-record.html" style="color: var(--gold-main); font-weight: 800;"><i
+                                class="fas fa-file-medical"></i> <span data-i18n="nav_medical_record">السجل
+                                الطبي</span></a></li>
+                    <li class="dropdown">
+                        <a href="#" data-i18n="uni_affairs">الشؤون الجامعية <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="course-details.html?post=نظام الساعات المعتمد" data-i18n="credit_hours">نظام
+                                    الساعات المعتمد</a></li>
+                            <li><a href="course-details.html?post=التخصصات المتاحة" data-i18n="specializations">التخصصات
+                                    المتاحة</a></li>
+                            <li><a href="curriculum.html" data-i18n="digital_locker">الخزانة الرقمية للمناهج (جديد)</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-i18n="teaching">التدريس الجامعي <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="course-details.html?post=نظام الدراسات" data-i18n="uni_affairs">نظام
+                                    الدراسات</a></li>
+                            <li><a href="course-details.html?post=الاعتمادات" data-i18n="accreditation">الاعتمادات</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-i18n="training">التأهيل والتدريب <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="course-details.html?post=الإسعافات الطبية" data-i18n="first_aid">الإسعافات
+                                    الطبية</a></li>
+                            <li><a href="course-details.html?post=دورات الأعشاب والزيوت" data-i18n="herbs_oils">دورات
+                                    الأعشاب والزيوت</a></li>
+                            <li><a href="#archive" data-i18n="archive_excellence">أرشيف الإنجازات (مركز التميز)</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-i18n="applied_sciences">العلوم التطبيقية <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="course-details.html?post=الرياضيات" data-i18n="mathematics">الرياضيات</a></li>
+                            <li><a href="course-details.html?post=الهندسة" data-i18n="engineering">الهندسة</a></li>
+                            <li><a href="course-details.html?post=الفيزياء والكيمياء"
+                                    data-i18n="physics_chemistry">الفيزياء والكيمياء</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-i18n="library_halls">المكتبة والقاعات <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="curriculum.html" data-i18n="curricula_title">ركن المناهج المعتمدة</a></li>
+                            <li><a href="https://t.me/+TbhidspQi25mOWM0" target="_blank"><i
+                                        class="fab fa-telegram-plane" style="margin-left: 8px;"></i><span
+                                        data-i18n="universal_library">المكتبة الكونية</span></a>
+                            </li>
+                            <li><a href="course-details.html?post=القاعة الدولية للثقافة"
+                                    data-i18n="cultural_hall">القاعة الدولية للثقافة</a>
+                            </li>
+                            <li><a href="#magazine" data-i18n="magazine">مجلة منبر الشفاء الشمولي</a></li>
+                            <li><a href="#accreditation" data-i18n="accreditation">الشهادات والاعتمادات</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="btn-register-nav" style="display: flex; align-items: center; gap: 8px;"
+                            data-i18n="registration">التسجيل <i class="fas fa-chevron-down"
+                                style="font-size: 0.8rem;"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://forms.gle/Cat2zK8p2nNAfvDN9" target="_blank"
+                                    data-i18n="trainee_reg">طلب تسجيل المتدربين</a>
+                            </li>
+                            <li><a href="https://forms.gle/pkUgMKuYPanh16LW9" target="_blank"
+                                    data-i18n="trainer_reg">طلب تسجيل المدربين</a>
+                            </li>
+                            <li><a href="https://forms.gle/8hsQroFqb3idEFCq9" target="_blank"
+                                    data-i18n="affiliate_marketing">التسويق بالعمولة</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="menu-overlay"></div>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h2 class="hero-subtitle" data-i18n="hero_subtitle">نحو مستقبل مشرق للرعاية الصحية</h2>
+            <h1 class="hero-title" data-i18n="hero_title">رواد التعليم الافتراضي في <span class="gold-text">فقه الطب
+                    الشمولي</span></h1>
+            <p class="hero-description" data-i18n="hero_description">نجمع بين أصالة الطب العربي القديم وتقنيات العصر
+                الحديث لبناء جيل من المعالجين
+                المتميزين.</p>
+            <div class="hero-buttons">
+                <a href="#register" class="btn btn-primary" data-i18n="register_now">سجل الآن <i
+                        class="fas fa-arrow-left"></i></a>
+                <a href="#departments" class="btn btn-secondary" data-i18n="explore_departments">استكشف الأقسام</a>
+            </div>
+            <div class="header-brand-mark" style="margin-inline-start: 15px;"><img
+                    src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark"></div>
+        </div>
+    </section>
+
+
+
+    <section id="departments" class="departments">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="departments_title">أقسام ومدارس الجامعة</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="grid-container">
+                <a href="course-details.html?post=أقسام الجامعة" class="card">
+                    <div class="card-icon"><i class="fas fa-brain"></i></div>
+                    <h3 data-i18n="dept_perception_title">مدرسة الإدراك</h3>
+                    <p data-i18n="dept_perception_desc">المدرسة المتخصصة في فهم الإدراك البشري وتطوير القدرات العقلية.
+                    </p>
+                </a>
+
+                <a href="course-details.html?post=دورة الصحة النفسية" class="card">
+                    <div class="card-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h3 data-i18n="dept_mental_health_title">مدرسة الصحة النفسية</h3>
+                    <p data-i18n="dept_mental_health_desc">دراسة متعمقة في تشخيص الحالات النفسية وأساليب العلاج الحديثة.
+                    </p>
+                </a>
+
+                <a href="course-details.html?post=دورة طب الاخلاط و الامزجة" class="card">
+                    <div class="card-icon"><i class="fas fa-leaf"></i></div>
+                    <h3 data-i18n="dept_humors_title">طب الأخلاط والأمزجة</h3>
+                    <p data-i18n="dept_humors_desc">العودة إلى جذور الطب العربي الأصيل وتعلم موازنة الأخلاط.</p>
+                </a>
+
+                <a href="course-details.html?post=أقسام الجامعة" class="card">
+                    <div class="card-icon"><i class="fas fa-flask"></i></div>
+                    <h3 data-i18n="dept_applied_title">العلوم التطبيقية</h3>
+                    <p data-i18n="dept_applied_desc">تطبيق النظريات الطبية الشمولية عملياً من خلال علوم الكيمياء.</p>
+                </a>
+            </div>
+            <div class="header-brand-mark" style="margin-inline-start: 15px;"><img
+                    src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark"></div>
+        </div>
+    </section>
+
+    <!-- Courses Slider -->
+    <section id="courses" class="courses-slider">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="courses_title">أبرز الدورات والمسارات</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="slider-container">
+                <div class="slider-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="slide"
+                        style="background-image: url('Albums/University_Assets/dermatology-course.jpg');">
+                        <div class="slide-content">
+                            <h3 class="slide-title" data-i18n="course_dermatology">دورة أمراض الجلدية</h3>
+                            <div style="display: flex; gap: 15px; justify-content: center;">
+                                <a href="course-details.html?post=دورة أمراض الجلدية" class="slide-btn"
+                                    data-i18n="browse_nav"><i class="fas fa-book-open"></i> تفاصيل الدورة</a>
+                                <a href="https://forms.gle/NVLtKjZoZWzDK22L9" target="_blank"
+                                    class="slide-btn register-btn" data-i18n="register_nav"
+                                    style="background: var(--primary-color); color: var(--gold-light); border: 1px solid var(--gold-main);"><i
+                                        class="fas fa-edit"></i> سجل الآن</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="slide" style="background-image: url('Albums/University_Assets/chiropractic.jpg');">
+                        <div class="slide-content">
+                            <h3 class="slide-title" data-i18n="course_chiropractic">دورة التقويم الفقري (الكايروبراكتيك)
+                            </h3>
+                            <div style="display: flex; gap: 15px; justify-content: center;">
+                                <a href="course-details.html?post=دورة التقويم الفقري" class="slide-btn"
+                                    data-i18n="browse_nav"><i class="fas fa-book-open"></i> تفاصيل الدورة</a>
+                                <a href="https://forms.gle/2QtBEUm7wxf6TqTFA" target="_blank"
+                                    class="slide-btn register-btn" data-i18n="register_nav"
+                                    style="background: var(--primary-color); color: var(--gold-light); border: 1px solid var(--gold-main);"><i
+                                        class="fas fa-edit"></i> سجل الآن</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="slide" style="background-image: url('Albums/University_Assets/humors-medicine.jpg');">
+                        <div class="slide-content">
+                            <h3 class="slide-title" data-i18n="course_humors">دورة طب الأخلاط والأمزجة</h3>
+                            <div style="display: flex; gap: 15px; justify-content: center;">
+                                <a href="course-details.html?post=دورة طب الاخلاط و الامزجة" class="slide-btn"
+                                    data-i18n="browse_nav"><i class="fas fa-book-open"></i> تفاصيل الدورة</a>
+                                <a href="https://forms.gle/EVJQWPhX3Nd2PC8U9" target="_blank"
+                                    class="slide-btn register-btn" data-i18n="register_nav"
+                                    style="background: var(--primary-color); color: var(--gold-light); border: 1px solid var(--gold-main);"><i
+                                        class="fas fa-edit"></i> سجل الآن</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="slide" style="background-image: url('Albums/University_Assets/mental-hzalth.jpg');">
+                        <div class="slide-content">
+                            <h3 class="slide-title" data-i18n="course_mental_health_title">دورة الصحة النفسية</h3>
+                            <div style="display: flex; gap: 15px; justify-content: center;">
+                                <a href="course-details.html?post=دورة الصحة النفسية" class="slide-btn"
+                                    data-i18n="browse_nav"><i class="fas fa-book-open"></i> تفاصيل الدورة</a>
+                                <a href="https://forms.gle/PzMbbszRcov2HNA87" target="_blank"
+                                    class="slide-btn register-btn" data-i18n="register_nav"
+                                    style="background: var(--primary-color); color: var(--gold-light); border: 1px solid var(--gold-main);"><i
+                                        class="fas fa-edit"></i> سجل الآن</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 5 -->
+                    <div class="slide"
+                        style="background-image: url('Albums/University_Assets/chemical-diagnosis.jpg');">
+                        <div class="slide-content">
+                            <h3 class="slide-title" data-i18n="course_chem_diag">دورة التشخيص الكيميائي</h3>
+                            <div style="display: flex; gap: 15px; justify-content: center;">
+                                <a href="course-details.html?post=دورة التشخيص الكيميائي وتدبيره للدواء والعلاج"
+                                    class="slide-btn" data-i18n="browse_nav"><i class="fas fa-book-open"></i> تفاصيل
+                                    الدورة</a>
+                                <a href="https://forms.gle/qXDsDR2e2CdxdUg88" target="_blank"
+                                    class="slide-btn register-btn" data-i18n="register_nav"
+                                    style="background: var(--primary-color); color: var(--gold-light); border: 1px solid var(--gold-main);"><i
+                                        class="fas fa-edit"></i> سجل الآن</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 6 -->
+                    <div class="slide"
+                        style="background-image: url('Albums/University_Assets/cupping-therapy.png');">
+                        <div class="slide-content">
+                            <h3 class="slide-title" data-i18n="course_cupping">دورة الحجامة المتقدمة</h3>
+                            <div style="display: flex; gap: 15px; justify-content: center;">
+                                <a href="course-details.html?post=دورة الحجامة المتقدمة" class="slide-btn"
+                                    data-i18n="browse_nav"><i class="fas fa-book-open"></i> تفاصيل الدورة</a>
+                                <a href="https://forms.gle/Cat2zK8p2nNAfvDN9" target="_blank"
+                                    class="slide-btn register-btn" data-i18n="register_nav"
+                                    style="background: var(--primary-color); color: var(--gold-light); border: 1px solid var(--gold-main);"><i
+                                        class="fas fa-edit"></i> سجل الآن</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Navigation -->
+                <button class="slider-btn prev-btn" data-i18n="prev"><i class="fas fa-chevron-right"></i></button>
+                <button class="slider-btn next-btn" data-i18n="next"><i class="fas fa-chevron-left"></i></button>
+            </div>
+
+            <!-- Indicators -->
+            <div class="slider-indicators">
+                <span class="indicator active" data-slide="0"></span>
+                <span class="indicator" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+                <span class="indicator" data-slide="3"></span>
+                <span class="indicator" data-slide="4"></span>
+                <span class="indicator" data-slide="5"></span>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Archive Section (مركز التميز والتدريب المستمر) -->
+    <section id="archive" class="departments"
+        style="background: var(--bg-light); border-top: 1px solid rgba(0,0,0,0.05);">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="excellence_center">مركز التميز: أرشيف الإنجازات والدورات</h2>
+                <div class="divider"></div>
+                <p data-i18n="excellence_desc"
+                    style="text-align: center; color: #666; font-size: 1.15rem; max-width: 800px; margin: 0 auto;">
+                    يضم أرشيفنا الذكي سجلاً حافلاً بالدورات التدريبية المنجزة والمؤتمرات الناجحة التي ساهمت في تخريج
+                    نخبة من المتخصصين والممارسين وفق منهج الطب الشمولي.
+                </p>
+            </div>
+
+            <div class="grid-container" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;">
+                <!-- Course Archive Card 1 -->
+                <a href="#archive" class="card"
+                    style="padding: 25px; text-align: right; display: flex; flex-direction: column; gap: 15px; border: 1px solid rgba(212,175,55,0.2);">
+                    <div
+                        style="height: 220px; border-radius: 10px; overflow: hidden; margin-bottom: 10px; position: relative;">
+                        <img src="Albums/University_Assets/cupping-therapy.png" alt="دورة الحجامة المتقدمة"
+                            style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                    </div>
+                    <h3 data-i18n="course_cupping"
+                        style="margin-bottom: 5px; font-size: 1.5rem; color: var(--primary-color);">دورة الحجامة
+                        المتقدمة</h3>
+                    <div style="display: flex; gap: 15px; font-size: 0.95rem; color: #777;">
+                        <span><i class="fas fa-calendar-check" style="color: var(--gold-main); margin-left: 5px;"></i>
+                            <span data-i18n="september_2025">سبتمبر 2025</span></span>
+                        <span><i class="fas fa-users" style="color: var(--gold-main); margin-left: 5px;"></i> <span
+                                data-i18n="graduate_50">50+
+                                خريج</span></span>
+                    </div>
+                    <p data-i18n="cupping_desc" style="line-height: 1.7;">برنامج تدريبي مكثف شمل التطبيقات السريرية
+                        للحجامة الطبية وفق أصول الطب
+                        الشمولي، مع التركيز على التشخيص الدقيق.</p>
+                </a>
+
+                <!-- Course Archive Card 2 -->
+                <a href="#archive" class="card"
+                    style="padding: 25px; text-align: right; display: flex; flex-direction: column; gap: 15px; border: 1px solid rgba(212,175,55,0.2);">
+                    <div
+                        style="height: 220px; border-radius: 10px; overflow: hidden; margin-bottom: 10px; position: relative;">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80"
+                            alt="أرشيف الأعشاب"
+                            style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;"
+                            onmouseover="this.style.transform='scale(1.1)'"
+                            onmouseout="this.style.transform='scale(1)'">
+
+                    </div>
+                    <h3 data-i18n="course_herbs_conf"
+                        style="margin-bottom: 5px; font-size: 1.5rem; color: var(--primary-color);">مؤتمر الأعشاب
+                        والزيوت العطرية</h3>
+                    <div style="display: flex; gap: 15px; font-size: 0.95rem; color: #777;">
+                        <span><i class="fas fa-calendar-check" style="color: var(--gold-main); margin-left: 5px;"></i>
+                            <span data-i18n="july_2025">يوليو 2025</span></span>
+                        <span><i class="fas fa-award" style="color: var(--gold-main); margin-left: 5px;"></i> <span
+                                data-i18n="intl_issue">إصدار
+                                كتاب</span></span>
+                    </div>
+                    <p data-i18n="herbs_conf_desc" style="line-height: 1.7;">ملتقى دولي استعرض أحدث الاكتشافات في مزج
+                        الزيوت وتصنيع المستخلصات
+                        العشبية لعلاج الأمراض المزمنة بفعالية.</p>
+                </a>
+
+                <!-- Course Archive Card 3 -->
+                <a href="#archive" class="card"
+                    style="padding: 25px; text-align: right; display: flex; flex-direction: column; gap: 15px; border: 1px solid rgba(212,175,55,0.2);">
+                    <div
+                        style="height: 220px; border-radius: 10px; overflow: hidden; margin-bottom: 10px; position: relative;">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80"
+                            alt="دورة الإسعافات"
+                            style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;"
+                            onmouseover="this.style.transform='scale(1.1)'"
+                            onmouseout="this.style.transform='scale(1)'">
+
+                    </div>
+                    <h3 data-i18n="course_first_aid_basic"
+                        style="margin-bottom: 5px; font-size: 1.5rem; color: var(--primary-color);">دورة الإسعافات
+                        الطبية التأسيسية</h3>
+                    <div style="display: flex; gap: 15px; font-size: 0.95rem; color: #777;">
+                        <span><i class="fas fa-calendar-check" style="color: var(--gold-main); margin-left: 5px;"></i>
+                            <span data-i18n="march_2025">مارس 2025</span></span>
+                        <span><i class="fas fa-certificate" style="color: var(--gold-main); margin-left: 5px;"></i>
+                            <span data-i18n="certified">معتمدة</span></span>
+                    </div>
+                    <p data-i18n="first_aid_desc" style="line-height: 1.7;">تخريج دفعة من الممارسين المعتمدين في التعامل
+                        السريع والاستجابة الفورية
+                        للحالات الطارئة استناداً للبروتوكولات.</p>
+                </a>
+            </div>
+            <div class="header-brand-mark" style="margin-inline-start: 15px;"><img
+                    src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark"></div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="course-details.html?post=أرشيف الدورات السابقة" class="btn btn-secondary"
+                    style="color: var(--primary-color); border-color: var(--primary-color); padding: 12px 30px; font-weight: 800; border-width: 2px;">
+                    <i class="fas fa-archive" style="margin-left: 8px;"></i> <span
+                        data-i18n="access_full_archive">الوصول للأرشيف الكامل</span>
+                </a>
+            </div>
+            <div class="header-brand-mark" style="margin-inline-start: 15px;"><img
+                    src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark"></div>
+        </div>
+    </section>
+
+    <!-- Magazine Section -->
+    <section id="magazine"
+        style="padding: 100px 0; background: linear-gradient(135deg, rgba(30, 19, 12, 0.95), rgba(44, 23, 8, 0.95)), url('https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed; color: var(--gold-light); position: relative; border-top: 5px solid var(--gold-main); border-bottom: 5px solid var(--gold-main);">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <div style="margin-bottom: 30px;">
+                <i class="fas fa-book-open"
+                    style="font-size: 4rem; color: var(--gold-main); margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));"></i>
+                <h2 data-i18n="magazine_title"
+                    style="font-size: 3rem; font-family: 'Amiri', 'Tajawal', serif; margin-bottom: 20px; color: var(--gold-main); text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);">
+                    مجلة منبر الشفاء الشمولي</h2>
+                <div class="divider"
+                    style="background: var(--gold-light); width: 100px; height: 3px; margin: 0 auto; box-shadow: 0 0 10px rgba(243, 229, 171, 0.5);">
+                </div>
+            </div>
+
+            <p data-i18n="magazine_desc"
+                style="font-size: 1.3rem; max-width: 800px; line-height: 1.8; margin-bottom: 40px; color: #fdfaf6; text-shadow: 0 2px 5px rgba(0,0,0,0.8);">
+                نافذتك الشهرية على أحدث الأبحاث والمقالات في عالم فقه الطب الشمولي. نجمع لك حصاد الفكر الطبي العربي
+                الأصيل، والتجارب السريرية الناجحة، وإسهامات أساتذتنا وطلابنا المتميزين.
+            </p>
+
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="course-details.html?post=مجلة منبر الشفاء الشمولي" class="btn" data-i18n="browse_last_issue"
+                    style="background: var(--gold-main); color: var(--primary-color); text-decoration: none; padding: 15px 40px; font-size: 1.2rem; font-weight: 800; border-radius: 40px; display: inline-flex; align-items: center; gap: 10px; border: 2px solid transparent; transition: all 0.3s ease; box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);">
+                    <i class="fas fa-book-reader"></i> تصفح العدد الأخير
+                </a>
+                <a href="#register" class="btn" data-i18n="share_article"
+                    style="background: transparent; border: 2px solid var(--gold-main); color: var(--gold-main); border-radius: 40px; padding: 15px 40px; font-size: 1.2rem; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease;">
+                    <i class="fas fa-pen-nib"></i> شارك بمقالك
+                </a>
+            </div>
+            <div class="header-brand-mark" style="margin-inline-start: 15px;"><img
+                    src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark"></div>
+
+            <style>
+                #magazine a.btn:hover:nth-child(1) {
+                    background: var(--gold-light);
+                    transform: translateY(-5px);
+                }
+
+                #magazine a.btn:hover:nth-child(2) {
+                    background: var(--gold-main);
+                    color: var(--primary-color);
+                    transform: translateY(-5px);
+                }
+            </style>
+        </div>
+    </section>
+
+    <!-- Accreditation & Gallery Section -->
+    <section id="accreditation" class="accreditation-section" style="padding: 80px 0; background: var(--bg-light);">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+                <h2 data-i18n="accreditation_title" style="font-size: 2.5rem; color: var(--primary-color);">التوثيق
+                    والاعتماد الأكاديمي</h2>
+                <div class="divider" style="width: 80px; height: 4px; background: var(--gold-main); margin: 20px auto;">
+                </div>
+                <p data-i18n="accreditation_desc"
+                    style="color: #666; font-size: 1.1rem; max-width: 600px; margin: 0 auto 15px auto;">نفخر بشهاداتنا
+                    واعتماداتنا
+                    الدولية التي تعكس مستوى جودة التعليم في جامعتنا.</p>
+                <p data-i18n="accreditation_note"
+                    style="color: var(--primary-color); font-weight: bold; background: rgba(230,184,65,0.1); display: inline-block; padding: 10px 20px; border-radius: 8px; border: 1px dashed var(--gold-main); font-size: 0.95rem;">
+                    <i class="fas fa-shield-alt" style="margin-left: 5px;"></i>يتم عرض هذه النماذج لأغراض التوثيق فقط،
+                    مع الحفاظ على خصوصية بيانات الخريجين
+                </p>
+            </div>
+
+            <!-- Accordion Container -->
+            <div id="accreditation-accordion" style="max-width: 900px; margin: 0 auto;">
+                <!-- Accordion Items will be injected here via JavaScript -->
+            </div>
+        </div>
+
+        <!-- Image Modal for zooming -->
+        <div id="image-modal" class="modal"
+            style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9);">
+            <span class="close-modal"
+                style="position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s;">&times;</span>
+            <img class="modal-content" id="modal-img"
+                style="margin: auto; display: block; max-width: 90%; max-height: 90vh; top: 50%; position: relative; transform: translateY(-50%); border-radius: 10px; box-shadow: 0 0 20px rgba(255,255,255,0.2);">
+        </div>
+    </section>
+
+    <section id="register" class="cta-section">
+        <div class="container cta-container">
+            <div class="cta-content">
+                <h2 data-i18n="start_journey">ابدأ رحلتك الأكاديمية اليوم</h2>
+                <a href="#registration-form-url" class="btn btn-gold-large" data-i18n="reg_form">
+                    <i class="fas fa-user-graduate"></i> نموذج التسجيل
+                </a>
+            </div>
+            <div class="header-brand-mark" style="margin-inline-start: 15px;"><img
+                    src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark"></div>
+        </div>
+    </section>
+
+    <!-- Success Partners Section -->
+    <section id="partners" class="partners-section">
+        <div class="container">
+            <div class="section-header" style="margin-bottom: 40px;">
+                <h2 data-i18n="partners">شركاء النجاح</h2>
+                <div class="divider"></div>
+                <p data-i18n="partners_desc"
+                    style="text-align: center; color: #666; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">نطمح
+                    لبناء شراكات استراتيجية مع نخبة من المؤسسات الأكاديمية والمراكز المتخصصة عالمياً لتعزيز مسيرتنا
+                    العلمية.</p>
+            </div>
+
+            <div class="partners-grid">
+                <!-- Placeholder Icon 1 -->
+                <div class="partner-card" style="padding: 20px;">
+                    <div class="partner-logo" style="margin-bottom: 0;">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                </div>
+                <!-- Placeholder Icon 2 -->
+                <div class="partner-card" style="padding: 20px;">
+                    <div class="partner-logo" style="margin-bottom: 0;">
+                        <i class="fas fa-university"></i>
+                    </div>
+                </div>
+                <!-- Placeholder Icon 3 -->
+                <div class="partner-card" style="padding: 20px;">
+                    <div class="partner-logo" style="margin-bottom: 0;">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                </div>
+                <!-- Placeholder Icon 4 -->
+                <div class="partner-card" style="padding: 20px;">
+                    <div class="partner-logo" style="margin-bottom: 0;">
+                        <i class="fas fa-hand-holding-medical"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restored Interactive World Map Section -->
+    <section id="global-network" class="global-network-section">
+        <div class="container">
+            <div class="section-header" style="margin-bottom: 50px; text-align: center;">
+                <h2 data-i18n="global_network"
+                    style="color: var(--gold-main); font-size: 2.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+                    الانتشار العالمي للجامعة</h2>
+                <div class="divider" style="background: var(--gold-light);"></div>
+                <p data-i18n="global_network_desc"
+                    style="color: #ddd; font-size: 1.15rem; max-width: 700px; margin: 0 auto; line-height: 1.8;">
+                    امتداد علمي عالمي يربط بين الباحثين والأخصائيين المعتمدين في الطب الشمولي والعلوم التطبيقية عبر
+                    القارات.
+                </p>
+            </div>
+
+            <div class="interactive-map-container">
+                <div id="interactive-map"></div>
+                <!-- Legend for Map -->
+                <div class="map-legend"
+                    style="display: flex; gap: 20px; justify-content: center; background: rgba(0,0,0,0.6); padding: 15px; border-top: 1px solid var(--gold-dark);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div
+                            style="width: 14px; height: 14px; border-radius: 50%; background: #d4af37; box-shadow: 0 0 10px #d4af37;">
+                        </div>
+                        <span style="color: #d4af37; font-weight: 700; font-size: 0.9rem;"
+                            data-i18n="map_admin_hint">مراكز الإدارة والقيادة</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div
+                            style="width: 14px; height: 14px; border-radius: 50%; background: #2ecc71; box-shadow: 0 0 10px #2ecc71;">
+                        </div>
+                        <span style="color: #2ecc71; font-weight: 700; font-size: 0.9rem;"
+                            data-i18n="map_student_hint">الأخصائيين والباحثين</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="researcher-corner" class="researcher-corner">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="researcher_corner_title">ركن باحث المستقبل</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="researcher-grid">
+                <!-- Researcher 1 -->
+                <div class="researcher-card">
+                    <div class="researcher-card-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="researcher-name">
+                        <span data-i18n="researcher_prefix">الباحثة</span>
+                        <span data-i18n="researcher1_name">جميلة بن عيسى</span>
+                    </div>
+                    <span class="researcher-title-label" data-i18n="research_label">عنوان البحث:</span>
+                    <div class="research-title" data-i18n="researcher1_title">(بحث المتلازمات)</div>
+                </div>
+                <!-- Researcher 2 -->
+                <div class="researcher-card">
+                    <div class="researcher-card-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="researcher-name">
+                        <span data-i18n="researcher_prefix">الباحثة</span>
+                        <span data-i18n="researcher2_name">ريا ناصر سعد الشرياني</span>
+                    </div>
+                    <span class="researcher-title-label" data-i18n="research_label">عنوان البحث:</span>
+                    <div class="research-title" data-i18n="researcher2_title">(بحث رحلة نفس)</div>
+                </div>
+                <!-- Researcher 3 -->
+                <div class="researcher-card">
+                    <div class="researcher-card-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="researcher-name">
+                        <span data-i18n="researcher_prefix">الباحثة</span>
+                        <span data-i18n="researcher3_name">فاطمة الزهراء قصراني</span>
+                    </div>
+                    <span class="researcher-title-label" data-i18n="research_label">عنوان البحث:</span>
+                    <div class="research-title" data-i18n="researcher3_title">(بحث الرقى ترياق الروح)</div>
+                </div>
+            </div>
+            <p class="researcher-footer-note" data-i18n="researcher_note">
+                جميع الحقوق العلمية لهذه الأبحاث محفوظة للجامعة والباحثين، ويُعرض هنا العنوان فقط لحماية المحتوى.
+            </p>
+        </div>
+    </section>
+
+
+
+    <!-- 
+        TECHNICAL NOTE: Clinic Portal Integration
+        This section is prepared for direct linking with the central Database and Automation system (Google Sheets/App Script).
+        Pending final naming approval from the Board of Directors.
+    -->
+    <section id="clinic-portal" class="clinic-portal">
+        <div class="container">
+            <div class="clinic-icon">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+            <div class="section-header">
+                <h2 data-i18n="clinic_portal_title">مركز الاستشفاء الذاتي والعيادة الرقمية</h2>
+                <div class="divider"></div>
+            </div>
+            <p class="clinic-portal-desc" data-i18n="clinic_portal_desc">
+                نحن بصدد إطلاق النسخة المبتكرة والحصرية لاستمارة التشخيص الطبي الشمولي، لضمان أعلى معايير الخصوصية
+                والدقة العلمية لمرضانا.
+            </p>
+            <div class="clinic-cta" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                <a href="clinic-payment.html" class="btn-clinic">
+                    <span data-i18n="enter_clinic_now">دخول العيادة - متاح الآن</span> <i
+                        class="fas fa-sign-in-alt"></i>
+                </a>
+                <a href="medical-record.html" class="btn-clinic"
+                    style="background: var(--gold-main); color: var(--primary-color);">
+                    <span data-i18n="got_code">لديك كود تفعيل؟ ادخل هنا</span> <i class="fas fa-key"></i>
+                </a>
+            </div>
+            <div class="header-brand-mark" style="margin-inline-start: 15px;"><img
+                    src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark"></div>
+        </div>
+    </section>
+
+    <footer id="contact-footer" class="footer"
+        style="background: var(--primary-color); padding: 50px 0 20px 0; color: #fff; margin-top: 50px;">
+        <div class="container"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 30px;">
+            <div class="footer-col" style="text-align: right;">
+                <a href="index.html">
+                    <img src="Albums/University_Assets/university-full-emblem.png" alt="University Logo"
+                        style="height: 100px; max-width: 100%; object-fit: contain; margin-bottom: 15px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));">
+                </a>
+                <p data-i18n="footer_description"
+                    style="font-size: 1rem; color: #ccc; line-height: 1.6; margin-top: 5px;">رواد التعليم
+                    الافتراضي<br>في
+                    فقه الطب الشمولي والتطوير</p>
+                <div class="brand-mark-footer" style="margin-top: 20px; opacity: 0.6;">
+                    <img src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark"
+                        style="height: 70px; filter: grayscale(1) invert(1) opacity(0.7);">
+                </div>
+            </div>
+            <div class="footer-col" style="text-align: right;">
+                <h3 data-i18n="contact_us_footer"
+                    style="color: var(--gold-main); margin-bottom: 20px; font-size: 1.3rem; position: relative; padding-right: 15px; border-right: 3px solid var(--gold-main);">
+                    اتصل بنا</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 15px;"><a
+                            href="https://chat.whatsapp.com/KRol8QEQDD19LUhJ6BSoKi?mode=gi_t" target="_blank"
+                            style="color: #ccc; text-decoration: none; font-size: 1.1rem; transition: color 0.3s;"
+                            onmouseover="this.style.color='var(--gold-main)'" onmouseout="this.style.color='#ccc'"><i
+                                class="fab fa-whatsapp"
+                                style="margin-left: 10px; width: 20px; text-align: center; color: #25D366;"></i>
+                            <span data-i18n="whatsapp">واتساب</span></a></li>
+                    <li style="margin-bottom: 15px;"><a href="https://t.me/+_xQw-l_cFcpmNTU0" target="_blank"
+                            style="color: #ccc; text-decoration: none; font-size: 1.1rem; transition: color 0.3s;"
+                            onmouseover="this.style.color='var(--gold-main)'" onmouseout="this.style.color='#ccc'"><i
+                                class="fab fa-telegram-plane"
+                                style="margin-left: 10px; width: 20px; text-align: center; color: #0088cc;"></i>
+                            <span data-i18n="telegram">تلغرام</span></a></li>
+                    <li style="margin-bottom: 15px;"><a href="https://www.facebook.com/profile.php?id=61576702401322"
+                            target="_blank"
+                            style="color: #ccc; text-decoration: none; font-size: 1.1rem; transition: color 0.3s;"
+                            onmouseover="this.style.color='var(--gold-main)'" onmouseout="this.style.color='#ccc'"><i
+                                class="fab fa-facebook-f"
+                                style="margin-left: 10px; width: 20px; text-align: center; color: #1877F2;"></i>
+                            <span data-i18n="facebook">فيسبوك</span></a></li>
+                    <li style="margin-bottom: 15px;"><a href="https://www.youtube.com/@InternationalVirtuelUniversity"
+                            target="_blank"
+                            style="color: #ccc; text-decoration: none; font-size: 1.1rem; transition: color 0.3s;"
+                            onmouseover="this.style.color='var(--gold-main)'" onmouseout="this.style.color='#ccc'"><i
+                                class="fab fa-youtube"
+                                style="margin-left: 10px; width: 20px; text-align: center; color: #FF0000;"></i>
+                            <span data-i18n="youtube">يوتيوب</span></a></li>
+                    <li><a href="mailto:holisticmedicineinternationaun@gmail.com"
+                            style="color: #ccc; text-decoration: none; font-size: 1.1rem; transition: color 0.3s;"
+                            onmouseover="this.style.color='var(--gold-main)'" onmouseout="this.style.color='#ccc'"><i
+                                class="fas fa-envelope"
+                                style="margin-left: 10px; width: 20px; text-align: center; color: var(--gold-main);"></i>
+                            <span data-i18n="email">البريد الإلكتروني</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-content" style="text-align: center;">
+            <!-- Interactive Fast Bar -->
+            <div class="footer-fast-bar">
+                <div class="fast-bar-item dropdown">
+                    <button class="fast-btn btn-gold" data-i18n="fast_bar_register">
+                        <i class="fas fa-pen-nib"></i> سجل الآن
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://forms.gle/Cat2zK8p2nNAfvDN9" target="_blank" data-i18n="trainee_reg">طلب
+                                تسجيل
+                                المتدربين</a></li>
+                        <li><a href="https://forms.gle/pkUgMKuYPanh16LW9" target="_blank" data-i18n="trainer_reg">طلب
+                                تسجيل
+                                المدربين</a></li>
+                        <li><a href="https://forms.gle/8hsQroFqb3idEFCq9" target="_blank"
+                                data-i18n="affiliate_marketing">التسويق بالعمولة</a></li>
+                    </ul>
+                </div>
+                <div class="fast-bar-item">
+                    <a href="#" class="fast-btn btn-navy" data-i18n="fast_bar_student">
+                        <i class="fas fa-user-graduate"></i> بوابة الطالب
+                    </a>
+                </div>
+                <div class="fast-bar-item">
+                    <a href="https://t.me/+TbhidspQi25mOWM0" target="_blank" class="fast-btn btn-navy"
+                        data-i18n="fast_bar_library">
+                        <i class="fas fa-book"></i> المكتبة الرقمية
+                    </a>
+                </div>
+                <div class="fast-bar-item">
+                    <a href="medical-record.html" class="fast-btn btn-gold"
+                        style="box-shadow: 0 0 15px var(--gold-main);">
+                        <i class="fas fa-file-medical"></i> <span data-i18n="nav_medical_record">السجل الطبي</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- International Flags Bar -->
+            <div class="footer-flags"
+                style="display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-bottom: 20px;">
+                <img src="https://flagcdn.com/w40/dz.png" alt="الجزائر" class="footer-flag" data-i18n="algeria">
+                <img src="https://flagcdn.com/w40/sa.png" alt="السعودية" class="footer-flag" data-i18n="saudi_arabia">
+                <img src="https://flagcdn.com/w40/sy.png" alt="سوريا" class="footer-flag" data-i18n="syria">
+                <img src="https://flagcdn.com/w40/eg.png" alt="مصر" class="footer-flag" data-i18n="egypt">
+                <img src="https://flagcdn.com/w40/ma.png" alt="المغرب" class="footer-flag" data-i18n="morocco">
+                <img src="https://flagcdn.com/w40/tn.png" alt="تونس" class="footer-flag" data-i18n="tunisia">
+                <img src="https://flagcdn.com/w40/jo.png" alt="الأردن" class="footer-flag" data-i18n="jordan">
+                <img src="https://flagcdn.com/w40/ae.png" alt="الإمارات" class="footer-flag" data-i18n="uae">
+                <img src="https://flagcdn.com/w40/kw.png" alt="الكويت" class="footer-flag" data-i18n="kuwait">
+                <img src="https://flagcdn.com/w40/qa.png" alt="قطر" class="footer-flag" data-i18n="qatar">
+                <img src="https://flagcdn.com/w40/om.png" alt="عمان" class="footer-flag" data-i18n="oman">
+                <img src="https://flagcdn.com/w40/bh.png" alt="البحرين" class="footer-flag" data-i18n="bahrain">
+                <img src="https://flagcdn.com/w40/iq.png" alt="العراق" class="footer-flag" data-i18n="iraq">
+                <img src="https://flagcdn.com/w40/ly.png" alt="ليبيا" class="footer-flag" data-i18n="libya">
+                <img src="https://flagcdn.com/w40/tr.png" alt="تركيا" class="footer-flag" data-i18n="turkey">
+                <img src="https://flagcdn.com/w40/my.png" alt="ماليزيا" class="footer-flag" data-i18n="malaysia">
+                <img src="https://flagcdn.com/w40/fr.png" alt="فرنسا" class="footer-flag" data-i18n="france">
+                <img src="https://flagcdn.com/w40/de.png" alt="ألمانيا" class="footer-flag" data-i18n="germany">
+                <img src="https://flagcdn.com/w40/gb.png" alt="بريطانيا" class="footer-flag" data-i18n="britain">
+                <img src="https://flagcdn.com/w40/us.png" alt="أمريكا" class="footer-flag" data-i18n="america">
+                <img src="https://flagcdn.com/w40/ca.png" alt="كندا" class="footer-flag" data-i18n="canada">
+                <img src="https://flagcdn.com/w40/au.png" alt="أستراليا" class="footer-flag" data-i18n="australia">
+            </div>
+
+            <div class="footer-bottom-links"
+                style="margin-bottom: 15px; display: flex; justify-content: center; gap: 20px;">
+                <a href="course-details.html?post=سياسة الخصوصية" data-i18n="footer_privacy"
+                    style="color: var(--gold-light); text-decoration: none; font-size: 1rem; transition: color 0.3s;"
+                    onmouseover="this.style.color='var(--gold-main)'"
+                    onmouseout="this.style.color='var(--gold-light)'">سياسة الخصوصية</a>
+                <span style="color: #666;">|</span>
+                <a href="ethics.html" data-i18n="ethics_title"
+                    style="color: var(--gold-light); text-decoration: none; font-size: 1rem; transition: color 0.3s;"
+                    onmouseover="this.style.color='var(--gold-main)'"
+                    onmouseout="this.style.color='var(--gold-light)'">أخلاقيات الممارسة</a>
+                <span style="color: #666;">|</span>
+                <a href="course-details.html?post=الشروط والأحكام" data-i18n="footer_terms"
+                    style="color: var(--gold-light); text-decoration: none; font-size: 1rem; transition: color 0.3s;"
+                    onmouseover="this.style.color='var(--gold-main)'"
+                    onmouseout="this.style.color='var(--gold-light)'">الشروط والأحكام</a>
+            </div>
+            <div class="header-brand-mark" style="margin-inline-start: 15px;"><img
+                    src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark"></div>
+
+            <p data-i18n="all_rights" style="font-size: 0.9rem; color: #888; margin: 0;">جميع الحقوق محفوظة &copy; 2026
+                الجامعة العالمية في
+                الطب الشمولي.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

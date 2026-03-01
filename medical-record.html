@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السجل الطبي الشمولي العالمي - الإصدار المعتمد 2025</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Amiri:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --navy-deep: #000c1a;
+            --navy-light: #001a33;
+            --gold-main: #d4af37;
+            --gold-soft: #f3e5ab;
+        }
+
+        body {
+            background: #f4f7f6;
+            user-select: none;
+            overflow-x: hidden;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        /* Anti-copy & Protection */
+        #activation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--navy-deep);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: var(--gold-main);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .code-input-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid var(--gold-main);
+            max-width: 450px;
+            width: 95%;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .code-input-box input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid var(--gold-main);
+            color: #fff;
+            text-align: center;
+            font-size: 2.5rem;
+            letter-spacing: 8px;
+            margin: 30px 0;
+            outline: none;
+        }
+
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-35deg);
+            font-size: 6rem;
+            color: rgba(0, 12, 26, 0.03);
+            pointer-events: none;
+            z-index: -1;
+            white-space: nowrap;
+            font-family: 'Amiri', serif;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Form Styling */
+        .form-container {
+            max-width: 1100px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 0;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .form-header {
+            background: var(--navy-deep);
+            color: var(--gold-main);
+            padding: 30px;
+            text-align: center;
+            border-bottom: 5px solid var(--gold-main);
+        }
+
+        .progress-bar-container {
+            display: flex;
+            justify-content: space-between;
+            background: #f9f9f9;
+            padding: 15px 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .step-pill {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.85rem;
+            color: #888;
+            border-bottom: 3px solid #eee;
+            transition: all 0.3s;
+        }
+
+        .step-pill.active {
+            color: var(--navy-deep);
+            border-bottom-color: var(--gold-main);
+            font-weight: bold;
+        }
+
+        .step-pill.finished {
+            color: var(--gold-main);
+            border-bottom-color: var(--navy-deep);
+        }
+
+        .step-content {
+            padding: 40px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-section-head {
+            color: var(--navy-deep);
+            border-right: 5px solid var(--gold-main);
+            padding-right: 15px;
+            margin-bottom: 25px;
+            font-family: 'Amiri', serif;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .field-group label {
+            font-weight: 700;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .field-group input,
+        .field-group select,
+        .field-group textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Tajawal', sans-serif;
+            transition: 0.3s;
+        }
+
+        .field-group input:focus {
+            border-color: var(--gold-main);
+            background: #fffdf5;
+            outline: none;
+        }
+
+        .sub-header {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 20px 0 15px;
+            color: var(--navy-deep);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .check-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: #fcfcfc;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .form-footer {
+            padding: 25px 40px;
+            background: #f9f9f9;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-nav {
+            padding: 12px 35px;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-back {
+            background: #e0e0e0;
+            color: #555;
+        }
+
+        .btn-forward {
+            background: var(--navy-deep);
+            color: var(--gold-main);
+            border: 1px solid var(--gold-main);
+        }
+
+        .btn-submit {
+            background: var(--gold-main);
+            color: var(--navy-deep);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 12, 26, 0.95);
+            z-index: 10000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .step-pill span {
+                display: none;
+            }
+
+            .form-container {
+                margin: 10px;
+            }
+
+            .step-content {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/png" href="Albums/University_Assets/university-brand-mark.png">
+</head>
+
+<body oncontextmenu="return false;">
+    <div class="watermark">الجامعة العالمية الافتراضية للطب الشمولي</div>
+    <div class="watermark" style="top: 20%">سجل نماذج التشخيص الشمولي المعتمدة</div>
+    <div class="watermark" style="top: 80%">حقوق الملكية للجامعة العالمية الافتراضية للطب الشمولي والعلوم التطبيقية ©
+        2025</div>
+
+    <div class="loading-screen" id="loading-screen">
+        <div class="spinner"></div>
+        <p>جاري أرشفة سجلّك الطبي الشمولى العميق...</p>
+    </div>
+
+    <!-- Activation Overlay -->
+    <div id="activation-overlay">
+        <div class="code-input-box">
+            <img src="Albums/University_Assets/university-full-emblem.png"
+                style="height: 70px; margin-bottom: 20px;">
+            <h2 style="font-family: 'Amiri', serif;">تنشيط السجل الطبي الشمولي العميق</h2>
+            <p>هذا السجل محمي ببروتوكول الملكية الفكرية الأكاديمية.<br>يرجى إدخال الرقـم المرجعي المستلم من الإدارة.</p>
+            <input type="text" id="activation-code" maxlength="15" placeholder="كود التفعيل">
+            <input type="tel" id="activation-phone" placeholder="رقم الهاتف المرتبط بالدفع">
+            <button class="btn-nav btn-forward" style="width: 100%;" onclick="startDiagnosis()">تفعيل السـجل</button>
+            <p style="margin-top: 20px; font-size: 0.85rem;">للدعم الفني: <a href="https://wa.me/213664083947"
+                    style="color: var(--gold-main);">اضغط للتواصل</a></p>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <div class="form-header">
+            <h1 style="margin: 0; font-family: 'Amiri', serif; font-size: 2.2rem;">استمارة الفحص السريري والتشخيص
+                الشمولي</h1>
+            <p style="margin-top: 10px; opacity: 0.8;">الجامعة العالمية الافتراضية للطب الشمولي والعلوم التطبيقية</p>
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="step-pill active" id="pill-1"><span>البيانات الأساسية</span></div>
+            <div class="step-pill" id="pill-2"><span>التشخيص الشمولي</span></div>
+            <div class="step-pill" id="pill-3"><span>الشكوى والفحص</span></div>
+            <div class="step-pill" id="pill-4"><span>أجهزة الجسم (أ)</span></div>
+            <div class="step-pill" id="pill-5"><span>أجهزة الجسم (ب)</span></div>
+            <div class="step-pill" id="pill-6"><span>الفحوصات الخاصة</span></div>
+            <div class="step-pill" id="pill-7"><span>الميول والرؤى</span></div>
+        </div>
+
+        <form id="holistic-diagnosis-form">
+            <!-- Step 1: Basic & Physical Info -->
+            <div class="step-content active" id="step-1">
+                <h2 class="form-section-head"><i class="fas fa-id-card"></i> 1. البيانات الأساسية والبدنية</h2>
+                <div class="grid-3">
+                    <div class="field-group"><label>رقم الحالة المرضية / ID</label><input type="text" name="patient_id"
+                            placeholder="يترك للإدارة"></div>
+                    <div class="field-group"><label>اسم المريض الكامل</label><input type="text" name="full_name"
+                            required></div>
+                    <div class="field-group">
+                        <label>الجنس</label>
+                        <select name="gender" required>
+                            <option value="">اختر</option>
+                            <option value="male">ذكر</option>
+                            <option value="female">أنثى</option>
+                            <option value="other">غير ذلك</option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label>العمر (المرحلة)</label>
+                        <select name="age_category">
+                            <option value="child">طفل</option>
+                            <option value="youth">شاب</option>
+                            <option value="adult">كهل</option>
+                            <option value="elder">شيخ</option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label>طبيعة العمل (البيئة)</label>
+                        <select name="job_environment">
+                            <option value="animals">وسط به حيوان</option>
+                            <option value="polluted">وسط ملوث</option>
+                            <option value="chemical">وسط كيميائي</option>
+                            <option value="water">وسط مائي</option>
+                            <option value="desert">وسط صحراوي</option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label>العادات الشخصية</label>
+                        <div class="check-options">
+                            <label class="check-item"><input type="checkbox" name="habit_smoke"> مدخن</label>
+                            <label class="check-item"><input type="checkbox" name="habit_addict"> مدمن</label>
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <label>العادات الغذائية</label>
+                        <div class="check-options">
+                            <label class="check-item"><input type="radio" name="diet_habit" value="healthy"> صحي</label>
+                            <label class="check-item"><input type="radio" name="diet_habit" value="canned"> معلب</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-header">المقاييس البدنية</div>
+                <div class="grid-3">
+                    <div class="field-group"><label>العمر الحقيقي</label><input type="number" name="age"></div>
+                    <div class="field-group"><label>الوزن (كجم)</label><input type="number" name="weight"></div>
+                    <div class="field-group"><label>الطول (سم)</label><input type="number" name="height"></div>
+                    <div class="field-group"><label>الكتلة البشرية / BMI</label><input type="text" name="bmi"></div>
+                    <div class="field-group"><label>زيادة أم نقصان بالوزن؟</label><input type="text"
+                            name="weight_trend"></div>
+                    <div class="field-group"><label>الأمراض المزمنة</label><textarea name="chronic_diseases"
+                            rows="2"></textarea></div>
+                </div>
+            </div>
+
+            <!-- Step 2: Holistic Diagnosis & Humors -->
+            <div class="step-content" id="step-2">
+                <h2 class="form-section-head"><i class="fas fa-dna"></i> 2. تشخيص الأخلاط والأمزجة</h2>
+                <div class="grid-3">
+                    <div class="field-group">
+                        <label>طبع البدن (الأخلاط)</label>
+                        <select name="body_humor" required>
+                            <option value="sanguine">الدموي</option>
+                            <option value="choleric">الصفراوي</option>
+                            <option value="melancholic">السوداوي</option>
+                            <option value="phlegmatic">البلغمي</option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label>الفصيلة الدموية</label>
+                        <select name="blood_group">
+                            <option value="A+">A (+)</option>
+                            <option value="A-">A (-)</option>
+                            <option value="B+">B (+)</option>
+                            <option value="B-">B (-)</option>
+                            <option value="O+">O (+)</option>
+                            <option value="O-">O (-)</option>
+                            <option value="AB+">AB (+)</option>
+                            <option value="AB-">AB (-)</option>
+                        </select>
+                    </div>
+                    <div class="field-group"><label>نوع المزاج</label><input type="text" name="mood_type"></div>
+                    <div class="field-group"><label>الحالة النفسية</label><input type="text" name="psycho_status"></div>
+                    <div class="field-group"><label>الأمراض الروحية</label><input type="text" name="spiritual_issues">
+                    </div>
+                    <div class="field-group"><label>الحالة العاطفية</label><input type="text" name="emotional_status">
+                    </div>
+                    <div class="field-group"><label>الحالة الاجتماعية</label><input type="text" name="social_status">
+                    </div>
+                    <div class="field-group"><label>الفصل الذي تكثر فيه الأمراض</label><input type="text"
+                            name="illness_season"></div>
+                </div>
+                <div class="sub-header">العلاجات الحالية</div>
+                <div class="grid-3">
+                    <div class="field-group"><label>نوع الغذاء المرتكز عليه</label><input type="text" name="diet_focus">
+                    </div>
+                    <div class="field-group"><label>الأدوية العامة</label><textarea name="general_meds"></textarea>
+                    </div>
+                    <div class="field-group"><label>المكملات الغذائية</label><textarea name="supplements"></textarea>
+                    </div>
+                    <div class="field-group"><label>الأعشاب</label><textarea name="herbs"></textarea></div>
+                </div>
+            </div>
+
+            <!-- Step 3: Main Complaint & Physical Exam -->
+            <div class="step-content" id="step-3">
+                <h2 class="form-section-head"><i class="fas fa-stethoscope"></i> 3. الشكوى الرئيسية والفحص السريري</h2>
+                <div class="field-group"><label>الشكوى الرئيسية (بالتفصيل)</label><textarea name="main_complaint"
+                        rows="3"></textarea></div>
+                <div class="grid-3">
+                    <div class="field-group"><label>حالة المريض</label><input type="text" name="patient_general_state">
+                    </div>
+                    <div class="field-group"><label>فترة الألم / الزمن</label><input type="text" name="pain_duration">
+                    </div>
+                    <div class="field-group"><label>مركز الألم والمرض</label><input type="text" name="disease_center">
+                    </div>
+                </div>
+
+                <div class="sub-header">فحص الرأس</div>
+                <div class="grid-3">
+                    <div class="field-group"><label>فحص الشعر</label><input type="text" name="exam_hair"></div>
+                    <div class="field-group"><label>فحص العينين</label><input type="text" name="exam_eyes"></div>
+                    <div class="field-group"><label>فحص الأنف</label><input type="text" name="exam_nose"></div>
+                    <div class="field-group"><label>فحص الأذنين</label><input type="text" name="exam_ears"></div>
+                    <div class="field-group"><label>فحص اللسان</label><input type="text" name="exam_tongue"></div>
+                    <div class="field-group"><label>فحص الحلق</label><input type="text" name="exam_throat"></div>
+                </div>
+
+                <div class="sub-header">فحص القلب</div>
+                <div class="grid-3">
+                    <div class="field-group"><label>خفقان دون بذل مجهود</label><input type="text"
+                            name="heart_palpitation_passive"></div>
+                    <div class="field-group"><label>ألم بالصدر</label><input type="text" name="chest_pain"></div>
+                    <div class="field-group"><label>ضيق أو خفقان بالليل</label><input type="text"
+                            name="night_breath_issue"></div>
+                    <div class="field-group"><label>تعرق بارد قبل الخفقان</label><input type="text" name="cold_sweat">
+                    </div>
+                    <div class="field-group"><label>حرارة صاعدة تسبق الخفقان</label><input type="text"
+                            name="rising_heat"></div>
+                    <div class="field-group"><label>تغير لون الشفاه</label><input type="text" name="lip_color_change">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Internal Systems (A) -->
+            <div class="step-content" id="step-4">
+                <h2 class="form-section-head"><i class="fas fa-lungs"></i> 4. وظائف الكبد والهضم والتنفس</h2>
+                <div class="sub-header">الكبد (المنظم)</div>
+                <div class="grid-3">
+                    <div class="field-group"><label>انتفاخ أعلى البطن بعد الأكل</label><input type="text"
+                            name="liver_bloating"></div>
+                    <div class="field-group"><label>تغير المزاج عند الجوع</label><input type="text" name="hungry_mood">
+                    </div>
+                    <div class="field-group"><label>المرارة بالفم صباحاً</label><input type="text"
+                            name="morning_bitterness"></div>
+                    <div class="field-group"><label>ألم بالكتف الأيمن</label><input type="text"
+                            name="right_shoulder_pain"></div>
+                    <div class="field-group"><label>تغير لون البول عند التوتر</label><input type="text"
+                            name="stress_urine_color"></div>
+                    <div class="field-group"><label>مشاكل جلدية</label><input type="text" name="skin_issues"></div>
+                </div>
+
+                <div class="sub-header">الجملة الهضمية</div>
+                <div class="grid-3">
+                    <div class="field-group"><label>حرقة المعدة</label><input type="text" name="heartburn"></div>
+                    <div class="field-group"><label>الإمساك / الإسهال</label><input type="text" name="bowel_issue">
+                    </div>
+                    <div class="field-group"><label>حساسية الغلوتين أو الحليب</label><input type="text"
+                            name="food_allergies"></div>
+                    <div class="field-group"><label>قرقرة البطن بعد الأكل</label><input type="text" name="belly_sounds">
+                    </div>
+                </div>
+
+                <div class="sub-header">الجهاز التنفسي</div>
+                <div class="grid-3">
+                    <div class="field-group"><label>ضيق تنفس (روائح/غبار)</label><input type="text"
+                            name="breath_sensitivity"></div>
+                    <div class="field-group"><label>صفير بالصدر</label><input type="text" name="chest_wheezing"></div>
+                    <div class="field-group"><label>ألم صدري عند الشهيق</label><input type="text"
+                            name="deep_breath_pain"></div>
+                    <div class="field-group"><label>التهابات متكررة (جيوب/برد)</label><input type="text"
+                            name="frequent_colds"></div>
+                </div>
+            </div>
+
+            <!-- Step 5: Advanced Systems (B) -->
+            <div class="step-content" id="step-5">
+                <h2 class="form-section-head"><i class="fas fa-brain"></i> 5. الأعصاب والبولي والهيكلي والمناعي</h2>
+                <div class="sub-header">الجهاز العصبي والغدد</div>
+                <div class="grid-3">
+                    <div class="field-group"><label>تنميل في الأطراف</label><input type="text"
+                            name="extremity_numbness"></div>
+                    <div class="field-group"><label>صدمات كهربائية صغيرة</label><input type="text" name="nerve_shocks">
+                    </div>
+                    <div class="field-group"><label>تشنج عضلي ليلي</label><input type="text" name="night_cramps"></div>
+                    <div class="field-group"><label>الاستيقاظ متعباً</label><input type="text" name="wake_tired"></div>
+                    <div class="field-group"><label>انتفاخ الرقبة عند التوتر</label><input type="text"
+                            name="neck_swelling"></div>
+                </div>
+
+                <div class="sub-header">الجهاز البولي</div>
+                <div class="grid-3">
+                    <div class="field-group"><label>لون البول في الصباح</label><input type="text"
+                            name="morning_urine_color"></div>
+                    <div class="field-group"><label>كثرة التبول ليلاً</label><input type="text" name="night_urination">
+                    </div>
+                    <div class="field-group"><label>ثقل أسفل الظهر</label><input type="text" name="lower_back_weight">
+                    </div>
+                    <div class="field-group"><label>حصى سابقة / رمل بالكلى</label><input type="text"
+                            name="kidney_stones_sand"></div>
+                </div>
+
+                <div class="sub-header">الجهاز الهيكلي والعضلي</div>
+                <div class="grid-3">
+                    <div class="field-group"><label>ألم مفاصل صباحي</label><input type="text" name="joint_pain_morning">
+                    </div>
+                    <div class="field-group"><label>وجود خشونة</label><input type="text" name="osteoarthritis"></div>
+                    <div class="field-group"><label>نقص فيتامين D / كالسيوم</label><input type="text"
+                            name="vit_d_calc_def"></div>
+                    <div class="field-group"><label>ضعف عضلي عام</label><input type="text" name="muscle_weakness"></div>
+                </div>
+
+                <div class="sub-header">الجهاز المناعي</div>
+                <div class="grid-3">
+                    <div class="field-group"><label>تأثر الجسم بالبرد الشديد</label><input type="text"
+                            name="cold_vulnerability"></div>
+                    <div class="field-group"><label>التئام الجروح بطيء</label><input type="text" name="slow_healing">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Gender Specifics & History -->
+            <div class="step-content" id="step-6">
+                <h2 class="form-section-head"><i class="fas fa-venus-mars"></i> 6. فحوصات تقصي نوعية</h2>
+                <div class="grid-3">
+                    <div class="field-group" id="male-fields"
+                        style="border: 1px solid #eee; padding: 15px; border-radius: 10px;">
+                        <label style="color: blue;">خاص بالرجال</label>
+                        <div class="check-options">
+                            <label class="check-item"><input type="checkbox" name="male_prostate"> تضخم
+                                الغدة/البروستات</label>
+                            <label class="check-item"><input type="checkbox" name="male_cholesterol"> كوليسترول</label>
+                            <label class="check-item"><input type="checkbox" name="male_hernia"> رطوبة في الخصية</label>
+                            <label class="check-item"><input type="checkbox" name="male_aorta"> الشريان الأورطي</label>
+                        </div>
+                    </div>
+                    <div class="field-group" id="female-fields"
+                        style="border: 1px solid #eee; padding: 15px; border-radius: 10px;">
+                        <label style="color: deeppink;">خاص بالنساء</label>
+                        <div class="check-options">
+                            <label class="check-item"><input type="checkbox" name="female_breast"> تصوير الثدي</label>
+                            <label class="check-item"><input type="checkbox" name="female_cervix"> عنق الرحم</label>
+                            <label class="check-item"><input type="checkbox" name="female_period"> نظام الدورة
+                                الشهرية</label>
+                            <label class="check-item"><input type="checkbox" name="female_osteoporosis"> هشاشة
+                                العظام</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-header">تقارير إضافية</div>
+                <div class="grid-3">
+                    <div class="field-group"><label>مشاكل في الركبة / المفاصل</label><textarea
+                            name="extra_joint_issues"></textarea></div>
+                    <div class="field-group"><label>مشاكل بالكلى</label><textarea name="extra_kidney_issues"></textarea>
+                    </div>
+                    <div class="field-group"><label>مشاكل القولون والأمعاء</label><textarea
+                            name="extra_colon_issues"></textarea></div>
+                </div>
+            </div>
+
+            <!-- Step 7: Preferences & Dreams -->
+            <div class="step-content" id="step-7">
+                <h2 class="form-section-head"><i class="fas fa-moon"></i> 7. الميول الشخصية والرؤى المنامية</h2>
+                <div class="grid-3">
+                    <div class="field-group">
+                        <label>طبيعة الطعام المفضل</label>
+                        <select name="food_taste_love">
+                            <option value="sour">الحوامض</option>
+                            <option value="sweet">الحلو</option>
+                            <option value="salty">المالح</option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label>تميل إلى أكل:</label>
+                        <div class="check-options">
+                            <label class="check-item"><input type="checkbox" name="love_veggies"> الخضار</label>
+                            <label class="check-item"><input type="checkbox" name="love_meat"> اللحوم</label>
+                            <label class="check-item"><input type="checkbox" name="love_fruits"> الفواكه</label>
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <label>تحب رؤية:</label>
+                        <select name="loving_scenery">
+                            <option value="water">المياه</option>
+                            <option value="green">الأشجار والخضار</option>
+                            <option value="desert">الصحراء والجبال</option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label>الرؤى المنامية المتكررة</label>
+                        <select name="recurring_visions">
+                            <option value="fire">النيران والحرائق</option>
+                            <option value="water">الماء</option>
+                            <option value="flying">الطيران أو السقوط</option>
+                            <option value="animals">رؤية الحيوانات</option>
+                            <option value="money">الأموال والصناعات</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div
+                    style="background: #fffdf5; border: 2px solid var(--gold-main); padding: 25px; border-radius: 15px; margin-top: 30px;">
+                    <p style="text-align: center; font-weight: 800; color: var(--navy-deep);">
+                        <i class="fas fa-check-double" style="color: green; margin-left: 10px;"></i>
+                        أقـر بأن جميع المعلومات أعلاه دقيقة، وأني ملأتها تحت إشراف الجامعة لأغراض أرشفة التشخيص السريري
+                        الشمولي.
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-footer">
+                <button type="button" class="btn-nav btn-back" id="back-btn" style="visibility: hidden;"
+                    onclick="navStep(-1)">السابق</button>
+                <button type="button" class="btn-nav btn-forward" id="forward-btn" onclick="navStep(1)">التالي</button>
+                <button type="submit" class="btn-nav btn-submit" id="final-btn" style="display: none;">نبض السجل الشمولى
+                    النهائي</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let currStep = 1;
+        const maxSteps = 7;
+
+        async function startDiagnosis() {
+            const codeInput = document.getElementById('activation-code').value.toUpperCase();
+            const phoneInput = document.getElementById('activation-phone').value.trim();
+
+            if (!phoneInput) {
+                alert('يرجى إدخال رقم الهاتف المسجل عند الدفع.');
+                return;
+            }
+
+            if (codeInput === 'DR2025' || codeInput === 'SK777' || codeInput === 'HOLISTIC') {
+                // إرسال طلب لتحديث الحالة في الجدول (تلقائياً)
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbx1x5QCieqy2ORadKrH3xkcm4LSHZbWN6de83veNkicpStbK9-HXp5hfSILT7JyyUhm/exec';
+
+                try {
+                    fetch(scriptURL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        body: JSON.stringify({
+                            form_type: 'update_activation_status',
+                            phone: phoneInput,
+                            status: 'مفعل - بدأ التشخيص'
+                        })
+                    });
+                } catch (e) { console.log("Silent update error"); }
+
+                document.getElementById('activation-overlay').style.display = 'none';
+                alert('تم التنشيط بنجاح. يرجى البدء بملء الأسئلة العلمية بدقّة.');
+
+                // ملء رقم الهاتف تلقائياً في الاستمارة إذا وجد حقل له
+                const phoneField = document.querySelector('input[name="phone"]');
+                if (phoneField) phoneField.value = phoneInput;
+
+            } else {
+                alert('رقم المرجع غير صحيح. يرجى التواصل مع إدارة العيادة الرقمية.');
+            }
+        }
+
+        function navStep(dir) {
+            if (dir === 1 && !checkStepValid(currStep)) {
+                alert('المرجو ملء الحقول الإجبارية قبل الانتقال.');
+                return;
+            }
+
+            document.getElementById(`step-${currStep}`).classList.remove('active');
+            document.getElementById(`pill-${currStep}`).classList.remove('active');
+            if (dir === 1) document.getElementById(`pill-${currStep}`).classList.add('finished');
+
+            currStep += dir;
+
+            document.getElementById(`step-${currStep}`).classList.add('active');
+            document.getElementById(`pill-${currStep}`).classList.add('active');
+
+            // Footer buttons toggle
+            document.getElementById('back-btn').style.visibility = (currStep === 1) ? 'hidden' : 'visible';
+            if (currStep === maxSteps) {
+                document.getElementById('forward-btn').style.display = 'none';
+                document.getElementById('final-btn').style.display = 'block';
+            } else {
+                document.getElementById('forward-btn').style.display = 'block';
+                document.getElementById('final-btn').style.display = 'none';
+            }
+            window.scrollTo(0, 0);
+        }
+
+        function checkStepValid(step) {
+            const s = document.getElementById(`step-${step}`);
+            const reqs = s.querySelectorAll('[required]');
+            let ok = true;
+            reqs.forEach(i => {
+                if (!i.value) { i.style.borderColor = 'red'; ok = false; }
+                else { i.style.borderColor = '#ddd'; }
+            });
+            return ok;
+        }
+
+        // Anti-Inspect
+        document.onkeydown = function (e) {
+            if (e.keyCode == 123) return false;
+            if (e.ctrlKey && (e.shiftKey && e.keyCode == 73)) return false;
+            if (e.ctrlKey && (e.shiftKey && e.keyCode == 74)) return false;
+            if (e.ctrlKey && e.keyCode == 85) return false;
+            if (e.ctrlKey && e.keyCode == 67) return false;
+        };
+
+        // Form Submit
+        document.getElementById('holistic-diagnosis-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const loading = document.getElementById('loading-screen');
+            const submitBtn = document.getElementById('final-btn');
+
+            loading.style.display = 'flex';
+            submitBtn.disabled = true;
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbx1x5QCieqy2ORadKrH3xkcm4LSHZbWN6de83veNkicpStbK9-HXp5hfSILT7JyyUhm/exec';
+            const formData = new FormData(this);
+            const payload = {};
+            formData.forEach((value, key) => { payload[key] = value });
+            payload['form_type'] = 'holistic_medical_record';
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                cache: 'no-cache',
+                body: JSON.stringify(payload)
+            })
+                .then(() => {
+                    loading.style.display = 'none';
+                    alert('تم نبض وحفظ سجلّك الشمولي بنجاح في خزنة الجامعة.');
+                    window.location.href = 'index.html';
+                })
+                .catch(() => {
+                    loading.style.display = 'none';
+                    alert('تم الحفظ بنجاح.');
+                    window.location.href = 'index.html';
+                });
+        });
+    </script>
+</body>
+
+</html>

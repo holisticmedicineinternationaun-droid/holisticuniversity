@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="نظام الدعم الفني والتذاكر للجامعة العالمية في الطب الشمولي">
+    <title>نظام الدعم الفني - الجامعة العالمية</title>
+    <!-- Modern Typography -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="i18n.js"></script>
+    <style>
+        .ticket-page {
+            padding: 120px 0 60px;
+            min-height: 80vh;
+            background: var(--bg-light);
+        }
+
+        .ticket-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .ticket-header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: var(--gold-light);
+            padding: 30px;
+            text-align: center;
+            border-bottom: 4px solid var(--gold-main);
+        }
+
+        .ticket-header h2 {
+            font-family: 'Amiri', 'Tajawal', serif;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--gold-main);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .ticket-header p {
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        .ticket-body {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eaeaea;
+            border-radius: 8px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: #fdfdfd;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold-main);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+            background: #fff;
+        }
+
+        .form-control::placeholder {
+            color: #aaa;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--gold-main), var(--gold-dark));
+            color: var(--white);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            border-radius: 40px;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Success Message styling */
+        .ticket-success {
+            display: none;
+            text-align: center;
+            padding: 50px 30px;
+        }
+
+        .ticket-success i {
+            font-size: 5rem;
+            color: #2ecc71;
+            margin-bottom: 20px;
+        }
+
+        .ticket-id-box {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px dashed var(--gold-main);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-color: var(--gold-main);
+        }
+
+        .back-link:hover {
+            color: var(--gold-main);
+        }
+    </style>
+    <link rel="icon" type="image/png" href="Albums/University_Assets/university-brand-mark.png">
+</head>
+
+<body>
+    <div class="brand-mark-overlay"></div>
+    <!-- Top Contact Bar (Same as index.html) -->
+    <div class="top-contact-bar"
+        style="background: var(--primary-color); padding: 8px 0; border-bottom: 2px solid var(--gold-main); font-size: 0.95rem;">
+        <div class="container"
+            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            
+                <div class="top-nav-links" style="display: flex; gap: 12px; margin-inline-start: 10px;">
+                    <a href="course-details.html?post=من نحن" data-i18n="about" style="color: var(--white); text-decoration: none; font-size: 0.85rem; border-inline-end: 1px solid rgba(255,255,255,0.2); padding-inline-end: 12px;">من نحن</a>
+                    <a href="#contact-footer" data-i18n="contact" style="color: var(--white); text-decoration: none; font-size: 0.85rem;">اتصل بنا</a>
+                </div>
+                <div class="top-email" style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
+                <a href="mailto:holisticmedicineinternationaun@gmail.com"
+                    style="color: var(--gold-light); text-decoration: none; transition: opacity 0.3s; display: flex; align-items: center; gap: 8px;"
+                    onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1"><i class="fas fa-envelope"
+                        style="font-size: 1rem;"></i></a>
+            </div>
+            <div class="header-brand-mark" style="margin-inline-start: 15px;"><img src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark" ></div>
+            <div class="top-social-links" style="flex: 1; display: flex; align-items: center; justify-content: flex-end;" style="display: flex; gap: 15px; align-items: center;">
+                <div class="lang-dropdown">
+                    <button class="lang-dropdown-btn">
+                        <i class="fas fa-globe"></i>
+                        <span id="current-lang-text">العربية</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                    </button>
+                    <div class="lang-dropdown-content">
+                        <button onclick="setLanguage('ar')" class="active">العربية</button>
+                        <button onclick="setLanguage('en')">English</button>
+                        <button onclick="setLanguage('fr')">Français</button>
+                    </div>
+                </div>
+                <a href="https://chat.whatsapp.com/KRol8QEQDD19LUhJ6BSoKi?mode=gi_t" target="_blank"
+                    style="color: var(--gold-light); transition: opacity 0.3s;" onmouseover="this.style.opacity=0.7"
+                    onmouseout="this.style.opacity=1"><i class="fab fa-whatsapp" style="font-size: 1rem;"></i></a>
+            </div>
+            <div class="header-brand-mark" style="margin-inline-start: 15px;"><img src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark" ></div>
+        </div>
+    </div>
+
+    <!-- Mini Header -->
+    <header class="header" style="position: static;">
+        <div class="container header-container" style="height: 80px;">
+            <div class="logo">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+                    <img src="Albums/University_Assets/university-full-emblem.png"
+                        alt="الجامعة العالمية الافتراضية" class="logo-image"
+                        style="height: 85px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));">
+                </a>
+            </div>
+            <div class="header-brand-mark" style="margin-inline-start: 15px;"><img src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark" ></div>
+            <a href="index.html" class="btn" data-i18n="back_home"
+                style="background: transparent; color: var(--gold-light); border: 1px solid var(--gold-main); padding: 8px 15px;"><i
+                    class="fas fa-arrow-right"></i> العودة للرئيسية</a>
+        </div>
+    </header>
+
+    <main class="ticket-page">
+        <div class="container">
+            <div class="ticket-container">
+                <div class="ticket-header">
+                    <h2><i class="fas fa-headset" style="margin-inline-end: 10px;"></i> <span
+                            data-i18n="support_title">نظام الدعم الفني والتذاكر</span></h2>
+                    <p data-i18n="support_desc">فريق الشؤون الجامعية والدعم الفني متواجد لخدمتك وحل مشكلتك في أقرب وقت.
+                    </p>
+                </div>
+
+                <div class="ticket-body" id="ticket-form-section">
+                    <form id="support-form">
+                        <div class="form-group">
+                            <label class="form-label" for="studentName"><i class="fas fa-user"></i> <span
+                                    data-i18n="full_name">الاسم الكامل</span></label>
+                            <input type="text" id="studentName" class="form-control" placeholder="أدخل اسمك الثلاثي"
+                                data-i18n-placeholder="full_name_placeholder" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="contactInfo"><i class="fas fa-phone"></i> <span
+                                    data-i18n="phone_whatsapp">رقم الهاتف أو
+                                    الواتساب</span></label>
+                            <input type="text" id="contactInfo" class="form-control" placeholder="أدخل رقمك للتواصل"
+                                data-i18n-placeholder="phone_placeholder" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="issueType"><i class="fas fa-list"></i> <span
+                                    data-i18n="issue_type">نوع المشكلة</span></label>
+                            <select id="issueType" class="form-control" required>
+                                <option value="" disabled selected data-i18n="issue_type_placeholder">اختر نوع
+                                    المشكلة...</option>
+                                <option value="academic" data-i18n="academic_issue">استفسار أكاديمي / دورات</option>
+                                <option value="technical" data-i18n="technical_issue">مشكلة تقنية في الموقع</option>
+                                <option value="registration" data-i18n="registration_issue">مشكلة في التسجيل أو الشهادات
+                                </option>
+                                <option value="other" data-i18n="other_issue">أخرى</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="issueDescription"><i class="fas fa-comment-dots"></i> <span
+                                    data-i18n="issue_details">تفاصيل
+                                    المشكلة</span></label>
+                            <textarea id="issueDescription" class="form-control"
+                                data-i18n-placeholder="issue_details_placeholder"
+                                placeholder="اشرح مشكلتك بالتفصيل ليتمكن المشرف من مساعدتك..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn" data-i18n="send_ticket">
+                            إرسال التذكرة <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div> <!-- End form section -->
+
+                <!-- Success Section (Hidden by default) -->
+                <div class="ticket-success" id="ticket-success-section">
+                    <i class="fas fa-check-circle"></i>
+                    <h2 data-i18n="ticket_received"
+                        style="font-family: 'Amiri', 'Tajawal', serif; color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">
+                        تم استلام تذكرتك بنجاح!</h2>
+                    <p data-i18n="keep_ticket_id" style="font-size: 1.1rem; color: #555;">يرجى الاحتفاظ برقم التذكرة
+                        التالي لمتابعة حالة طلبك مع
+                        المشرف:</p>
+
+                    <div class="ticket-id-box" id="generated-ticket-id">
+                        TCK-2026-XXXX
+                    </div>
+
+                    <p data-i18n="reviewer_msg" style="font-size: 1.05rem; color: #777; margin-bottom: 20px;">سيقوم مشرف
+                        القاعات أو الدعم الفني
+                        بمراجعة تذكرتك والتواصل معك قريباً.</p>
+
+                    <a href="index.html" class="btn"
+                        style="background: var(--primary-color); color: var(--gold-light); display: inline-block; padding: 12px 30px; border-radius: 30px;"><i
+                            class="fas fa-home"></i> <span data-i18n="back_home">العودة للرئيسية</span></a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Enhanced Footer -->
+    <footer class="footer"
+        style="background: var(--primary-color); padding: 50px 0 20px 0; color: #fff; margin-top: 50px;">
+        <div class="container"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 30px;">
+            <div class="footer-col" style="text-align: right;">
+                <a href="index.html">
+                    <img src="Albums/University_Assets/university-full-emblem.png"
+                        alt="Logo"
+                        style="height: 100px; max-width: 100%; object-fit: contain; margin-bottom: 15px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));">
+                </a>
+                <p data-i18n="footer_description"
+                    style="font-size: 1rem; color: #ccc; line-height: 1.6; margin-top: 5px;">رواد التعليم
+                    الافتراضي<br>في
+                    فقه الطب الشمولي والتطوير</p>
+            </div>
+            <div class="footer-col" style="text-align: right;">
+                <h3 data-i18n="contact_us_footer"
+                    style="color: var(--gold-main); margin-bottom: 20px; font-size: 1.3rem; position: relative; padding-right: 15px; border-right: 3px solid var(--gold-main);">
+                    اتصل بنا</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 15px;"><a
+                            href="https://chat.whatsapp.com/KRol8QEQDD19LUhJ6BSoKi?mode=gi_t" target="_blank"
+                            style="color: #ccc; text-decoration: none; font-size: 1.1rem; transition: color 0.3s;"
+                            onmouseover="this.style.color='var(--gold-main)'" onmouseout="this.style.color='#ccc'"><i
+                                class="fab fa-whatsapp"
+                                style="margin-inline-end: 10px; width: 20px; text-align: center; color: #25D366;"></i>
+                            <span data-i18n="whatsapp">واتساب</span></a></li>
+                    <li style="margin-bottom: 15px;"><a href="https://t.me/+_xQw-l_cFcpmNTU0" target="_blank"
+                            style="color: #ccc; text-decoration: none; font-size: 1.1rem; transition: color 0.3s;"
+                            onmouseover="this.style.color='var(--gold-main)'" onmouseout="this.style.color='#ccc'"><i
+                                class="fab fa-telegram-plane"
+                                style="margin-inline-end: 10px; width: 20px; text-align: center; color: #0088cc;"></i>
+                            <span data-i18n="telegram">تلغرام</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-content" style="text-align: center;">
+            <!-- Interactive Fast Bar -->
+            <div class="footer-fast-bar" style="margin-top: 20px;">
+                <div class="fast-bar-item dropdown">
+                    <button class="fast-btn btn-gold" data-i18n="fast_bar_register">
+                        <i class="fas fa-pen-nib"></i> سجل الآن
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://forms.gle/Cat2zK8p2nNAfvDN9" target="_blank" data-i18n="trainee_reg">طلب
+                                تسجيل
+                                المتدربين</a></li>
+                        <li><a href="https://forms.gle/pkUgMKuYPanh16LW9" target="_blank" data-i18n="trainer_reg">طلب
+                                تسجيل
+                                المدربين</a></li>
+                        <li><a href="https://forms.gle/8hsQroFqb3idEFCq9" target="_blank"
+                                data-i18n="affiliate_marketing">التسويق بالعمولة</a></li>
+                    </ul>
+                </div>
+                <div class="fast-bar-item">
+                    <a href="#" class="fast-btn btn-navy" data-i18n="fast_bar_student">
+                        <i class="fas fa-user-graduate"></i> بوابة الطالب
+                    </a>
+                </div>
+                <div class="fast-bar-item">
+                    <a href="https://t.me/+TbhidspQi25mOWM0" target="_blank" class="fast-btn btn-navy"
+                        data-i18n="fast_bar_library">
+                        <i class="fas fa-book"></i> المكتبة الرقمية
+                    </a>
+                </div>
+            </div>
+
+            <!-- International Flags Bar -->
+            <div class="footer-flags"
+                style="display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin: 25px 0 20px 0;">
+                <img src="https://flagcdn.com/w40/dz.png" alt="الجزائر" class="footer-flag" data-i18n="algeria">
+                <img src="https://flagcdn.com/w40/sa.png" alt="السعودية" class="footer-flag" data-i18n="saudi_arabia">
+                <img src="https://flagcdn.com/w40/sy.png" alt="سوريا" class="footer-flag" data-i18n="syria">
+                <img src="https://flagcdn.com/w40/eg.png" alt="مصر" class="footer-flag" data-i18n="egypt">
+                <img src="https://flagcdn.com/w40/ma.png" alt="المغرب" class="footer-flag" data-i18n="morocco">
+                <img src="https://flagcdn.com/w40/tn.png" alt="تونس" class="footer-flag" data-i18n="tunisia">
+                <img src="https://flagcdn.com/w40/jo.png" alt="الأردن" class="footer-flag" data-i18n="jordan">
+                <img src="https://flagcdn.com/w40/ae.png" alt="الإمارات" class="footer-flag" data-i18n="uae">
+                <img src="https://flagcdn.com/w40/kw.png" alt="الكويت" class="footer-flag" data-i18n="kuwait">
+                <img src="https://flagcdn.com/w40/qa.png" alt="قطر" class="footer-flag" data-i18n="qatar">
+                <img src="https://flagcdn.com/w40/om.png" alt="عمان" class="footer-flag" data-i18n="oman">
+                <img src="https://flagcdn.com/w40/bh.png" alt="البحرين" class="footer-flag" data-i18n="bahrain">
+                <img src="https://flagcdn.com/w40/iq.png" alt="العراق" class="footer-flag" data-i18n="iraq">
+                <img src="https://flagcdn.com/w40/ly.png" alt="ليبيا" class="footer-flag" data-i18n="libya">
+                <img src="https://flagcdn.com/w40/tr.png" alt="تركيا" class="footer-flag" data-i18n="turkey">
+                <img src="https://flagcdn.com/w40/my.png" alt="ماليزيا" class="footer-flag" data-i18n="malaysia">
+                <img src="https://flagcdn.com/w40/fr.png" alt="فرنسا" class="footer-flag" data-i18n="france">
+                <img src="https://flagcdn.com/w40/de.png" alt="ألمانيا" class="footer-flag" data-i18n="germany">
+                <img src="https://flagcdn.com/w40/gb.png" alt="بريطانيا" class="footer-flag" data-i18n="britain">
+                <img src="https://flagcdn.com/w40/us.png" alt="أمريكا" class="footer-flag" data-i18n="america">
+                <img src="https://flagcdn.com/w40/ca.png" alt="كندا" class="footer-flag" data-i18n="canada">
+                <img src="https://flagcdn.com/w40/au.png" alt="أستراليا" class="footer-flag" data-i18n="australia">
+            </div>
+
+            <p data-i18n="all_rights" style="font-size: 0.9rem; color: #888; margin: 0;">جميع الحقوق محفوظة &copy; 2026
+                الجامعة العالمية في الطب الشمولي.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('support-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Simple mockup of generating a ticket ID
+            // In a real backend, this would be an API call
+
+            // Generate a random 4 digit number
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            const ticketId = `TCK-2026-${randomNum}`;
+
+            // Update the UI
+            document.getElementById('generated-ticket-id').innerText = ticketId;
+
+            // Hide Form, Show Success Message
+            document.getElementById('ticket-form-section').style.display = 'none';
+            document.getElementById('ticket-success-section').style.display = 'block';
+
+            // Scroll to top of ticket container
+            window.scrollTo({
+                top: document.querySelector('.ticket-container').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+
+</html>

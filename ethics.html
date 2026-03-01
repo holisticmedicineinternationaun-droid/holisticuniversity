@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ميثاق أخلاقيات الممارسة - الجامعة العالمية الافتراضية للطب الشمولي">
+    <title data-i18n="ethics_title">ميثاق أخلاقيات الممارسة - الجامعة العالمية</title>
+    <!-- Modern Typography -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="i18n.js"></script>
+    <style>
+        body {
+            background-color: #f4f1ea;
+            /* Light parchment-like color */
+        }
+
+        .ethics-page-container {
+            padding: 150px 0 100px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .document-frame {
+            background: #fff;
+            max-width: 900px;
+            width: 95%;
+            padding: 60px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 15px solid transparent;
+            border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><path d="M0 0h50v50H0z" fill="none"/><path d="M10 10h30v30H10z" fill="none" stroke="%23d4af37" stroke-width="2"/></svg>') 30 stretch;
+            /* Simple fallback if border-image fails */
+            border: 2px solid var(--gold-main);
+            outline: 10px solid var(--white);
+            outline-offset: -12px;
+        }
+
+        .document-inner {
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 40px;
+            position: relative;
+        }
+
+        .doc-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .doc-header img {
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .doc-header h1 {
+            font-family: 'Amiri', serif;
+            color: var(--primary-color);
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--gold-main);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .doc-intro {
+            font-size: 1.25rem;
+            color: #444;
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .ethics-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 50px 0;
+        }
+
+        .ethics-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 8px;
+            border-right: 4px solid var(--gold-main);
+        }
+
+        .ethics-item i {
+            color: var(--gold-main);
+            font-size: 1.5rem;
+            margin-top: 5px;
+        }
+
+        .ethics-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+        }
+
+        .ethics-item p {
+            color: #555;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .doc-conclusion {
+            text-align: center;
+            font-family: 'Amiri', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-top: 60px;
+            line-height: 1.6;
+            border-top: 1px dashed rgba(212, 175, 55, 0.5);
+            padding-top: 30px;
+        }
+
+        .doc-stamp {
+            text-align: left;
+            margin-top: 40px;
+        }
+
+        .doc-stamp img {
+            height: 120px;
+            opacity: 0.8;
+            filter: sepia(0.5) hue-rotate(-20deg);
+        }
+
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--gold-main);
+            color: var(--primary-color);
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .back-home-btn:hover {
+            background: var(--primary-color);
+            color: var(--gold-main);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .document-frame {
+                padding: 30px;
+            }
+
+            .document-inner {
+                padding: 20px;
+            }
+
+            .doc-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/png" href="Albums/University_Assets/university-brand-mark.png">
+</head>
+
+<body>
+    <div class="brand-mark-overlay"></div>
+    <header class="header">
+        <!-- News Ticker -->
+        <div class="news-ticker">
+            <div class="news-ticker-title" data-i18n="urgent">
+                <i class="fas fa-bullhorn"></i> عاجل
+            </div>
+            <div class="news-ticker-content">
+                <div class="ticker-scroll">
+                    <span class="ticker-item" data-i18n="ticker_item1">اعتماد أبحاث جديدة في "مدرسة الإدراك"</span>
+                    <span class="ticker-item" data-i18n="ticker_item5">الجامعة تعلن عن بدء مراجعة 25 منهجاً دراسياً
+                        جديداً للمصادقة العلمية النهائية</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="Albums/University_Assets/university-full-emblem.png"
+                        alt="Logo" class="logo-image" style="height: 55px;">
+                </a>
+            </div>
+            <div class="header-brand-mark" style="margin-inline-start: 15px;"><img src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark" ></div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" data-i18n="home">الرئيسية</a></li>
+                    <li class="dropdown">
+                        <a href="#" data-i18n="med_schools">المدارس الطبية <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="course-details.html?post=أقسام الجامعة" data-i18n="perception">مدرسة الإدراك</a></li>
+                            <li><a href="course-details.html?post=دورة الصحة النفسية" data-i18n="mental_health">مدرسة الصحة النفسية</a></li>
+                            <li><a href="course-details.html?post=الطب الشمولي" data-i18n="holistic_medicine">مدرسة الطب الشمولي</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="ethics.html" class="active" data-i18n="ethics_title">أخلاقيات الممارسة</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="ethics-page-container">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+            <a href="index.html" class="back-home-btn">
+                <i class="fas fa-arrow-right"></i> <span data-i18n="home">العودة للرئيسية</span>
+            </a>
+            <div class="document-frame">
+                <div class="document-inner">
+                    <div class="doc-header">
+                        <img src="Albums/University_Assets/university-full-emblem.png"
+                            alt="University Logo">
+                        <h1 data-i18n="ethics_title">ميثاق أخلاقيات الممارسة</h1>
+                    </div>
+
+                    <div class="doc-intro" data-i18n="ethics_intro">
+                        تلتزم الجامعة العالمية الافتراضية للطب الشمولي بأعلى معايير النزاهة العلمية والأخلاقية في ممارسة
+                        العلوم التطبيقية والطب الشمولي.
+                    </div>
+
+                    <div class="ethics-list">
+                        <div class="ethics-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h3 data-i18n="ethic_1_title">الأمانة العلمية</h3>
+                                <p data-i18n="ethic_1_desc">تحري الدقة في نقل المعلومات الطبية والالتزام بالأمانة في
+                                    البحث
+                                    العلمي والتدريس الأكاديمي.</p>
+                            </div>
+                        </div>
+                        <div class="ethics-item">
+                            <i class="fas fa-user-shield"></i>
+                            <div>
+                                <h3 data-i18n="ethic_2_title">خصوصية المريض</h3>
+                                <p data-i18n="ethic_2_desc">الحفاظ على السرية التامة لبيانات المرضى والحالات السريرية
+                                    واحترام خصوصية التشخيص والعلاج.</p>
+                            </div>
+                        </div>
+                        <div class="ethics-item">
+                            <i class="fas fa-sync-alt"></i>
+                            <div>
+                                <h3 data-i18n="ethic_3_title">التطوير المستمر</h3>
+                                <p data-i18n="ethic_3_desc">السعي الدائم لمواكبة أحدث المستجدات العلمية والبحثية لتقديم
+                                    أفضل
+                                    رعاية صحية شمولية.</p>
+                            </div>
+                        </div>
+                        <div class="ethics-item">
+                            <i class="fas fa-balance-scale"></i>
+                            <div>
+                                <h3 data-i18n="ethic_4_title">الالتزام بالضوابط</h3>
+                                <p data-i18n="ethic_4_desc">الالتزام التام بالضوابط الشرعية والقانونية والطبية المنظمة
+                                    لممارسة الطب التكميلي والشمولي.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doc-conclusion" data-i18n="ethics_conclusion">
+                        "كل طالب في جامعتنا هو سفير لهذه الأخلاقيات ومؤتمن على رسالة الطب الشمولي السامية"
+                    </div>
+
+                    <div class="doc-stamp">
+                        <img src="Albums/University_Assets/university-full-emblem.png"
+                            alt="University Stamp">
+                        <p
+                            style="font-family: 'Amiri', serif; font-weight: bold; color: var(--gold-main); margin-top: -30px; margin-left: 20px;">
+                            ختم الاعتماد الرقمي</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" style="background: #000c1a; padding: 40px 0; color: #fff; text-align: center;">
+        <div class="container">
+            <p data-i18n="all_rights">جميع الحقوق محفوظة &copy; 2026 الجامعة العالمية في الطب الشمولي</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
