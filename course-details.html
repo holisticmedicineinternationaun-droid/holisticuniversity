@@ -22,6 +22,65 @@
     <script src="posts_data.js"></script>
     <script src="i18n.js"></script>
     <link rel="icon" type="image/png" href="Albums/University_Assets/university-brand-mark.png">
+
+    <style>
+        .premium-cta-box:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+            border-color: var(--gold-dark) !important;
+        }
+
+        .hero-title {
+            animation: fadeInDown 0.8s ease-out;
+            font-family: 'Amiri', serif;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .markdown-body ul {
+            list-style: none;
+            padding-inline-start: 10px;
+        }
+
+        .markdown-body ul li {
+            position: relative;
+            padding-inline-start: 25px;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            font-size: 1.15rem;
+        }
+
+        .markdown-body ul li::before {
+            content: '\f058';
+            /* FontAwesome check-circle */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            inset-inline-start: 0;
+            color: var(--gold-main);
+            font-size: 1.2rem;
+            top: 4px;
+        }
+
+        .markdown-body h2 {
+            border-right: 4px solid var(--gold-main);
+            padding-right: 15px;
+            background: linear-gradient(90deg, transparent, rgba(230, 184, 65, 0.05));
+            border-radius: 0 8px 8px 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,19 +92,25 @@
             <div class="container"
                 style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
 
-                
+
                 <div class="top-nav-links" style="display: flex; gap: 12px; margin-inline-start: 10px;">
-                    <a href="course-details.html?post=من نحن" data-i18n="about" style="color: var(--white); text-decoration: none; font-size: 0.85rem; border-inline-end: 1px solid rgba(255,255,255,0.2); padding-inline-end: 12px;">من نحن</a>
-                    <a href="#contact-footer" data-i18n="contact" style="color: var(--white); text-decoration: none; font-size: 0.85rem;">اتصل بنا</a>
+                    <a href="course-details.html?post=من نحن" data-i18n="about"
+                        style="color: var(--white); text-decoration: none; font-size: 0.85rem; border-inline-end: 1px solid rgba(255,255,255,0.2); padding-inline-end: 12px;">من
+                        نحن</a>
+                    <a href="#contact-footer" data-i18n="contact"
+                        style="color: var(--white); text-decoration: none; font-size: 0.85rem;">اتصل بنا</a>
                 </div>
-                <div class="top-email" style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
+                <div class="top-email"
+                    style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
                     <a href="mailto:holisticmedicineinternationaun@gmail.com"
                         style="color: var(--gold-light); text-decoration: none; transition: opacity 0.3s; display: flex; align-items: center; gap: 8px;"
                         onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1"><i
                             class="fas fa-envelope" style="font-size: 1rem;"></i></a>
                 </div>
 
-                <div class="top-social-links" style="flex: 1; display: flex; align-items: center; justify-content: flex-end;" style="display: flex; gap: 15px; align-items: center;">
+                <div class="top-social-links"
+                    style="flex: 1; display: flex; align-items: center; justify-content: flex-end;"
+                    style="display: flex; gap: 15px; align-items: center;">
                     <div class="lang-dropdown">
                         <button class="lang-dropdown-btn">
                             <i class="fas fa-globe"></i>
@@ -78,12 +143,13 @@
         <div class="container header-container">
             <div class="logo">
                 <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
-                    <img src="Albums/University_Assets/university-full-emblem.png"
-                        alt="الجامعة العالمية الافتراضية" class="logo-image"
+                    <img src="Albums/University_Assets/university-full-emblem.png" alt="الجامعة العالمية الافتراضية"
+                        class="logo-image"
                         style="height: 85px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));">
                 </a>
             </div>
-            <div class="header-brand-mark" style="margin-inline-start: 15px;"><img src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark" ></div>
+            <div class="header-brand-mark" style="margin-inline-start: 15px;"><img
+                    src="Albums/University_Assets/university-brand-mark.png" alt="Brand Mark"></div>
 
             <button class="mobile-menu-btn" aria-label="القائمة">
                 <i class="fas fa-bars"></i>
@@ -170,10 +236,29 @@
         </div>
     </header>
 
-    <main class="article-page">
-        <div class="container article-container">
-            <!-- Back Button -->
-            <a href="index.html" class="btn"
+    <main class="article-page" style="padding-top: 0; margin-top: 0;">
+        <!-- New Dynamic Hero Section -->
+        <div id="course-hero" class="course-hero dynamic-hero" style="display: none;">
+            <div class="hero-overlay"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(27,61,47,0.95), rgba(44,23,8,0.7));">
+            </div>
+            <div class="container hero-content"
+                style="position: relative; z-index: 10; text-align: center; color: white; width: 100%;">
+                <a href="index.html" class="btn"
+                    style="background: transparent; border: 2px solid var(--gold-main); color: var(--gold-main); margin-bottom: 30px; display: inline-flex; border-radius: 30px; padding: 10px 25px;">
+                    <i class="fas fa-arrow-right"></i> <span data-i18n="back_home" style="margin-right: 8px;">العودة
+                        للرئيسية</span>
+                </a>
+                <h1 id="course-hero-title" class="hero-title"
+                    style="font-size: 3.5rem; font-weight: 800; text-shadow: 2px 4px 10px rgba(0,0,0,0.5); color: var(--gold-light);">
+                    جاري التحميل...</h1>
+            </div>
+        </div>
+
+        <div class="container article-container premium-course"
+            style="margin-top: -60px; position: relative; z-index: 20; border-top: 5px solid var(--gold-main);">
+            <!-- Back Button (Fallback) -->
+            <a href="index.html" id="fallback-back-btn" class="btn"
                 style="background: var(--primary-color); color: var(--white); margin-bottom: 30px; display: inline-flex;"><i
                     class="fas fa-arrow-right"></i> <span data-i18n="back_home">العودة للرئيسية</span></a>
 
@@ -194,8 +279,7 @@
             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 30px;">
             <div class="footer-col" style="text-align: right;">
                 <a href="index.html">
-                    <img src="Albums/University_Assets/university-full-emblem.png"
-                        alt="Logo"
+                    <img src="Albums/University_Assets/university-full-emblem.png" alt="Logo"
                         style="height: 100px; max-width: 100%; object-fit: contain; margin-bottom: 15px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));">
                 </a>
                 <p data-i18n="footer_description"
@@ -327,7 +411,51 @@
 
                     if (markdownText) {
                         // Parse markdown
-                        articleContent.innerHTML = marked.parse(markdownText);
+                        const parsedHTML = marked.parse(markdownText);
+
+                        // Create a temporary div to manipulate the HTML
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = parsedHTML;
+
+                        // Extract the title (first h1, h2, or h3)
+                        const titleObj = tempDiv.querySelector('h1, h2, h3');
+                        const courseTitle = titleObj ? titleObj.innerText : postName;
+                        if (titleObj) titleObj.remove();
+
+                        // Extract the first image to use as a hero background
+                        const imgObj = tempDiv.querySelector('img');
+                        let heroImageSrc = '';
+                        if (imgObj) {
+                            heroImageSrc = imgObj.src;
+                            imgObj.remove(); // Remove the image from the article body to not duplicate it
+                        }
+
+                        // Set up the Hero section
+                        const heroSection = document.getElementById('course-hero');
+                        const fallbackBackBtn = document.getElementById('fallback-back-btn');
+
+                        document.getElementById('course-hero-title').innerText = courseTitle;
+
+                        if (heroImageSrc) {
+                            heroSection.style.backgroundImage = `url('${heroImageSrc}')`;
+                            heroSection.style.display = 'flex';
+                            heroSection.style.height = '60vh';
+                            heroSection.style.minHeight = '400px';
+                            heroSection.style.backgroundPosition = 'center';
+                            heroSection.style.backgroundSize = 'cover';
+                            heroSection.style.position = 'relative';
+                            heroSection.style.marginTop = '0'; // Adjusted for modern top loading
+                            heroSection.style.alignItems = 'center';
+                            heroSection.style.justifyContent = 'center';
+                            fallbackBackBtn.style.display = 'none'; // Hide the inner back button
+                        } else {
+                            heroSection.style.display = 'none';
+                            fallbackBackBtn.style.display = 'inline-flex';
+                            document.querySelector('.article-container').style.marginTop = '120px';
+                        }
+
+                        // Re-assign the modified HTML back to the article container
+                        articleContent.innerHTML = tempDiv.innerHTML;
 
                         // Search for Registration Link
                         let registrationLink = null;
@@ -401,10 +529,12 @@
                         // Append the shiny CTA button if form link is found
                         if (registrationLink) {
                             const ctaHtml = `
-                                <div style="text-align: center; margin-top: 50px; padding: 40px; background: rgba(230,184,65,0.08); border-radius: 15px; border: 2px dashed var(--gold-main);">
-                                    <h3 style="color: var(--primary-color); margin-bottom: 25px; font-size: 1.8rem; font-weight: 800;">${getT('ready_to_join')}</h3>
-                                    <a href="${registrationLink}" target="_blank" class="btn-gold-large" style="display: inline-flex; text-decoration: none;">
-                                        <i class="fas fa-pen-nib"></i> ${getT('click_to_register')}
+                                <div class="premium-cta-box" style="text-align: center; margin-top: 60px; padding: 50px 30px; background: linear-gradient(135deg, rgba(230,184,65,0.08) 0%, rgba(27,61,47,0.05) 100%); border-radius: 20px; border: 2px solid var(--gold-main); box-shadow: 0 15px 35px rgba(0,0,0,0.05); position: relative; overflow: hidden; transition: transform 0.3s ease;">
+                                    <div style="position: absolute; top: -20px; right: -20px; font-size: 8rem; color: var(--gold-main); opacity: 0.1; line-height: 1;"><i class="fas fa-certificate"></i></div>
+                                    <h3 style="color: var(--primary-color); margin-bottom: 20px; font-size: 2rem; font-weight: 800; position: relative; z-index: 2;">${getT('ready_to_join')}</h3>
+                                    <p style="color: #666; font-size: 1.15rem; margin-bottom: 30px; position: relative; z-index: 2; font-family: 'Tajawal', sans-serif;">انضم الآن لتبدأ رحلتك التعليمية في هذا التخصص وتحصل على شهادة معتمدة دولياً من الجامعة العالمية الإفتراضية للطب الشمولي.</p>
+                                    <a href="${registrationLink}" target="_blank" class="btn-gold-large" style="display: inline-flex; text-decoration: none; position: relative; z-index: 2; padding: 18px 45px; font-size: 1.4rem; border-radius: 50px; box-shadow: 0 10px 20px rgba(230, 184, 65, 0.3);">
+                                        <i class="fas fa-user-plus" style="margin-left: 10px;"></i> ${getT('click_to_register')}
                                     </a>
                                 </div>
                             `;
