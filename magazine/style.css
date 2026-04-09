@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap');
+
+:root {
+  --primary: #1E3A8A; /* Academic Blue */
+  --secondary: #D97706; /* Gold/Amber */
+  --bg-color: #f4f7f6;
+  --text-dark: #1f2937;
+  --text-light: #4b5563;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Tajawal', 'Cairo', sans-serif;
+  direction: rtl;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  line-height: 1.7;
+}
+
+/* Header */
+.magazine-header {
+  background: var(--primary);
+  color: var(--white);
+  padding: 3rem 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.beta-badge {
+  position: absolute;
+  top: 25px;
+  right: -35px;
+  background: var(--secondary);
+  color: #fff;
+  padding: 5px 45px;
+  transform: rotate(45deg);
+  font-weight: 800;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  letter-spacing: 0.5px;
+}
+
+.magazine-header h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  font-family: 'Cairo', sans-serif;
+}
+
+.magazine-header h2 {
+  font-size: 2rem;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+}
+
+.magazine-header p {
+  opacity: 0.9;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Container */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+/* Issue Title */
+.issue-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--primary);
+  font-size: 2rem;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 800;
+  position: relative;
+}
+.issue-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--secondary);
+  margin: 15px auto 0;
+  border-radius: 2px;
+}
+
+/* Content Grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Card */
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  border-top: 4px solid var(--primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.card.news { border-top-color: #10B981; }
+.card.tip { border-top-color: var(--secondary); }
+
+.card-category {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-dark);
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.card a {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  transition: color 0.3s ease;
+}
+
+.card a::after {
+  content: '←';
+  margin-right: 8px;
+  transition: transform 0.3s ease;
+}
+
+.card a:hover {
+  color: var(--secondary);
+}
+
+.card a:hover::after {
+  transform: translateX(-5px);
+}
+
+/* Single Page Styling */
+.single-page {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 4rem;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+}
+
+.single-page h1 {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.meta {
+  color: var(--text-light);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  gap: 2rem;
+  font-weight: 500;
+}
+
+.single-page p {
+  margin-bottom: 1.8rem;
+  font-size: 1.15rem;
+  color: var(--text-dark);
+  text-align: justify;
+  line-height: 1.8;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 3rem;
+  background: var(--primary);
+  color: var(--white);
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(30, 58, 138, 0.2);
+}
+
+.back-btn::before {
+  content: '→';
+  margin-left: 8px;
+}
+
+.back-btn:hover {
+  background: var(--secondary);
+  box-shadow: 0 6px 8px rgba(217, 119, 6, 0.3);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .single-page {
+    padding: 2rem;
+  }
+  .magazine-header h1 {
+    font-size: 2.2rem;
+  }
+}
