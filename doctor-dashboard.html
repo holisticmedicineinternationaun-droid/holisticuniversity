@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الدكتور - الجامعة العالمية الافتراضية</title>
+    <link rel="icon" type="image/png" href="Albums/University_Assets/university-brand-mark.png">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="i18n.js"></script>
+</head>
+
+<body class="dashboard-body">
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar doctor-sidebar">
+            <div class="sidebar-header">
+                <a href="index.html">
+                    <img src="Albums/University_Assets/university-full-emblem.png" alt="University Logo" class="sidebar-logo">
+                </a>
+            </div>
+            <div class="sidebar-role-badge">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span data-i18n="doc_role_badge">بوابة الدكتور</span>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active" onclick="showSection('overview', this)"><i class="fas fa-chart-line"></i> <span data-i18n="doc_overview">نظرة عامة</span></a></li>
+                    <li><a href="#" onclick="showSection('students', this)"><i class="fas fa-user-graduate"></i> <span data-i18n="doc_students">طلابي</span></a></li>
+                    <li><a href="#" onclick="showSection('materials', this)"><i class="fas fa-folder-open"></i> <span data-i18n="doc_materials">المواد الدراسية</span></a></li>
+                    <li><a href="#" onclick="showSection('grading', this)"><i class="fas fa-tasks"></i> <span data-i18n="doc_grading">التقييم والدرجات</span></a></li>
+                    <li><a href="#" onclick="showSection('schedule', this)"><i class="fas fa-calendar-alt"></i> <span data-i18n="doc_schedule">الجدول والمحاضرات</span></a></li>
+                    <li><a href="tuition-fees.html"><i class="fas fa-money-bill-wave"></i> <span data-i18n="doc_financials">المستحقات المالية</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#"><i class="fas fa-cog"></i> <span data-i18n="dash_settings">الإعدادات</span></a>
+                <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> <span data-i18n="dash_logout">تسجيل الخروج</span></a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Topbar -->
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
+                    <h2 data-i18n="doc_welcome_title">أهلاً، دكتور!</h2>
+                </div>
+                <div class="topbar-right">
+                    <div class="lang-dropdown dash-lang">
+                        <button class="lang-dropdown-btn">
+                            <i class="fas fa-globe"></i>
+                            <span id="current-lang-text">العربية</span>
+                            <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                        </button>
+                        <div class="lang-dropdown-content">
+                            <button onclick="setLanguage('ar')" class="active">العربية</button>
+                            <button onclick="setLanguage('en')">English</button>
+                            <button onclick="setLanguage('fr')">Français</button>
+                        </div>
+                    </div>
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="Albums/University_Assets/university-brand-mark.png" alt="Doctor Profile" class="profile-pic doctor-pic">
+                        <div class="profile-info">
+                            <span class="profile-name">د. إبراهيم الشمولي</span>
+                            <span class="profile-role" data-i18n="doc_profile_role">دكتور - مدرسة الإدراك</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+
+                <!-- ======== SECTION: OVERVIEW ======== -->
+                <div id="section-overview" class="dash-section active-section">
+
+                    <!-- Stats -->
+                    <section class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: rgba(52, 152, 219, 0.1); color: #3498db;">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3 data-i18n="doc_total_students">إجمالي الطلاب</h3>
+                                <p class="stat-value">42</p>
+                            </div>
+                        </div>
+                        <div class="stat-card alert-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-hourglass-half"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3 data-i18n="doc_pending_grading">تنتظر التقييم</h3>
+                                <p class="stat-value">8</p>
+                                <a href="#" onclick="showSection('grading')" class="pay-now-link" data-i18n="doc_review_now">مراجعة الآن <i class="fas fa-arrow-left"></i></a>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: rgba(46, 204, 113, 0.1); color: #2ecc71;">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3 data-i18n="doc_next_lecture">المحاضرة القادمة</h3>
+                                <p class="stat-value" style="font-size: 1.1rem;">15 أغسطس</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Quick Actions + Schedule Grid -->
+                    <div class="main-dashboard-grid">
+
+                        <!-- Quick Actions -->
+                        <section class="quick-actions-section">
+                            <h3 class="section-title" data-i18n="doc_quick_actions">إجراءات سريعة</h3>
+                            <div class="quick-actions-grid">
+                                <button class="quick-action-btn" onclick="showSection('materials')">
+                                    <div class="qa-icon"><i class="fas fa-upload"></i></div>
+                                    <span data-i18n="doc_upload_material">رفع مادة علمية</span>
+                                </button>
+                                <button class="quick-action-btn" onclick="showSection('grading')">
+                                    <div class="qa-icon"><i class="fas fa-plus-circle"></i></div>
+                                    <span data-i18n="doc_add_assignment">إضافة واجب</span>
+                                </button>
+                                <button class="quick-action-btn" onclick="showSection('schedule')">
+                                    <div class="qa-icon"><i class="fas fa-broadcast-tower"></i></div>
+                                    <span data-i18n="doc_schedule_lecture">جدولة محاضرة</span>
+                                </button>
+                                <button class="quick-action-btn" onclick="showSection('students')">
+                                    <div class="qa-icon"><i class="fas fa-users"></i></div>
+                                    <span data-i18n="doc_view_students">عرض الطلاب</span>
+                                </button>
+                            </div>
+
+                            <!-- Students Progress -->
+                            <h3 class="section-title" style="margin-top: 30px;" data-i18n="doc_students_progress">تقدم الطلاب</h3>
+                            <div class="students-progress-list">
+                                <div class="student-progress-item">
+                                    <img src="Albums/University_Assets/university-brand-mark.png" class="student-avatar">
+                                    <div class="student-info-progress">
+                                        <span class="s-name">أحمد عبد الله</span>
+                                        <div class="progress-container"><div class="progress-bar" style="width: 75%;"></div></div>
+                                    </div>
+                                    <span class="s-percent">75%</span>
+                                </div>
+                                <div class="student-progress-item">
+                                    <img src="Albums/University_Assets/university-brand-mark.png" class="student-avatar">
+                                    <div class="student-info-progress">
+                                        <span class="s-name">فاطمة الزهراء</span>
+                                        <div class="progress-container"><div class="progress-bar" style="width: 92%;"></div></div>
+                                    </div>
+                                    <span class="s-percent">92%</span>
+                                </div>
+                                <div class="student-progress-item">
+                                    <img src="Albums/University_Assets/university-brand-mark.png" class="student-avatar">
+                                    <div class="student-info-progress">
+                                        <span class="s-name">محمد الحسين</span>
+                                        <div class="progress-container"><div class="progress-bar" style="width: 48%;"></div></div>
+                                    </div>
+                                    <span class="s-percent">48%</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Upcoming Schedule -->
+                        <aside class="schedule-sidebar">
+                            <h3 class="section-title" data-i18n="doc_upcoming_sessions">المحاضرات القادمة</h3>
+
+                            <div class="schedule-item">
+                                <div class="date-box">
+                                    <span class="day">15</span>
+                                    <span class="month" data-i18n="dash_august">أغسطس</span>
+                                </div>
+                                <div class="schedule-info">
+                                    <h4 data-i18n="doc_session_perception">محاضرة مدرسة الإدراك</h4>
+                                    <p data-i18n="doc_live_zoom">عبر Zoom المباشر</p>
+                                    <span class="time"><i class="far fa-clock"></i> 8:00 م</span>
+                                </div>
+                            </div>
+
+                            <div class="schedule-item">
+                                <div class="date-box">
+                                    <span class="day">20</span>
+                                    <span class="month" data-i18n="dash_august">أغسطس</span>
+                                </div>
+                                <div class="schedule-info">
+                                    <h4 data-i18n="doc_assignment_deadline">آخر موعد تقييم الواجبات</h4>
+                                    <p data-i18n="doc_group_b">المجموعة ب</p>
+                                    <span class="time"><i class="far fa-clock"></i> 11:59 م</span>
+                                </div>
+                            </div>
+
+                            <div class="schedule-item" style="border-bottom: none;">
+                                <div class="date-box">
+                                    <span class="day">25</span>
+                                    <span class="month" data-i18n="dash_august">أغسطس</span>
+                                </div>
+                                <div class="schedule-info">
+                                    <h4 data-i18n="doc_exam_session">جلسة الامتحان الشهري</h4>
+                                    <p data-i18n="doc_all_students">جميع الطلاب</p>
+                                    <span class="time"><i class="far fa-clock"></i> 6:00 م</span>
+                                </div>
+                            </div>
+
+                            <a href="#" onclick="showSection('schedule')" class="view-all-link" data-i18n="dash_view_all_schedule">عرض الجدول كاملاً <i class="fas fa-calendar-alt"></i></a>
+                        </aside>
+                    </div>
+                </div>
+
+                <!-- ======== SECTION: STUDENTS ======== -->
+                <div id="section-students" class="dash-section">
+                    <h3 class="section-title" data-i18n="doc_students">طلابي</h3>
+                    <div class="students-table-wrapper">
+                        <table class="students-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th data-i18n="doc_student_name">اسم الطالب</th>
+                                    <th data-i18n="doc_course">المقرر</th>
+                                    <th data-i18n="doc_progress_pct">التقدم</th>
+                                    <th data-i18n="doc_grade">الدرجة</th>
+                                    <th data-i18n="doc_status">الحالة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><div class="table-student"><img src="Albums/University_Assets/university-brand-mark.png" class="student-avatar-sm"> أحمد عبد الله</div></td>
+                                    <td data-i18n="dept_perception_title">مدرسة الإدراك</td>
+                                    <td><div class="progress-container" style="min-width:100px"><div class="progress-bar" style="width:75%"></div></div> 75%</td>
+                                    <td>A</td>
+                                    <td><span class="status-badge active-status" data-i18n="doc_status_active">نشط</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><div class="table-student"><img src="Albums/University_Assets/university-brand-mark.png" class="student-avatar-sm"> فاطمة الزهراء</div></td>
+                                    <td data-i18n="dept_perception_title">مدرسة الإدراك</td>
+                                    <td><div class="progress-container" style="min-width:100px"><div class="progress-bar" style="width:92%"></div></div> 92%</td>
+                                    <td>A+</td>
+                                    <td><span class="status-badge active-status" data-i18n="doc_status_active">نشط</span></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><div class="table-student"><img src="Albums/University_Assets/university-brand-mark.png" class="student-avatar-sm"> محمد الحسين</div></td>
+                                    <td data-i18n="dept_perception_title">مدرسة الإدراك</td>
+                                    <td><div class="progress-container" style="min-width:100px"><div class="progress-bar" style="width:48%"></div></div> 48%</td>
+                                    <td>C</td>
+                                    <td><span class="status-badge warning-status" data-i18n="doc_status_warning">يحتاج متابعة</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ======== SECTION: MATERIALS ======== -->
+                <div id="section-materials" class="dash-section">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                        <h3 class="section-title" style="margin-bottom:0" data-i18n="doc_materials">المواد الدراسية</h3>
+                        <button class="btn btn-primary dash-btn"><i class="fas fa-upload"></i> <span data-i18n="doc_upload_material">رفع مادة</span></button>
+                    </div>
+                    <div class="materials-grid">
+                        <div class="material-card">
+                            <div class="material-icon"><i class="fas fa-file-pdf"></i></div>
+                            <div class="material-info">
+                                <h4 data-i18n="doc_mat_1">مقدمة في علم الإدراك البشري</h4>
+                                <p>PDF · 2.4 MB</p>
+                            </div>
+                            <button class="mat-btn"><i class="fas fa-download"></i></button>
+                        </div>
+                        <div class="material-card">
+                            <div class="material-icon" style="color: #e74c3c;"><i class="fas fa-file-video"></i></div>
+                            <div class="material-info">
+                                <h4 data-i18n="doc_mat_2">محاضرة فيديو: التشخيص المتقدم</h4>
+                                <p>MP4 · 450 MB</p>
+                            </div>
+                            <button class="mat-btn"><i class="fas fa-download"></i></button>
+                        </div>
+                        <div class="material-card">
+                            <div class="material-icon" style="color: #3498db;"><i class="fas fa-file-powerpoint"></i></div>
+                            <div class="material-info">
+                                <h4 data-i18n="doc_mat_3">شرائح: الطب الشمولي والحديث</h4>
+                                <p>PPTX · 8 MB</p>
+                            </div>
+                            <button class="mat-btn"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ======== SECTION: GRADING ======== -->
+                <div id="section-grading" class="dash-section">
+                    <h3 class="section-title" data-i18n="doc_grading">التقييم والدرجات</h3>
+                    <div class="grading-list">
+                        <div class="grading-item pending">
+                            <div class="grading-info">
+                                <h4 data-i18n="doc_assignment_1">واجب: تحليل حالة سريرية</h4>
+                                <p>أحمد عبد الله · <span data-i18n="doc_submitted">تم التسليم</span>: 12 أغسطس</p>
+                            </div>
+                            <span class="grade-badge pending-grade" data-i18n="doc_pending">بانتظار التقييم</span>
+                            <button class="btn btn-primary dash-btn" data-i18n="doc_grade_now">تقييم</button>
+                        </div>
+                        <div class="grading-item pending">
+                            <div class="grading-info">
+                                <h4 data-i18n="doc_assignment_1">واجب: تحليل حالة سريرية</h4>
+                                <p>فاطمة الزهراء · <span data-i18n="doc_submitted">تم التسليم</span>: 11 أغسطس</p>
+                            </div>
+                            <span class="grade-badge pending-grade" data-i18n="doc_pending">بانتظار التقييم</span>
+                            <button class="btn btn-primary dash-btn" data-i18n="doc_grade_now">تقييم</button>
+                        </div>
+                        <div class="grading-item graded">
+                            <div class="grading-info">
+                                <h4 data-i18n="doc_assignment_2">امتحان: مفاهيم أساسية في الإدراك</h4>
+                                <p>أحمد عبد الله · <span data-i18n="doc_graded_label">تم التقييم</span>: 10 أغسطس</p>
+                            </div>
+                            <span class="grade-badge graded-grade">A · 90/100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ======== SECTION: SCHEDULE ======== -->
+                <div id="section-schedule" class="dash-section">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                        <h3 class="section-title" style="margin-bottom:0" data-i18n="doc_schedule">الجدول والمحاضرات</h3>
+                        <button class="btn btn-primary dash-btn"><i class="fas fa-plus"></i> <span data-i18n="doc_schedule_lecture">إضافة محاضرة</span></button>
+                    </div>
+                    <div class="schedule-cards-grid">
+                        <div class="schedule-card upcoming">
+                            <div class="sc-header">
+                                <span class="sc-date">15 أغسطس 2026</span>
+                                <span class="sc-badge upcoming-badge" data-i18n="doc_upcoming">قادمة</span>
+                            </div>
+                            <h4 data-i18n="doc_session_perception">محاضرة مدرسة الإدراك</h4>
+                            <p><i class="fas fa-clock"></i> 8:00 م – 9:30 م</p>
+                            <p><i class="fab fa-zoom"></i> <span data-i18n="doc_live_zoom">Zoom المباشر</span></p>
+                            <button class="btn btn-primary dash-btn" style="margin-top:10px; width:100%;" data-i18n="doc_start_session">ابدأ الجلسة</button>
+                        </div>
+                        <div class="schedule-card">
+                            <div class="sc-header">
+                                <span class="sc-date">25 أغسطس 2026</span>
+                                <span class="sc-badge" data-i18n="doc_exam_badge">امتحان</span>
+                            </div>
+                            <h4 data-i18n="doc_exam_session">جلسة الامتحان الشهري</h4>
+                            <p><i class="fas fa-clock"></i> 6:00 م – 8:00 م</p>
+                            <p><i class="fas fa-users"></i> <span data-i18n="doc_all_students">جميع الطلاب</span></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mobile sidebar toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function () {
+            document.querySelector('.dashboard-sidebar').classList.toggle('active');
+        });
+
+        // Section navigation
+        function showSection(sectionId, clickedLink) {
+            document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active-section'));
+            const target = document.getElementById('section-' + sectionId);
+            if (target) target.classList.add('active-section');
+
+            if (clickedLink) {
+                document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+                clickedLink.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

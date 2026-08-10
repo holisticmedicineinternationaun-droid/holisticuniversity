@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الإدارة - الجامعة العالمية الافتراضية</title>
+    <link rel="icon" type="image/png" href="Albums/University_Assets/university-brand-mark.png">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Admin-specific overrides */
+        .admin-sidebar {
+            background: linear-gradient(180deg, #0d0705 0%, #1a0f05 60%, #2c1708 100%);
+            border-inline-end: 2px solid var(--gold-dark);
+        }
+        .admin-role-badge {
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px; padding: 8px 20px;
+            background: rgba(212,175,55,0.15);
+            color: var(--gold-main); font-size: 0.9rem; font-weight: 700;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .admin-pic { border-color: #e74c3c; }
+
+        /* Summary cards row */
+        .admin-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px; margin-bottom: 30px;
+        }
+        .admin-stat-card {
+            background: var(--white); border-radius: 14px;
+            padding: 20px 18px; display: flex; flex-direction: column;
+            align-items: flex-start; gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border-bottom: 4px solid var(--gold-main);
+            transition: var(--transition);
+        }
+        .admin-stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.07); }
+        .admin-stat-card .as-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+        }
+        .admin-stat-card h3 { margin: 0; font-size: 0.85rem; color: #888; }
+        .admin-stat-card .as-value { margin: 0; font-size: 1.7rem; font-weight: 800; color: var(--primary-color); }
+        .admin-stat-card .as-trend { font-size: 0.8rem; font-weight: 700; }
+        .trend-up { color: #27ae60; } .trend-down { color: #ff4757; }
+
+        /* Data table shared */
+        .admin-table-card {
+            background: var(--white); border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04); overflow: hidden;
+            margin-bottom: 25px;
+        }
+        .admin-table-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 18px 22px; border-bottom: 1px solid #f0f0f0;
+        }
+        .admin-table-header h3 { margin: 0; color: var(--primary-color); font-size: 1.1rem; }
+        .admin-table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+        .admin-table thead tr { background: #fdfaf6; }
+        .admin-table thead th { padding: 12px 18px; text-align: start; color: #888; font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .admin-table tbody tr { border-bottom: 1px solid #f9f9f9; transition: var(--transition); }
+        .admin-table tbody tr:last-child { border-bottom: none; }
+        .admin-table tbody tr:hover { background: rgba(212,175,55,0.03); }
+        .admin-table tbody td { padding: 13px 18px; color: var(--text-dark); }
+
+        /* Activity Feed */
+        .activity-feed { padding: 5px 0; }
+        .activity-item {
+            display: flex; gap: 14px; padding: 14px 22px;
+            border-bottom: 1px solid #f9f9f9; align-items: flex-start;
+        }
+        .activity-item:last-child { border-bottom: none; }
+        .activity-dot {
+            width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.95rem;
+        }
+        .activity-text { flex: 1; }
+        .activity-text p { margin: 0 0 4px; font-size: 0.9rem; color: var(--text-dark); }
+        .activity-text span { font-size: 0.78rem; color: #aaa; }
+
+        /* 2-col grid */
+        .admin-grid-2 { display: grid; grid-template-columns: 3fr 2fr; gap: 25px; }
+        @media (max-width: 1100px) { .admin-grid-2 { grid-template-columns: 1fr; } }
+
+        /* Section tabs */
+        .dash-section { display: none; }
+        .dash-section.active-section { display: block; }
+    </style>
+    <script src="i18n.js"></script>
+</head>
+
+<body class="dashboard-body">
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar admin-sidebar">
+            <div class="sidebar-header">
+                <a href="index.html">
+                    <img src="Albums/University_Assets/university-full-emblem.png" alt="University Logo" class="sidebar-logo">
+                </a>
+            </div>
+            <div class="admin-role-badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>لوحة الإدارة العليا</span>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active" onclick="showSection('overview', this)"><i class="fas fa-chart-pie"></i> <span>نظرة عامة</span></a></li>
+                    <li><a href="#" onclick="showSection('students', this)"><i class="fas fa-user-graduate"></i> <span>إدارة الطلاب</span></a></li>
+                    <li><a href="#" onclick="showSection('doctors', this)"><i class="fas fa-chalkboard-teacher"></i> <span>إدارة الدكاترة</span></a></li>
+                    <li><a href="#" onclick="showSection('courses', this)"><i class="fas fa-book"></i> <span>المقررات والبرامج</span></a></li>
+                    <li><a href="#" onclick="showSection('finance', this)"><i class="fas fa-money-bill-wave"></i> <span>التقارير المالية</span></a></li>
+                    <li><a href="#" onclick="showSection('settings', this)"><i class="fas fa-cog"></i> <span>إعدادات النظام</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> <span>تسجيل الخروج</span></a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
+                    <h2>مرحباً، مدير النظام!</h2>
+                </div>
+                <div class="topbar-right">
+                    <div class="lang-dropdown dash-lang">
+                        <button class="lang-dropdown-btn">
+                            <i class="fas fa-globe"></i>
+                            <span id="current-lang-text">العربية</span>
+                            <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i>
+                        </button>
+                        <div class="lang-dropdown-content">
+                            <button onclick="setLanguage('ar')" class="active">العربية</button>
+                            <button onclick="setLanguage('en')">English</button>
+                            <button onclick="setLanguage('fr')">Français</button>
+                        </div>
+                    </div>
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">12</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="Albums/University_Assets/university-brand-mark.png" alt="Admin" class="profile-pic admin-pic">
+                        <div class="profile-info">
+                            <span class="profile-name">المدير العام</span>
+                            <span class="profile-role" style="color:#e74c3c; font-weight:700;">مدير النظام</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+
+                <!-- ======== OVERVIEW ======== -->
+                <div id="section-overview" class="dash-section active-section">
+
+                    <!-- Stats -->
+                    <div class="admin-stats-grid">
+                        <div class="admin-stat-card">
+                            <div class="as-icon" style="background:rgba(52,152,219,0.1); color:#3498db;"><i class="fas fa-user-graduate"></i></div>
+                            <h3>إجمالي الطلاب</h3>
+                            <p class="as-value">248</p>
+                            <span class="as-trend trend-up"><i class="fas fa-arrow-up"></i> +12 هذا الشهر</span>
+                        </div>
+                        <div class="admin-stat-card" style="border-bottom-color:#2ecc71;">
+                            <div class="as-icon" style="background:rgba(46,204,113,0.1); color:#2ecc71;"><i class="fas fa-chalkboard-teacher"></i></div>
+                            <h3>عدد الدكاترة</h3>
+                            <p class="as-value">18</p>
+                            <span class="as-trend trend-up"><i class="fas fa-arrow-up"></i> +2 جديد</span>
+                        </div>
+                        <div class="admin-stat-card" style="border-bottom-color:#9b59b6;">
+                            <div class="as-icon" style="background:rgba(155,89,182,0.1); color:#9b59b6;"><i class="fas fa-book-open"></i></div>
+                            <h3>المقررات النشطة</h3>
+                            <p class="as-value">34</p>
+                            <span class="as-trend" style="color:#888;">بدون تغيير</span>
+                        </div>
+                        <div class="admin-stat-card" style="border-bottom-color:#e67e22;">
+                            <div class="as-icon" style="background:rgba(230,126,34,0.1); color:#e67e22;"><i class="fas fa-dollar-sign"></i></div>
+                            <h3>الإيرادات (الشهر)</h3>
+                            <p class="as-value">$9,420</p>
+                            <span class="as-trend trend-up"><i class="fas fa-arrow-up"></i> +18%</span>
+                        </div>
+                        <div class="admin-stat-card" style="border-bottom-color:#e74c3c;">
+                            <div class="as-icon" style="background:rgba(231,76,60,0.1); color:#e74c3c;"><i class="fas fa-hourglass-half"></i></div>
+                            <h3>طلبات معلقة</h3>
+                            <p class="as-value">7</p>
+                            <span class="as-trend trend-down"><i class="fas fa-exclamation-circle"></i> تحتاج مراجعة</span>
+                        </div>
+                    </div>
+
+                    <!-- 2 col grid -->
+                    <div class="admin-grid-2">
+                        <!-- Latest Registrations -->
+                        <div class="admin-table-card">
+                            <div class="admin-table-header">
+                                <h3><i class="fas fa-user-plus" style="color:var(--gold-main); margin-inline-end:8px;"></i> آخر تسجيلات الطلاب</h3>
+                                <button class="btn btn-primary dash-btn" onclick="showSection('students')">عرض الكل</button>
+                            </div>
+                            <table class="admin-table">
+                                <thead><tr>
+                                    <th>الاسم</th><th>المقرر</th><th>التاريخ</th><th>الحالة</th>
+                                </tr></thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="table-student"><img src="Albums/University_Assets/university-brand-mark.png" class="student-avatar-sm"> أحمد عبد الله</div></td>
+                                        <td>مدرسة الإدراك</td><td>10 أغسطس 2026</td>
+                                        <td><span class="status-badge active-status">نشط</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="table-student"><img src="Albums/University_Assets/university-brand-mark.png" class="student-avatar-sm"> فاطمة الزهراء</div></td>
+                                        <td>الصحة النفسية</td><td>9 أغسطس 2026</td>
+                                        <td><span class="status-badge active-status">نشط</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="table-student"><img src="Albums/University_Assets/university-brand-mark.png" class="student-avatar-sm"> محمد الحسين</div></td>
+                                        <td>طب الأخلاط</td><td>8 أغسطس 2026</td>
+                                        <td><span class="status-badge warning-status">يحتاج متابعة</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="table-student"><img src="Albums/University_Assets/university-brand-mark.png" class="student-avatar-sm"> خديجة العلوي</div></td>
+                                        <td>مدرسة الإدراك</td><td>7 أغسطس 2026</td>
+                                        <td><span class="status-badge active-status">نشط</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Activity Feed -->
+                        <div class="admin-table-card">
+                            <div class="admin-table-header">
+                                <h3><i class="fas fa-bolt" style="color:var(--gold-main); margin-inline-end:8px;"></i> آخر النشاطات</h3>
+                            </div>
+                            <div class="activity-feed">
+                                <div class="activity-item">
+                                    <div class="activity-dot" style="background:rgba(46,204,113,0.12); color:#27ae60;"><i class="fas fa-user-check"></i></div>
+                                    <div class="activity-text"><p>تم قبول طالب جديد في مدرسة الإدراك</p><span>منذ 20 دقيقة</span></div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-dot" style="background:rgba(52,152,219,0.12); color:#3498db;"><i class="fas fa-upload"></i></div>
+                                    <div class="activity-text"><p>د. إبراهيم رفع مادة دراسية جديدة</p><span>منذ ساعة</span></div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-dot" style="background:rgba(230,126,34,0.12); color:#e67e22;"><i class="fas fa-money-check-alt"></i></div>
+                                    <div class="activity-text"><p>تم استلام دفعة رسوم من طالبة</p><span>منذ 2 ساعة</span></div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-dot" style="background:rgba(255,71,87,0.12); color:#ff4757;"><i class="fas fa-exclamation-triangle"></i></div>
+                                    <div class="activity-text"><p>طلب تسجيل جديد ينتظر الموافقة</p><span>منذ 3 ساعات</span></div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-dot" style="background:rgba(155,89,182,0.12); color:#9b59b6;"><i class="fas fa-certificate"></i></div>
+                                    <div class="activity-text"><p>تم إصدار شهادة إتمام لـ 3 طلاب</p><span>أمس</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ======== STUDENTS MANAGEMENT ======== -->
+                <div id="section-students" class="dash-section">
+                    <div class="admin-table-card">
+                        <div class="admin-table-header">
+                            <h3>إدارة الطلاب (248)</h3>
+                            <div style="display:flex; gap:10px;">
+                                <input type="text" placeholder="بحث عن طالب..." style="padding:8px 14px; border:1px solid #ddd; border-radius:8px; font-family:'Tajawal',sans-serif; font-size:0.9rem;">
+                                <button class="btn btn-primary dash-btn"><i class="fas fa-plus"></i> إضافة طالب</button>
+                            </div>
+                        </div>
+                        <table class="admin-table">
+                            <thead><tr><th>#</th><th>الاسم</th><th>البريد</th><th>المقرر</th><th>التقدم</th><th>الحالة</th><th>إجراءات</th></tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><div class="table-student"><img src="Albums/University_Assets/university-brand-mark.png" class="student-avatar-sm"> أحمد عبد الله</div></td>
+                                    <td style="color:#888; font-size:0.85rem;">ahmed@uni.edu</td>
+                                    <td>مدرسة الإدراك</td>
+                                    <td><div class="progress-container" style="min-width:80px;"><div class="progress-bar" style="width:75%"></div></div> 75%</td>
+                                    <td><span class="status-badge active-status">نشط</span></td>
+                                    <td>
+                                        <button style="border:none; background:none; color:var(--gold-dark); cursor:pointer; font-size:1rem;" title="تعديل"><i class="fas fa-edit"></i></button>
+                                        <button style="border:none; background:none; color:#ff4757; cursor:pointer; font-size:1rem;" title="حذف"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><div class="table-student"><img src="Albums/University_Assets/university-brand-mark.png" class="student-avatar-sm"> فاطمة الزهراء</div></td>
+                                    <td style="color:#888; font-size:0.85rem;">fatima@uni.edu</td>
+                                    <td>الصحة النفسية</td>
+                                    <td><div class="progress-container" style="min-width:80px;"><div class="progress-bar" style="width:92%"></div></div> 92%</td>
+                                    <td><span class="status-badge active-status">نشط</span></td>
+                                    <td>
+                                        <button style="border:none; background:none; color:var(--gold-dark); cursor:pointer; font-size:1rem;"><i class="fas fa-edit"></i></button>
+                                        <button style="border:none; background:none; color:#ff4757; cursor:pointer; font-size:1rem;"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><div class="table-student"><img src="Albums/University_Assets/university-brand-mark.png" class="student-avatar-sm"> محمد الحسين</div></td>
+                                    <td style="color:#888; font-size:0.85rem;">mohammed@uni.edu</td>
+                                    <td>طب الأخلاط</td>
+                                    <td><div class="progress-container" style="min-width:80px;"><div class="progress-bar" style="width:48%"></div></div> 48%</td>
+                                    <td><span class="status-badge warning-status">يحتاج متابعة</span></td>
+                                    <td>
+                                        <button style="border:none; background:none; color:var(--gold-dark); cursor:pointer; font-size:1rem;"><i class="fas fa-edit"></i></button>
+                                        <button style="border:none; background:none; color:#ff4757; cursor:pointer; font-size:1rem;"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ======== DOCTORS MANAGEMENT ======== -->
+                <div id="section-doctors" class="dash-section">
+                    <div class="admin-table-card">
+                        <div class="admin-table-header">
+                            <h3>إدارة الدكاترة (18)</h3>
+                            <button class="btn btn-primary dash-btn"><i class="fas fa-plus"></i> إضافة دكتور</button>
+                        </div>
+                        <table class="admin-table">
+                            <thead><tr><th>#</th><th>الاسم</th><th>التخصص</th><th>عدد الطلاب</th><th>المقررات</th><th>الحالة</th><th>إجراءات</th></tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><div class="table-student"><img src="Albums/University_Assets/university-brand-mark.png" class="student-avatar-sm"> د. إبراهيم الشمولي</div></td>
+                                    <td>مدرسة الإدراك</td><td>42</td><td>3</td>
+                                    <td><span class="status-badge active-status">نشط</span></td>
+                                    <td>
+                                        <button style="border:none; background:none; color:var(--gold-dark); cursor:pointer; font-size:1rem;"><i class="fas fa-edit"></i></button>
+                                        <button style="border:none; background:none; color:#ff4757; cursor:pointer; font-size:1rem;"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><div class="table-student"><img src="Albums/University_Assets/university-brand-mark.png" class="student-avatar-sm"> د. سمية الحكيم</div></td>
+                                    <td>الصحة النفسية</td><td>35</td><td>2</td>
+                                    <td><span class="status-badge active-status">نشط</span></td>
+                                    <td>
+                                        <button style="border:none; background:none; color:var(--gold-dark); cursor:pointer; font-size:1rem;"><i class="fas fa-edit"></i></button>
+                                        <button style="border:none; background:none; color:#ff4757; cursor:pointer; font-size:1rem;"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ======== COURSES ======== -->
+                <div id="section-courses" class="dash-section">
+                    <div class="admin-table-card">
+                        <div class="admin-table-header">
+                            <h3>المقررات والبرامج (34)</h3>
+                            <button class="btn btn-primary dash-btn"><i class="fas fa-plus"></i> إضافة مقرر</button>
+                        </div>
+                        <table class="admin-table">
+                            <thead><tr><th>اسم المقرر</th><th>الدكتور</th><th>الطلاب</th><th>المدة</th><th>الحالة</th></tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td>مدرسة الإدراك - المستوى الأول</td>
+                                    <td>د. إبراهيم الشمولي</td><td>42</td><td>6 أشهر</td>
+                                    <td><span class="status-badge active-status">نشط</span></td>
+                                </tr>
+                                <tr>
+                                    <td>دورة أمراض الجلدية</td>
+                                    <td>د. سمية الحكيم</td><td>28</td><td>3 أشهر</td>
+                                    <td><span class="status-badge active-status">نشط</span></td>
+                                </tr>
+                                <tr>
+                                    <td>التشخيص الكيميائي والعلاج</td>
+                                    <td>د. محمد الطيب</td><td>19</td><td>4 أشهر</td>
+                                    <td><span class="status-badge" style="background:rgba(230,126,34,0.1); color:#e67e22;">قريباً</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ======== FINANCE ======== -->
+                <div id="section-finance" class="dash-section">
+                    <div class="admin-stats-grid" style="margin-bottom:25px;">
+                        <div class="admin-stat-card">
+                            <div class="as-icon" style="background:rgba(46,204,113,0.1); color:#27ae60;"><i class="fas fa-arrow-circle-down"></i></div>
+                            <h3>إجمالي الإيرادات</h3>
+                            <p class="as-value">$54,800</p>
+                            <span class="as-trend trend-up"><i class="fas fa-arrow-up"></i> +23% هذا العام</span>
+                        </div>
+                        <div class="admin-stat-card" style="border-bottom-color:#e74c3c;">
+                            <div class="as-icon" style="background:rgba(231,76,60,0.1); color:#e74c3c;"><i class="fas fa-file-invoice-dollar"></i></div>
+                            <h3>رسوم غير مسددة</h3>
+                            <p class="as-value">$3,200</p>
+                            <span class="as-trend trend-down"><i class="fas fa-exclamation-circle"></i> 11 طالب متأخر</span>
+                        </div>
+                        <div class="admin-stat-card" style="border-bottom-color:#3498db;">
+                            <div class="as-icon" style="background:rgba(52,152,219,0.1); color:#3498db;"><i class="fas fa-hand-holding-usd"></i></div>
+                            <h3>مستحقات الدكاترة</h3>
+                            <p class="as-value">$8,100</p>
+                            <span class="as-trend" style="color:#888;">دفع هذا الأسبوع</span>
+                        </div>
+                    </div>
+                    <div class="admin-table-card">
+                        <div class="admin-table-header">
+                            <h3>آخر المعاملات المالية</h3>
+                        </div>
+                        <table class="admin-table">
+                            <thead><tr><th>الطالب</th><th>المبلغ</th><th>النوع</th><th>التاريخ</th><th>الحالة</th></tr></thead>
+                            <tbody>
+                                <tr><td>أحمد عبد الله</td><td>$250</td><td>رسوم فصل دراسي</td><td>10 أغسطس 2026</td><td><span class="status-badge active-status">مدفوع</span></td></tr>
+                                <tr><td>فاطمة الزهراء</td><td>$180</td><td>رسوم تسجيل</td><td>9 أغسطس 2026</td><td><span class="status-badge active-status">مدفوع</span></td></tr>
+                                <tr><td>محمد الحسين</td><td>$250</td><td>رسوم فصل دراسي</td><td>1 أغسطس 2026</td><td><span class="status-badge warning-status">متأخر</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ======== SETTINGS ======== -->
+                <div id="section-settings" class="dash-section">
+                    <div class="admin-table-card" style="padding:30px;">
+                        <h3 style="color:var(--primary-color); margin-top:0;">إعدادات النظام</h3>
+                        <div style="display:grid; gap:20px; max-width:600px;">
+                            <div class="form-group">
+                                <label style="font-weight:700; color:var(--primary-color); display:block; margin-bottom:8px;"><i class="fas fa-university" style="color:var(--gold-main); margin-inline-end:8px;"></i> اسم الجامعة</label>
+                                <input type="text" value="الجامعة العالمية الافتراضية للطب الشمولي والعلوم التطبيقية" style="width:100%; padding:12px 16px; border:2px solid #e8e0d0; border-radius:10px; font-family:'Tajawal',sans-serif; font-size:0.95rem; box-sizing:border-box;">
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:700; color:var(--primary-color); display:block; margin-bottom:8px;"><i class="fas fa-envelope" style="color:var(--gold-main); margin-inline-end:8px;"></i> البريد الرسمي للجامعة</label>
+                                <input type="email" value="holisticmedicineinternationaun@gmail.com" style="width:100%; padding:12px 16px; border:2px solid #e8e0d0; border-radius:10px; font-family:'Tajawal',sans-serif; font-size:0.95rem; box-sizing:border-box;">
+                            </div>
+                            <button class="btn btn-primary" style="width:fit-content; padding:12px 30px;">حفظ الإعدادات <i class="fas fa-save"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function () {
+            document.querySelector('.dashboard-sidebar').classList.toggle('active');
+        });
+
+        function showSection(sectionId, clickedLink) {
+            document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active-section'));
+            const target = document.getElementById('section-' + sectionId);
+            if (target) target.classList.add('active-section');
+            if (clickedLink) {
+                document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+                clickedLink.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

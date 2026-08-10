@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الطالب - الجامعة العالمية الافتراضية</title>
+    <link rel="icon" type="image/png" href="Albums/University_Assets/university-brand-mark.png">
+    <!-- Modern Typography -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="i18n.js"></script>
+</head>
+
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <a href="index.html">
+                    <img src="Albums/University_Assets/university-full-emblem.png" alt="University Logo" class="sidebar-logo">
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active"><i class="fas fa-home"></i> <span data-i18n="dash_overview">نظرة عامة</span></a></li>
+                    <li><a href="#"><i class="fas fa-book-open"></i> <span data-i18n="dash_my_courses">مقرراتي</span></a></li>
+                    <li><a href="medical-record.html"><i class="fas fa-file-medical"></i> <span data-i18n="dash_medical_record">السجل الطبي</span></a></li>
+                    <li><a href="#"><i class="fas fa-tasks"></i> <span data-i18n="dash_assignments">الواجبات والاختبارات</span></a></li>
+                    <li><a href="#"><i class="fas fa-certificate"></i> <span data-i18n="dash_grades">الدرجات والشهادات</span></a></li>
+                    <li><a href="tuition-fees.html"><i class="fas fa-file-invoice-dollar"></i> <span data-i18n="dash_financials">الشؤون المالية</span></a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#"><i class="fas fa-cog"></i> <span data-i18n="dash_settings">الإعدادات</span></a>
+                <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> <span data-i18n="dash_logout">تسجيل الخروج</span></a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-main">
+            <!-- Topbar -->
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
+                    <h2 data-i18n="dash_welcome_title">مرحباً بك!</h2>
+                </div>
+                
+                <div class="topbar-right">
+                    <!-- Language Dropdown -->
+                    <div class="lang-dropdown dash-lang">
+                        <button class="lang-dropdown-btn">
+                            <i class="fas fa-globe"></i>
+                            <span id="current-lang-text">العربية</span>
+                            <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                        </button>
+                        <div class="lang-dropdown-content">
+                            <button onclick="setLanguage('ar')" class="active">العربية</button>
+                            <button onclick="setLanguage('en')">English</button>
+                            <button onclick="setLanguage('fr')">Français</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Notifications -->
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    
+                    <!-- Profile -->
+                    <div class="user-profile">
+                        <img src="Albums/University_Assets/university-brand-mark.png" alt="Student Profile" class="profile-pic">
+                        <div class="profile-info">
+                            <span class="profile-name">أحمد عبد الله</span>
+                            <span class="profile-role" data-i18n="dash_student_role">طالب - مدرسة الإدراك</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                
+                <!-- Stats Row -->
+                <section class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-star"></i></div>
+                        <div class="stat-details">
+                            <h3 data-i18n="dash_gpa">المعدل التراكمي</h3>
+                            <p class="stat-value">3.8 / 4.0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-book-reader"></i></div>
+                        <div class="stat-details">
+                            <h3 data-i18n="dash_active_courses">المقررات النشطة</h3>
+                            <p class="stat-value">4</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card alert-card">
+                        <div class="stat-icon"><i class="fas fa-exclamation-circle"></i></div>
+                        <div class="stat-details">
+                            <h3 data-i18n="dash_due_fees">رسوم مستحقة</h3>
+                            <p class="stat-value">150$</p>
+                            <a href="tuition-fees.html" class="pay-now-link" data-i18n="dash_pay_now">ادفع الآن <i class="fas fa-arrow-left"></i></a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Main Grid Layout -->
+                <div class="main-dashboard-grid">
+                    <!-- Current Courses -->
+                    <section class="current-courses">
+                        <h3 class="section-title" data-i18n="dash_continue_learning">مواصلة التعلم</h3>
+                        <div class="course-list">
+                            
+                            <!-- Course Item -->
+                            <div class="dash-course-card">
+                                <div class="course-img" style="background-image: url('Albums/University_Assets/dermatology-course.jpg'); background-size: cover; background-position: center;"></div>
+                                <div class="course-info">
+                                    <h4 data-i18n="course_dermatology">دورة أمراض الجلدية</h4>
+                                    <p data-i18n="dash_lecture_4">المحاضرة 4: التشخيص المتقدم</p>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" style="width: 65%;"></div>
+                                    </div>
+                                    <span class="progress-text">65% <span data-i18n="dash_completed">مكتمل</span></span>
+                                </div>
+                                <a href="#" class="btn btn-primary btn-sm dash-btn" data-i18n="dash_continue_btn">متابعة</a>
+                            </div>
+
+                            <!-- Course Item -->
+                            <div class="dash-course-card">
+                                <div class="course-img" style="background-color: var(--primary-color);">
+                                    <i class="fas fa-brain" style="font-size: 2.5rem; color: var(--gold-main); display: flex; align-items: center; justify-content: center; height: 100%;"></i>
+                                </div>
+                                <div class="course-info">
+                                    <h4 data-i18n="dept_perception_title">مدرسة الإدراك</h4>
+                                    <p data-i18n="dash_lecture_2">المحاضرة 2: أسس تطوير القدرات العقلية</p>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" style="width: 25%;"></div>
+                                    </div>
+                                    <span class="progress-text">25% <span data-i18n="dash_completed">مكتمل</span></span>
+                                </div>
+                                <a href="#" class="btn btn-primary btn-sm dash-btn" data-i18n="dash_continue_btn">متابعة</a>
+                            </div>
+                            
+                        </div>
+                    </section>
+
+                    <!-- Schedule & Tasks -->
+                    <aside class="schedule-sidebar">
+                        <h3 class="section-title" data-i18n="dash_upcoming_schedule">الجدول القادم</h3>
+                        
+                        <div class="schedule-item">
+                            <div class="date-box">
+                                <span class="day">15</span>
+                                <span class="month" data-i18n="dash_august">أغسطس</span>
+                            </div>
+                            <div class="schedule-info">
+                                <h4 data-i18n="dash_live_session">جلسة نقاش مباشر</h4>
+                                <p>مدرسة الإدراك - د. إبراهيم</p>
+                                <span class="time"><i class="far fa-clock"></i> 8:00 م</span>
+                            </div>
+                        </div>
+                        
+                        <div class="schedule-item">
+                            <div class="date-box">
+                                <span class="day">18</span>
+                                <span class="month" data-i18n="dash_august">أغسطس</span>
+                            </div>
+                            <div class="schedule-info">
+                                <h4 data-i18n="dash_submit_report">تسليم التقرير السريري</h4>
+                                <p data-i18n="dash_medical_record">السجل الطبي</p>
+                                <span class="time"><i class="far fa-clock"></i> 11:59 م</span>
+                            </div>
+                        </div>
+
+                        <a href="#" class="view-all-link" data-i18n="dash_view_all_schedule">عرض الجدول كاملاً <i class="fas fa-calendar-alt"></i></a>
+                    </aside>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.dashboard-sidebar').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

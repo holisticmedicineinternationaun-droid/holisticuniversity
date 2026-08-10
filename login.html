@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - الجامعة العالمية الافتراضية</title>
+    <link rel="icon" type="image/png" href="Albums/University_Assets/university-brand-mark.png">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 60%, var(--bg-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .login-page::before {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+            top: -100px; right: -100px;
+            border-radius: 50%;
+        }
+        .login-container {
+            background: rgba(255,255,255,0.97);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 1;
+            border-top: 4px solid var(--gold-main);
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .login-logo {
+            max-width: 160px;
+            margin-bottom: 15px;
+        }
+        .login-header h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin: 0 0 8px;
+        }
+        .login-header p {
+            color: #888;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        .login-type-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            background: #f5f0e8;
+            border-radius: 12px;
+            padding: 6px;
+        }
+        .type-btn {
+            flex: 1;
+            padding: 10px 8px;
+            border: none;
+            border-radius: 8px;
+            background: transparent;
+            color: #888;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .type-btn.active {
+            background: var(--primary-color);
+            color: var(--gold-main);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .type-btn:hover:not(.active) {
+            background: rgba(44,23,8,0.08);
+            color: var(--primary-color);
+        }
+        .login-form .form-group {
+            margin-bottom: 20px;
+        }
+        .login-form label {
+            display: block;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .login-form label i {
+            color: var(--gold-main);
+            margin-inline-end: 8px;
+        }
+        .login-form input[type="email"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e8e0d0;
+            border-radius: 10px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            color: var(--text-dark);
+            background: #fdfaf6;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--gold-main);
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.15);
+        }
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            cursor: pointer;
+        }
+        .forgot-password {
+            color: var(--gold-dark);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .forgot-password:hover { color: var(--primary-color); }
+        .btn-login-submit {
+            width: 100%;
+            padding: 14px;
+            font-size: 1.05rem;
+            border-radius: 10px;
+            letter-spacing: 0.5px;
+        }
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        .gold-text {
+            color: var(--gold-dark);
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .gold-text:hover { color: var(--primary-color); }
+        /* Login feedback */
+        .login-msg {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: none;
+            text-align: center;
+        }
+        .login-msg.error {
+            background: rgba(255,71,87,0.1);
+            color: #ff4757;
+            border: 1px solid rgba(255,71,87,0.3);
+        }
+        .login-msg.success {
+            background: rgba(46,204,113,0.1);
+            color: #27ae60;
+            border: 1px solid rgba(46,204,113,0.3);
+        }
+        /* Loading spinner on button */
+        .btn-login-submit.loading {
+            opacity: 0.8;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-header">
+            <a href="index.html">
+                <img src="Albums/University_Assets/university-full-emblem.png" alt="University Logo" class="login-logo">
+            </a>
+            <h2>تسجيل الدخول للنظام</h2>
+            <p>مرحباً بك في الجامعة العالمية الافتراضية للطب الشمولي</p>
+        </div>
+
+        <!-- Account Type Selector -->
+        <div class="login-type-selector">
+            <button class="type-btn active" id="btn-student" onclick="selectLoginType('student', this)">
+                <i class="fas fa-user-graduate"></i> طالب
+            </button>
+            <button class="type-btn" id="btn-doctor" onclick="selectLoginType('doctor', this)">
+                <i class="fas fa-chalkboard-teacher"></i> دكتور
+            </button>
+            <button class="type-btn" id="btn-admin" onclick="selectLoginType('admin', this)">
+                <i class="fas fa-user-shield"></i> إدارة
+            </button>
+        </div>
+
+        <!-- Feedback Message -->
+        <div class="login-msg" id="loginMsg"></div>
+
+        <form class="login-form" id="loginForm" onsubmit="handleLogin(event)">
+            <input type="hidden" id="accountType" value="student">
+
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> البريد الإلكتروني</label>
+                <input type="email" id="email" required placeholder="أدخل بريدك الإلكتروني الجامعي">
+            </div>
+
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> كلمة المرور</label>
+                <input type="password" id="password" required placeholder="أدخل كلمة المرور">
+            </div>
+
+            <div class="form-options">
+                <label class="remember-me">
+                    <input type="checkbox" id="rememberMe"> تذكرني
+                </label>
+                <a href="#" class="forgot-password">نسيت كلمة المرور؟</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-login-submit" id="loginBtn">
+                تسجيل الدخول <i class="fas fa-sign-in-alt"></i>
+            </button>
+        </form>
+
+        <div class="login-footer">
+            <p>ليس لديك حساب؟ <a href="index.html#register" class="gold-text">قدم طلب تسجيل الآن</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Demo credentials for testing (will be replaced by real backend later)
+        const demoUsers = {
+            student: { email: 'student@holistic-uni.edu', password: '123456', redirect: 'student-dashboard.html' },
+            doctor:  { email: 'doctor@holistic-uni.edu',  password: '123456', redirect: 'doctor-dashboard.html' },
+            admin:   { email: 'admin@holistic-uni.edu',   password: '123456', redirect: 'admin-dashboard.html' }
+        };
+
+        function selectLoginType(type, btn) {
+            document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('accountType').value = type;
+            hideMsg();
+        }
+
+        function showMsg(text, type) {
+            const msg = document.getElementById('loginMsg');
+            msg.textContent = text;
+            msg.className = 'login-msg ' + type;
+            msg.style.display = 'block';
+        }
+
+        function hideMsg() {
+            document.getElementById('loginMsg').style.display = 'none';
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const type     = document.getElementById('accountType').value;
+            const email    = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const btn      = document.getElementById('loginBtn');
+            const demo     = demoUsers[type];
+
+            hideMsg();
+            btn.classList.add('loading');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحقق...';
+
+            // Simulate network delay (replace with real fetch() later)
+            setTimeout(() => {
+                if (email === demo.email && password === demo.password) {
+                    showMsg('✓ تم التحقق بنجاح! جاري التوجيه...', 'success');
+                    setTimeout(() => {
+                        window.location.href = demo.redirect;
+                    }, 800);
+                } else {
+                    showMsg('✗ البريد الإلكتروني أو كلمة المرور غير صحيحة. تحقق من بياناتك وحاول مجدداً.', 'error');
+                    btn.classList.remove('loading');
+                    btn.innerHTML = 'تسجيل الدخول <i class="fas fa-sign-in-alt"></i>';
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

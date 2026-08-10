@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الرسوم الدراسية - الجامعة العالمية الافتراضية</title>
+    <link rel="icon" type="image/png" href="Albums/University_Assets/university-brand-mark.png">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header page-header">
+        <div class="container header-container" style="justify-content: space-between; display: flex; padding: 15px 0;">
+            <div class="logo">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+                    <img src="Albums/University_Assets/university-full-emblem.png" alt="University Logo" class="logo-image" style="height: 60px;">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="login.html" class="btn-login-nav" style="background: var(--gold-main); color: var(--primary-color); padding: 8px 15px; border-radius: 5px; font-weight: 700;">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="tuition-section" style="padding: 60px 0; background: var(--bg-light);">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                <h2>الرسوم الدراسية والتسجيل</h2>
+                <div class="divider" style="margin: 15px auto;"></div>
+                <p>تعرف على هيكل الرسوم الدراسية لمختلف التخصصات والبرامج الأكاديمية</p>
+            </div>
+
+            <div class="tuition-cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                
+                <!-- البكالوريوس -->
+                <div class="tuition-card" style="background: var(--white); border-radius: 10px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; border-top: 4px solid var(--gold-main);">
+                    <h3>برامج البكالوريوس</h3>
+                    <div class="price" style="font-size: 2.5rem; color: var(--primary-color); font-weight: 700; margin: 20px 0;">
+                        <span style="font-size: 1rem;">$</span>1,200<span style="font-size: 1rem; color: #666; font-weight: normal;"> / سنة</span>
+                    </div>
+                    <ul style="list-style: none; padding: 0; margin-bottom: 30px; text-align: right;">
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold-main); margin-inline-end: 10px;"></i> دراسة عن بعد بالكامل</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold-main); margin-inline-end: 10px;"></i> وصول كامل للمكتبة الكونية</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold-main); margin-inline-end: 10px;"></i> شهادة معتمدة دولياً</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold-main); margin-inline-end: 10px;"></i> دعم فني وأكاديمي</li>
+                    </ul>
+                    <a href="index.html#register" class="btn btn-primary" style="width: 100%;">سجل الآن</a>
+                </div>
+
+                <!-- الماجستير -->
+                <div class="tuition-card" style="background: var(--primary-color); color: var(--white); border-radius: 10px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; transform: scale(1.05);">
+                    <div class="badge" style="background: var(--gold-main); color: var(--primary-color); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-bottom: 15px;">الأكثر طلباً</div>
+                    <h3 style="color: var(--white);">برامج الماجستير</h3>
+                    <div class="price" style="font-size: 2.5rem; color: var(--gold-light); font-weight: 700; margin: 20px 0;">
+                        <span style="font-size: 1rem; color: var(--white);">$</span>1,800<span style="font-size: 1rem; color: #ccc; font-weight: normal;"> / سنة</span>
+                    </div>
+                    <ul style="list-style: none; padding: 0; margin-bottom: 30px; text-align: right;">
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold-main); margin-inline-end: 10px;"></i> إشراف أكاديمي مباشر</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold-main); margin-inline-end: 10px;"></i> مناقشة رسائل الماجستير</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold-main); margin-inline-end: 10px;"></i> نشر الأبحاث في مجلة الجامعة</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold-main); margin-inline-end: 10px;"></i> تأهيل للتدريب السريري</li>
+                    </ul>
+                    <a href="index.html#register" class="btn btn-secondary" style="width: 100%;">سجل الآن</a>
+                </div>
+
+                <!-- الدبلومات -->
+                <div class="tuition-card" style="background: var(--white); border-radius: 10px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; border-top: 4px solid var(--gold-main);">
+                    <h3>الدبلومات المهنية</h3>
+                    <div class="price" style="font-size: 2.5rem; color: var(--primary-color); font-weight: 700; margin: 20px 0;">
+                        <span style="font-size: 1rem;">$</span>600<span style="font-size: 1rem; color: #666; font-weight: normal;"> / برنامج</span>
+                    </div>
+                    <ul style="list-style: none; padding: 0; margin-bottom: 30px; text-align: right;">
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold-main); margin-inline-end: 10px;"></i> دراسة مكثفة وتطبيقية</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold-main); margin-inline-end: 10px;"></i> فترات دراسية مرنة (3-6 أشهر)</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold-main); margin-inline-end: 10px;"></i> شهادة ممارسة معتمدة</li>
+                    </ul>
+                    <a href="index.html#register" class="btn btn-primary" style="width: 100%;">سجل الآن</a>
+                </div>
+
+            </div>
+
+            <div class="payment-methods" style="margin-top: 50px; text-align: center;">
+                <h4 style="margin-bottom: 20px;">طرق الدفع المتاحة</h4>
+                <div style="font-size: 2rem; color: #555; display: flex; justify-content: center; gap: 20px;">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fas fa-university"></i>
+                </div>
+                <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">يتوفر نظام التقسيط المريح لجميع البرامج الأكاديمية.</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
