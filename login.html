@@ -241,7 +241,7 @@
         </form>
 
         <div class="login-footer">
-            <p>ليس لديك حساب؟ <a href="index.html#register" class="gold-text">قدم طلب تسجيل الآن</a></p>
+            <p>ليس لديك حساب؟ <a href="register.html?type=student" id="registerLink" class="gold-text">قدم طلب تسجيل الآن <i class="fas fa-arrow-left" style="font-size:0.8rem;"></i></a></p>
         </div>
     </div>
 
@@ -253,10 +253,22 @@
             admin:   { email: 'admin@holistic-uni.edu',   password: '123456', redirect: 'admin-dashboard.html' }
         };
 
+        // Map type to register page param
+        const registerTypeMap = {
+            student: 'student',
+            doctor:  'doctor',
+            admin:   'student'  // Admin accounts are created internally, direct to student form as fallback
+        };
+
         function selectLoginType(type, btn) {
             document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             document.getElementById('accountType').value = type;
+            // Update registration link dynamically
+            const regLink = document.getElementById('registerLink');
+            if (regLink) {
+                regLink.href = 'register.html?type=' + registerTypeMap[type];
+            }
             hideMsg();
         }
 
