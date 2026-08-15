@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="دستور الجامعة والنظام الداخلي الموحد - الجامعة العالمية الافتراضية للطب الشمولي والعلوم التطبيقية">
+    <title>دستور الجامعة والنظام الداخلي - الجامعة العالمية الافتراضية</title>
+    <link rel="icon" type="image/png" href="Albums/University_Assets/university-brand-mark.png">
+    <!-- Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary-navy: #0f1e36;
+            --secondary-navy: #182e4e;
+            --gold-accent: #c9a341;
+            --gold-light: #f2e3b6;
+            --bg-parchment: #f9f8f4;
+            --text-dark: #22252a;
+            --text-muted: #5a6270;
+            --border-gold: rgba(201, 163, 65, 0.35);
+        }
+
+        body {
+            background-color: var(--bg-parchment);
+            color: var(--text-dark);
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .constitution-hero {
+            background: linear-gradient(135deg, rgba(15, 30, 54, 0.95), rgba(24, 46, 78, 0.92)), url('Albums/University_Assets/university-full-emblem.png') center/cover no-repeat;
+            color: #ffffff;
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            border-bottom: 4px solid var(--gold-accent);
+        }
+
+        .constitution-hero .emblem {
+            max-height: 110px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.5));
+        }
+
+        .constitution-hero h1 {
+            font-family: 'Amiri', serif;
+            font-size: 2.8rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .constitution-hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--gold-light);
+            max-width: 750px;
+            margin: 0 auto 25px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .btn-gold-action {
+            background: linear-gradient(135deg, #d4af37, #b89230);
+            color: #0f1e36 !important;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, #e5be44, #c9a341);
+        }
+
+        .btn-outline-action {
+            background: transparent;
+            color: #ffffff !important;
+            border: 2px solid var(--gold-accent);
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-action:hover {
+            background: rgba(201, 163, 65, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .constitution-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 992px) {
+            .constitution-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Sidebar Navigation */
+        .constitution-sidebar {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid var(--border-gold);
+            padding: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.5rem;
+            color: var(--primary-navy);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--gold-accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .constitution-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .constitution-nav-list li {
+            margin-bottom: 10px;
+        }
+
+        .constitution-nav-list a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.25s ease;
+            border-right: 3px solid transparent;
+        }
+
+        .constitution-nav-list a:hover,
+        .constitution-nav-list a.active {
+            background: rgba(201, 163, 65, 0.1);
+            color: var(--primary-navy);
+            font-weight: 700;
+            border-right: 3px solid var(--gold-accent);
+        }
+
+        .constitution-nav-list i {
+            color: var(--gold-accent);
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .constitution-main {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid var(--border-gold);
+            padding: 45px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+        }
+
+        .doc-badge {
+            display: inline-block;
+            background: rgba(201, 163, 65, 0.15);
+            color: #8b6b15;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border: 1px solid var(--gold-accent);
+        }
+
+        .constitution-section-block {
+            margin-bottom: 45px;
+            padding-bottom: 35px;
+            border-bottom: 1px solid #eef0f4;
+        }
+
+        .constitution-section-block:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .constitution-section-block h2 {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: var(--primary-navy);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .constitution-section-block h2 i {
+            color: var(--gold-accent);
+            font-size: 1.6rem;
+        }
+
+        .article-card {
+            background: #faf9f6;
+            border: 1px solid #e9e5d8;
+            border-right: 4px solid var(--gold-accent);
+            border-radius: 8px;
+            padding: 22px 25px;
+            margin-bottom: 18px;
+            line-height: 1.85;
+        }
+
+        .article-card h3 {
+            font-size: 1.2rem;
+            color: var(--primary-navy);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .article-card p, .article-card ul {
+            margin: 0;
+            color: #3b4250;
+            font-size: 1.02rem;
+        }
+
+        .article-card ul {
+            padding-right: 20px;
+            margin-top: 10px;
+        }
+
+        .article-card li {
+            margin-bottom: 8px;
+        }
+
+        /* PDF Viewer Section */
+        .pdf-viewer-wrapper {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid var(--border-gold);
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .pdf-viewer-wrapper h2 {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: var(--primary-navy);
+            margin-bottom: 15px;
+        }
+
+        .pdf-frame {
+            width: 100%;
+            height: 750px;
+            border: 2px solid #e0dbce;
+            border-radius: 8px;
+            margin-top: 20px;
+            background-color: #525659;
+        }
+
+        .meta-info-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            background: rgba(15, 30, 54, 0.03);
+            border: 1px dashed var(--gold-accent);
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 30px;
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .meta-value {
+            font-weight: 700;
+            color: var(--primary-navy);
+            font-size: 1.05rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Contact Bar -->
+    <div class="top-contact-bar" style="background: var(--primary-color); padding: 8px 0; border-bottom: 2px solid var(--gold-main); font-size: 0.95rem;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <div class="top-nav-links" style="display: flex; gap: 15px; align-items: center; flex: 1; justify-content: flex-start;">
+                <a href="index.html" style="color: var(--white); text-decoration: none; font-size: 0.85rem;">الرئيسية</a>
+                <span style="color: rgba(255,255,255,0.3);">|</span>
+                <a href="course-details.html?post=من نحن" style="color: var(--white); text-decoration: none; font-size: 0.85rem;">من نحن</a>
+                <span style="color: rgba(255,255,255,0.3);">|</span>
+                <a href="constitution.html" style="color: var(--gold-light); font-weight: 700; text-decoration: none; font-size: 0.85rem;">دستور الجامعة</a>
+                <span style="color: rgba(255,255,255,0.3);">|</span>
+                <a href="ethics.html" style="color: var(--white); text-decoration: none; font-size: 0.85rem;">أخلاقيات الممارسة</a>
+                <span style="color: rgba(255,255,255,0.3);">|</span>
+                <a href="tuition-fees.html" style="color: var(--white); text-decoration: none; font-size: 0.85rem;">الرسوم الدراسية</a>
+            </div>
+
+            <div class="top-brand-mark" style="flex: 1; display: flex; justify-content: center;">
+                <a href="index.html">
+                    <img src="Albums/University_Assets/university-brand-mark.png" alt="University Brand Mark" style="height: 55px; filter: contrast(110%) brightness(120%);">
+                </a>
+            </div>
+
+            <div class="top-social-links" style="flex: 1; display: flex; align-items: center; justify-content: flex-end; gap: 12px;">
+                <a href="https://chat.whatsapp.com/KRol8QEQDD19LUhJ6BSoKi?mode=gi_t" target="_blank" style="color: var(--gold-light);"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://t.me/+_xQw-l_cFcpmNTU0" target="_blank" style="color: var(--gold-light);"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61576702401322" target="_blank" style="color: var(--gold-light);"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/@InternationalVirtuelUniversity" target="_blank" style="color: var(--gold-light);"><i class="fab fa-youtube"></i></a>
+                <a href="login.html" class="btn-login-nav" style="background: var(--gold-main); color: var(--primary-color); padding: 5px 12px; border-radius: 4px; font-weight: 700; text-decoration: none; font-size: 0.85rem; margin-inline-start: 10px;">
+                    <i class="fas fa-sign-in-alt"></i> دخول
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="header page-header">
+        <div class="container header-container" style="justify-content: space-between; display: flex; padding: 12px 0;">
+            <div class="logo">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+                    <img src="Albums/University_Assets/university-full-emblem.png" alt="University Logo" class="logo-image" style="height: 60px;">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="constitution.html" style="color: var(--gold-main); font-weight: bold;">دستور الجامعة</a></li>
+                    <li><a href="ethics.html">الميثاق الأخلاقي</a></li>
+                    <li><a href="curriculum.html">الخزانة الرقمية</a></li>
+                    <li><a href="tuition-fees.html">الرسوم الدراسية</a></li>
+                    <li><a href="medical-record.html">السجل الطبي</a></li>
+                    <li><a href="index.html#register" class="btn btn-primary" style="padding: 6px 15px; font-size: 0.9rem;">التسجيل الأكاديمي</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="constitution-hero">
+        <div class="container">
+            <img src="Albums/University_Assets/university-full-emblem.png" alt="University Emblem" class="emblem">
+            <span class="doc-badge"><i class="fas fa-gavel"></i> الوثيقة الدستورية المرجعية الموحدة</span>
+            <h1>دستور الجامعة والنظام الداخلي المعتمد</h1>
+            <p class="subtitle">
+                الوثيقة الرسمية المنظمة للسياسات الأكاديمية والإدارية، وتوصيف صلاحيات القيادات العليا والكوادر، وضوابط البيئة التعليمية في الجامعة العالمية الافتراضية للطب الشمولي والعلوم التطبيقية.
+            </p>
+            <div class="hero-actions">
+                <a href="docs/university-constitution.pdf" download="دستور_الجامعة_العالمية_الافتراضية.pdf" class="btn-gold-action">
+                    <i class="fas fa-file-pdf"></i> تحميل الوثيقة الرسمية كاملة (PDF)
+                </a>
+                <a href="#pdf-viewer" class="btn-outline-action">
+                    <i class="fas fa-book-reader"></i> المعاينة المباشرة للوثيقة
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Layout -->
+    <div class="constitution-container">
+        <!-- Sidebar Quick Navigation -->
+        <aside class="constitution-sidebar">
+            <h3 class="sidebar-title"><i class="fas fa-list-ol"></i> أبواب الدستور</h3>
+            <ul class="constitution-nav-list">
+                <li><a href="#intro" class="active"><i class="fas fa-compass"></i> ديباجة ومقدمة الدستور</a></li>
+                <li><a href="#chapter1"><i class="fas fa-university"></i> الباب الأول: الهوية والأهداف</a></li>
+                <li><a href="#chapter2"><i class="fas fa-sitemap"></i> الباب الثاني: القيادة والصلاحيات</a></li>
+                <li><a href="#chapter3"><i class="fas fa-user-tie"></i> الباب الثالث: الهيئة الأكاديمية</a></li>
+                <li><a href="#chapter4"><i class="fas fa-user-graduate"></i> الباب الرابع: الشؤون الطلابية</a></li>
+                <li><a href="#chapter5"><i class="fas fa-archive"></i> الباب الخامس: المراكز والوحدات</a></li>
+                <li><a href="#chapter6"><i class="fas fa-coins"></i> الباب السادس: اللائحة المالية</a></li>
+                <li><a href="#chapter7"><i class="fas fa-balance-scale"></i> الباب السابع: الأحكام الختامية</a></li>
+                <li><a href="#pdf-viewer"><i class="fas fa-eye"></i> عارض الوثيقة الرسمية</a></li>
+            </ul>
+
+            <div style="margin-top: 30px; padding: 20px; background: rgba(201, 163, 65, 0.08); border-radius: 8px; text-align: center; border: 1px solid var(--border-gold);">
+                <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--gold-accent); margin-bottom: 10px;"></i>
+                <h4 style="color: var(--primary-navy); margin-bottom: 8px; font-size: 1rem;">وثيقة مصادق عليها</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">صادرة بقرار مجلس الرئاسة ومصادقة المجلس الأكاديمي الأعلى للجامعة.</p>
+            </div>
+        </aside>
+
+        <!-- Main Body -->
+        <main class="constitution-main">
+            <!-- Metadata Summary -->
+            <div class="meta-info-box">
+                <div class="meta-item">
+                    <div class="meta-label">الجهة المصدرة</div>
+                    <div class="meta-value">مكتب الرئاسة والمجلس الأكاديمي</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">طبيعة الوثيقة</div>
+                    <div class="meta-value">دستور ونظام داخلي مدمج</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">حالة الوثيقة</div>
+                    <div class="meta-value" style="color: #27ae60;"><i class="fas fa-check-circle"></i> سارية ومعتمدة رسمياً</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">نطاق السريان</div>
+                    <div class="meta-value">جميع الكليات، المراكز، والمنتسبين</div>
+                </div>
+            </div>
+
+            <!-- Intro / Preamble -->
+            <section id="intro" class="constitution-section-block">
+                <h2><i class="fas fa-feather-alt"></i> الديباجة والمقدمة</h2>
+                <div class="article-card">
+                    <p>
+                        انطلاقاً من الرؤية السامية في إحياء علوم الطب الشمولي الأصيل ودمجها بأحدث مناهج العلوم التطبيقية والتقنيات الرقمية المعاصرة، وتأكيداً على ترسيخ بيئة أكاديمية عالمية افتراضية رائدة تحكمها الشفافية والعدالة والتميز العلمي، تم وضع هذا الدستور والنظام الداخلي الموحد ليكون المرجع الأعلى لكافة القرارات، اللوائح، والمسارات الأكاديمية والإدارية في الجامعة العالمية الافتراضية للطب الشمولي والعلوم التطبيقية.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Chapter 1 -->
+            <section id="chapter1" class="constitution-section-block">
+                <h2><i class="fas fa-university"></i> الباب الأول: الهوية الأكاديمية والأهداف العليا</h2>
+                <div class="article-card">
+                    <h3>المادة (1): التسمية والهوية القانونية</h3>
+                    <p>
+                        "الجامعة العالمية الافتراضية للطب الشمولي والعلوم التطبيقية" هي مؤسسة أكاديمية دولية مستقلة متخصصة في التعليم العالي الافتراضي، الدراسات العليا، والبحوث التخصصية في علوم فقه الطب الشمولي والعلوم التطبيقية المرتبطة به.
+                    </p>
+                </div>
+                <div class="article-card">
+                    <h3>المادة (2): الأهداف الاستراتيجية</h3>
+                    <ul>
+                        <li>تأصيل ونشر معارف فقه الطب الشمولي وطب الأخلاط والأمزجة على أسس علمية رصينة.</li>
+                        <li>إتاحة التعليم العالي المرن والمعتمد للباحثين والمهنيين حول العالم عبر منصات افتراضية حديثة.</li>
+                        <li>إرساء معايير دقيقة لممارسة المهن العلاجية التكميلية وضمان السلامة السريرية.</li>
+                        <li>تشجيع البحث العلمي التطبيقي عبر مجلة الجامعة والمؤتمرات الدولية والشراكات الأكاديمية.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Chapter 2 -->
+            <section id="chapter2" class="constitution-section-block">
+                <h2><i class="fas fa-sitemap"></i> الباب الثاني: القيادة العليا وتوصيف الصلاحيات</h2>
+                <div class="article-card">
+                    <h3>المادة (3): مجلس الرئاسة والأمانة العامة</h3>
+                    <p>
+                        يمثل مكتب الرئاسة السلطة التنفيذية والتشريعية العليا للجامعة، ويتولى رسم السياسات العامة، وتوقيع الاتفاقيات الدولية، وإصدار اللوائح المنظمة. وتم الفصل التام بين الاختصاصات لضمان انسيابية العمل ومنع أي تداخل وظيفي بين المجالس.
+                    </p>
+                </div>
+                <div class="article-card">
+                    <h3>المادة (4): المجلس الأكاديمي الأعلى</h3>
+                    <p>
+                        يختص المجلس الأكاديمي بالمصادقة على المناهج الدراسية، تشكيل لجان مناقشة رسائل الماجستير والدكتوراه، اعتماد الدرجات العلمية، ومراقبة جودة العملية التعليمية والتدريب السريري.
+                    </p>
+                </div>
+                <div class="article-card">
+                    <h3>المادة (5): عمادات المدارس التخصصية</h3>
+                    <p>
+                        تتوزع المدارس العلمية بالجامعة إلى: مدرسة الإدراك وتطوير القدرات العقلية، مدرسة الصحة النفسية، مدرسة الطب الشمولي، وقسم العلوم التطبيقية؛ حيث تتمتع كل عمادة باستقلالية أكاديمية تحت إشراف المجلس الأعلى.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Chapter 3 -->
+            <section id="chapter3" class="constitution-section-block">
+                <h2><i class="fas fa-user-tie"></i> الباب الثالث: الكوادر الأكاديمية والتدريسية</h2>
+                <div class="article-card">
+                    <h3>المادة (6): شروط الانضمام والاعتماد الأكاديمي</h3>
+                    <p>
+                        يُشترط في عضو الهيئة التدريسية امتلاك المؤهلات التخصصية العالية والخبرة العملية المثبتة، واجتياز تقييم لجنة الاعتماد الأكاديمي بالجامعة مع الالتزام التام بفلسفة الطب الشمولي وضوابطه.
+                    </p>
+                </div>
+                <div class="article-card">
+                    <h3>المادة (7): حقوق وواجبات المحاضرين والمدربين</h3>
+                    <ul>
+                        <li>الحرية الأكاديمية المسؤولة في البحث العلمي وإعداد المواد التدريبية المبتكرة.</li>
+                        <li>الالتزام بمعايير النزاهة العلمية والتفاعل الإيجابي مع الدارسين عبر القاعات الافتراضية.</li>
+                        <li>حق الاستفادة من المنصات الرقمية للجامعة ونشر الأبحاث في مجلة منبر الشفاء.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Chapter 4 -->
+            <section id="chapter4" class="constitution-section-block">
+                <h2><i class="fas fa-user-graduate"></i> الباب الرابع: الشؤون الطلابية والنظام الأكاديمي</h2>
+                <div class="article-card">
+                    <h3>المادة (8): نظام الساعات المعتمدة والتعليم المستمر</h3>
+                    <p>
+                        تعتمد الجامعة نظام الساعات التراكمية المرنة للتعليم عن بعد مع توفير دراسات نظرية وتطبيقات سريرية مكثفة تخضع للاختبارات التفاعلية والتقييم الدوري.
+                    </p>
+                </div>
+                <div class="article-card">
+                    <h3>المادة (9): ميثاق حقوق وواجبات الطالب</h3>
+                    <ul>
+                        <li>حق الحصول على المادة العلمية المعتمدة والتوجيه الأكاديمي المستمر من الأساتذة.</li>
+                        <li>واجب الالتزام بالميثاق الأخلاقي لممارسة الطب الشمولي، واحترام الملكية الفكرية، وحسن السلوك الأكاديمي.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Chapter 5 -->
+            <section id="chapter5" class="constitution-section-block">
+                <h2><i class="fas fa-archive"></i> الباب الخامس: المراكز والوحدات الأكاديمية المساندة</h2>
+                <div class="article-card">
+                    <h3>المادة (10): الخزانة الرقمية وركن المناهج</h3>
+                    <p>
+                        تُعد الخزانة الرقمية المستودع المعتمد لحفظ وتوثيق كافة المناهج، الرسائل العلمية، والبحوث المصادق عليها، وتتيح الجامعة للدارسين الوصول للمكتبة الكونية والمصادر التعليمية العالمية.
+                    </p>
+                </div>
+                <div class="article-card">
+                    <h3>المادة (11): مجلة منبر الشفاء الشمولي والمراكز التخصصية</h3>
+                    <p>
+                        تصدر الجامعة مجلة علمية دورية محكمة تُعنى بنشر المقالات والأبحاث المحكمة وتوثيق التجارب السريرية الناجحة لنخبة الأساتذة والخريجين.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Chapter 6 -->
+            <section id="chapter6" class="constitution-section-block">
+                <h2><i class="fas fa-coins"></i> الباب السادس: اللائحة المالية والرسوم</h2>
+                <div class="article-card">
+                    <h3>المادة (12): هيكل الرسوم والشفافية</h3>
+                    <p>
+                        تُحدد الرسوم الدراسية بقرارات رسمية معلنة بشفافية على الموقع، مع توفير خطط تقسيط ميسرة ونظام المنح الجزئية لتشجيع المتفوقين ودعم الدارسين حول العالم.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Chapter 7 -->
+            <section id="chapter7" class="constitution-section-block">
+                <h2><i class="fas fa-balance-scale"></i> الباب السابع: الأحكام الختامية وتعديل الدستور</h2>
+                <div class="article-card">
+                    <h3>المادة (13): السريان والنفاذ والتعديل</h3>
+                    <p>
+                        يُعمل بهذا الدستور والنظام الداخلي المدمج فور مصادقة مكتب الرئاسة والمجلس الأكاديمي ونشره رسمياً على منصات الجامعة، ولا يتم تعديل أي مادة إلا بقرار مسبب وبأغلبية ثلثي أعضاء المجلس الأعلى.
+                    </p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- PDF Viewer Section -->
+    <section id="pdf-viewer" class="container" style="margin-bottom: 80px;">
+        <div class="pdf-viewer-wrapper">
+            <span class="doc-badge"><i class="fas fa-file-pdf"></i> النسخة الأصلية الكاملة</span>
+            <h2>عارض وثيقة الدستور والنظام الداخلي الرسمية</h2>
+            <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto 20px;">
+                يمكنك قراءة وتصفح الوثيقة الكاملة المعتمدة مباشرة أو تحميلها لجهازك بصيغة PDF.
+            </p>
+            <div style="margin-bottom: 20px;">
+                <a href="docs/university-constitution.pdf" download="دستور_الجامعة_العالمية_الافتراضية.pdf" class="btn-gold-action">
+                    <i class="fas fa-download"></i> تنزيل ملف الدستور الرسمي (PDF)
+                </a>
+            </div>
+            
+            <iframe src="docs/university-constitution.pdf" class="pdf-frame" title="دستور الجامعة العالمية الافتراضية">
+                <p>متصفحك لا يدعم عرض ملفات PDF مباشرة. <a href="docs/university-constitution.pdf" download>اضغط هنا لتحميل الملف</a>.</p>
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact-footer" class="footer" style="background: var(--primary-color); color: var(--white); padding: 50px 0 20px; border-top: 4px solid var(--gold-main);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <div>
+                    <img src="Albums/University_Assets/university-full-emblem.png" alt="University Logo" style="height: 70px; margin-bottom: 15px;">
+                    <p style="color: #ccc; line-height: 1.8; font-size: 0.95rem;">
+                        الجامعة العالمية الافتراضية للطب الشمولي والعلوم التطبيقية - صرح أكاديمي رائد يجمع بين أصالة الطب التكميلي وأحدث التطورات العلمية والتقنية.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--gold-main); margin-bottom: 20px; font-family: 'Amiri', serif; font-size: 1.3rem;">روابط دستورية وأكاديمية</h4>
+                    <ul style="list-style: none; padding: 0; line-height: 2;">
+                        <li><a href="constitution.html" style="color: #fff; text-decoration: none;"><i class="fas fa-chevron-left" style="color: var(--gold-main); font-size: 0.8rem; margin-inline-end: 8px;"></i> دستور الجامعة والنظام الداخلي</a></li>
+                        <li><a href="ethics.html" style="color: #fff; text-decoration: none;"><i class="fas fa-chevron-left" style="color: var(--gold-main); font-size: 0.8rem; margin-inline-end: 8px;"></i> ميثاق أخلاقيات الممارسة</a></li>
+                        <li><a href="curriculum.html" style="color: #fff; text-decoration: none;"><i class="fas fa-chevron-left" style="color: var(--gold-main); font-size: 0.8rem; margin-inline-end: 8px;"></i> الخزانة الرقمية للمناهج</a></li>
+                        <li><a href="tuition-fees.html" style="color: #fff; text-decoration: none;"><i class="fas fa-chevron-left" style="color: var(--gold-main); font-size: 0.8rem; margin-inline-end: 8px;"></i> الرسوم الدراسية والتسجيل</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--gold-main); margin-bottom: 20px; font-family: 'Amiri', serif; font-size: 1.3rem;">قنوات التواصل الرسمية</h4>
+                    <ul style="list-style: none; padding: 0; line-height: 2.2;">
+                        <li><i class="fab fa-whatsapp" style="color: var(--gold-main); margin-inline-end: 10px;"></i> <a href="https://chat.whatsapp.com/KRol8QEQDD19LUhJ6BSoKi?mode=gi_t" target="_blank" style="color: #fff; text-decoration: none;">مجتمع واتساب الرسمي</a></li>
+                        <li><i class="fab fa-telegram-plane" style="color: var(--gold-main); margin-inline-end: 10px;"></i> <a href="https://t.me/+_xQw-l_cFcpmNTU0" target="_blank" style="color: #fff; text-decoration: none;">قناة التليغرام الرسمية</a></li>
+                        <li><i class="fas fa-envelope" style="color: var(--gold-main); margin-inline-end: 10px;"></i> <a href="mailto:holisticmedicineinternationaun@gmail.com" style="color: #fff; text-decoration: none;">holisticmedicineinternationaun@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); color: #aaa; font-size: 0.9rem;">
+                &copy; 2026 جميع الحقوق محفوظة - الجامعة العالمية الافتراضية للطب الشمولي والعلوم التطبيقية.
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
