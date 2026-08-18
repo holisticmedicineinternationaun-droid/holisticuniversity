@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="الهيئة التدريسية والكوادر الأكاديمية - دليل أعضاء هيئة التدريس والمدربين المعتمدين في الجامعة العالمية الافتراضية للطب الشمولي والعلوم التطبيقية">
+    <title>الهيئة الأكاديمية والكوادر التدريسية - الجامعة العالمية الافتراضية للطب الشمولي</title>
+    <link rel="icon" type="image/png" href="Albums/University_Assets/university-brand-mark.png">
+    <!-- Modern Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="faculty_data.js"></script>
+    <style>
+        :root {
+            --primary-navy: #0f1e36;
+            --secondary-navy: #182e4e;
+            --navy-light: #243f66;
+            --gold-accent: #c9a341;
+            --gold-light: #f5eccb;
+            --gold-dark: #9a7822;
+            --bg-parchment: #f6f8fb;
+            --card-bg: #ffffff;
+            --text-dark: #192231;
+            --text-muted: #5e6b7d;
+            --border-subtle: #e5eaf2;
+            --border-gold: rgba(201, 163, 65, 0.35);
+            --shadow-sm: 0 4px 12px rgba(15, 30, 54, 0.05);
+            --shadow-md: 0 10px 28px rgba(15, 30, 54, 0.08);
+            --shadow-lg: 0 18px 45px rgba(15, 30, 54, 0.14);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-parchment);
+            color: var(--text-dark);
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Hero Section */
+        .faculty-hero {
+            background: linear-gradient(135deg, rgba(15, 30, 54, 0.97), rgba(24, 46, 78, 0.94)), url('Albums/University_Assets/university-full-emblem.png') center/cover no-repeat;
+            color: #ffffff;
+            padding: 70px 0 55px;
+            text-align: center;
+            position: relative;
+            border-bottom: 4px solid var(--gold-accent);
+        }
+
+        .faculty-hero .hero-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .faculty-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(201, 163, 65, 0.18);
+            color: var(--gold-light);
+            padding: 6px 20px;
+            border-radius: 30px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            border: 1px solid var(--gold-accent);
+            backdrop-filter: blur(4px);
+        }
+
+        .faculty-hero h1 {
+            font-family: 'Amiri', serif;
+            font-size: 2.85rem;
+            color: #ffffff;
+            margin: 0 0 14px;
+            font-weight: 700;
+            line-height: 1.3;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .faculty-hero .subtitle {
+            font-size: 1.15rem;
+            color: #dbe4ef;
+            margin: 0 auto 25px;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        /* Stats Strip */
+        .faculty-stats-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 18px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Amiri', serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            line-height: 1.1;
+        }
+
+        .stat-label {
+            font-size: 0.82rem;
+            color: #d1dbe6;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .faculty-stats-strip {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .faculty-hero h1 {
+                font-size: 2.1rem;
+            }
+        }
+
+        /* Controls Section */
+        .faculty-controls {
+            max-width: 1240px;
+            margin: -32px auto 35px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .controls-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 22px 28px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-gold);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .search-and-count-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .search-box-wrapper {
+            position: relative;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .search-box-wrapper i {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold-dark);
+            font-size: 1.15rem;
+        }
+
+        .faculty-search-input {
+            width: 100%;
+            padding: 13px 48px 13px 20px;
+            border-radius: 10px;
+            border: 1.5px solid var(--border-subtle);
+            font-size: 1rem;
+            font-family: 'Tajawal', sans-serif;
+            outline: none;
+            transition: all 0.25s ease;
+            background-color: #fafbfd;
+        }
+
+        .faculty-search-input:focus {
+            border-color: var(--gold-accent);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(201, 163, 65, 0.16);
+        }
+
+        .results-badge-indicator {
+            background: #f0f4f9;
+            color: var(--primary-navy);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            white-space: nowrap;
+            border: 1px solid #dbe3ed;
+        }
+
+        .filter-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .filter-pill {
+            background: #f3f6fa;
+            border: 1px solid #d9e1ec;
+            color: var(--text-dark);
+            padding: 7px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 600;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.22s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-pill span.count-tag {
+            background: rgba(15, 30, 54, 0.1);
+            color: var(--primary-navy);
+            font-size: 0.76rem;
+            padding: 2px 7px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        .filter-pill:hover {
+            background: #e6edf7;
+            border-color: var(--primary-navy);
+            transform: translateY(-1px);
+        }
+
+        .filter-pill.active {
+            background: var(--primary-navy);
+            color: #ffffff;
+            border-color: var(--primary-navy);
+            box-shadow: 0 4px 12px rgba(15, 30, 54, 0.22);
+        }
+
+        .filter-pill.active span.count-tag {
+            background: var(--gold-accent);
+            color: var(--primary-navy);
+        }
+
+        /* Faculty Grid */
+        .faculty-grid-container {
+            max-width: 1240px;
+            margin: 0 auto 70px;
+            padding: 0 20px;
+        }
+
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 28px;
+        }
+
+        @media (max-width: 768px) {
+            .faculty-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Faculty Card */
+        .faculty-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-subtle);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .faculty-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold-accent);
+        }
+
+        .card-top-banner {
+            height: 95px;
+            background: linear-gradient(135deg, var(--primary-navy), var(--secondary-navy));
+            position: relative;
+            border-bottom: 3px solid var(--gold-accent);
+            padding: 14px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .faculty-avatar-container {
+            position: absolute;
+            bottom: -38px;
+            right: 24px;
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            border: 3.5px solid #ffffff;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+            background: var(--primary-navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .faculty-avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .faculty-avatar-monogram {
+            font-family: 'Amiri', serif;
+            font-size: 1.55rem;
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+
+        .faculty-status-badge {
+            background: rgba(255,255,255,0.18);
+            backdrop-filter: blur(6px);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .faculty-status-badge.leadership {
+            background: linear-gradient(135deg, rgba(201, 163, 65, 0.95), rgba(154, 120, 34, 0.95));
+            color: #0f1e36;
+            font-weight: 800;
+            border: 1px solid var(--gold-light);
+        }
+
+        .location-tag-banner {
+            color: var(--gold-light);
+            font-size: 0.78rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 48px 24px 22px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .faculty-name-ar {
+            font-family: 'Amiri', serif;
+            font-size: 1.55rem;
+            color: var(--primary-navy);
+            margin: 0 0 4px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .faculty-role-text {
+            color: var(--gold-dark);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .specialization-tag {
+            background: rgba(201, 163, 65, 0.12);
+            color: #836411;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            border-right: 3px solid var(--gold-accent);
+            display: inline-block;
+            line-height: 1.4;
+        }
+
+        .specialization-en-tag {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            font-weight: 500;
+            direction: ltr;
+            text-align: right;
+        }
+
+        .card-summary-preview {
+            font-size: 0.88rem;
+            color: #4b5565;
+            line-height: 1.65;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-credentials-preview {
+            background: #f8fafc;
+            border: 1px solid #eef2f6;
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-bottom: 18px;
+            margin-top: auto;
+        }
+
+        .credentials-item {
+            font-size: 0.82rem;
+            color: #3b4655;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .credentials-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .credentials-item i {
+            color: var(--gold-accent);
+            margin-top: 3px;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .card-actions-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding-top: 14px;
+            border-top: 1px solid #edf1f6;
+        }
+
+        .btn-view-profile {
+            flex: 1;
+            background: var(--primary-navy);
+            color: #ffffff;
+            border: 1px solid var(--primary-navy);
+            padding: 9px 14px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            font-family: 'Tajawal', sans-serif;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.22s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-view-profile:hover {
+            background: var(--navy-light);
+            border-color: var(--navy-light);
+            box-shadow: 0 4px 12px rgba(15, 30, 54, 0.2);
+        }
+
+        .quick-contact-icons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .quick-contact-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: #f1f4f9;
+            color: var(--primary-navy);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            border: 1px solid #e1e7f0;
+        }
+
+        .quick-contact-btn:hover {
+            background: var(--gold-accent);
+            color: #0f1e36;
+            transform: translateY(-2px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 70px 20px;
+            color: var(--text-muted);
+            grid-column: 1 / -1;
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px dashed #cbd5e1;
+        }
+
+        .empty-state i {
+            font-size: 3.5rem;
+            color: #cbd5e1;
+            margin-bottom: 16px;
+        }
+
+        .empty-state h3 {
+            font-family: 'Amiri', serif;
+            font-size: 1.6rem;
+            color: var(--primary-navy);
+            margin: 0 0 8px;
+        }
+
+        /* Modal Styles */
+        .faculty-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 30, 54, 0.7);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faculty-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .faculty-modal {
+            background: #ffffff;
+            width: 100%;
+            max-width: 720px;
+            max-height: 90vh;
+            border-radius: 20px;
+            overflow-y: auto;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+            border: 2px solid var(--gold-accent);
+            position: relative;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .faculty-modal-overlay.active .faculty-modal {
+            transform: translateY(0);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            color: #ffffff;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .modal-close-btn:hover {
+            background: #ffffff;
+            color: var(--primary-navy);
+            transform: scale(1.1);
+        }
+
+        .modal-header-banner {
+            background: linear-gradient(135deg, var(--primary-navy), var(--secondary-navy));
+            color: #ffffff;
+            padding: 35px 30px 25px;
+            position: relative;
+            border-bottom: 4px solid var(--gold-accent);
+        }
+
+        .modal-header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .modal-avatar-wrapper {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 3.5px solid var(--gold-accent);
+            background: var(--navy-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .modal-avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-avatar-monogram {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+
+        .modal-title-info h2 {
+            font-family: 'Amiri', serif;
+            font-size: 1.9rem;
+            margin: 0 0 6px;
+            color: #ffffff;
+        }
+
+        .modal-role-badge {
+            display: inline-block;
+            background: rgba(201, 163, 65, 0.25);
+            color: var(--gold-light);
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: 1px solid var(--gold-accent);
+        }
+
+        .modal-body-content {
+            padding: 28px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .modal-section-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.25rem;
+            color: var(--primary-navy);
+            margin: 0 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 2px solid #eef2f8;
+            padding-bottom: 6px;
+        }
+
+        .modal-section-title i {
+            color: var(--gold-accent);
+        }
+
+        .modal-summary-text {
+            font-size: 0.95rem;
+            color: #384252;
+            line-height: 1.8;
+            background: #f9fbfd;
+            padding: 16px 18px;
+            border-radius: 10px;
+            border-right: 4px solid var(--gold-accent);
+        }
+
+        .modal-credentials-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modal-credential-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.92rem;
+            color: #2c384a;
+            line-height: 1.5;
+            background: #ffffff;
+            border: 1px solid #eef2f6;
+            padding: 10px 14px;
+            border-radius: 8px;
+        }
+
+        .modal-credential-item i {
+            color: #10b981;
+            margin-top: 4px;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+
+        .modal-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .modal-contact-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .modal-contact-card:hover {
+            border-color: var(--gold-accent);
+            background: #ffffff;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .modal-contact-card i {
+            font-size: 1.15rem;
+            color: var(--gold-accent);
+        }
+
+        .modal-footer {
+            padding: 16px 30px;
+            background: #f8fafc;
+            border-top: 1px solid #eef2f6;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Contact Bar -->
+    <div class="top-contact-bar" style="background: var(--primary-color); padding: 8px 0; border-bottom: 2px solid var(--gold-main); font-size: 0.95rem;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <div class="top-nav-links" style="display: flex; gap: 15px; align-items: center; flex: 1; justify-content: flex-start;">
+                <a href="index.html" style="color: var(--white); text-decoration: none; font-size: 0.85rem;">الرئيسية</a>
+                <span style="color: rgba(255,255,255,0.3);">|</span>
+                <a href="faculty.html" style="color: var(--gold-light); font-weight: 700; text-decoration: none; font-size: 0.85rem;">الهيئة الأكاديمية</a>
+                <span style="color: rgba(255,255,255,0.3);">|</span>
+                <a href="constitution.html" style="color: var(--white); text-decoration: none; font-size: 0.85rem;">دستور الجامعة</a>
+                <span style="color: rgba(255,255,255,0.3);">|</span>
+                <a href="student-regulations.html" style="color: var(--white); text-decoration: none; font-size: 0.85rem;">لوائح الطلبة</a>
+                <span style="color: rgba(255,255,255,0.3);">|</span>
+                <a href="ethics.html" style="color: var(--white); text-decoration: none; font-size: 0.85rem;">أخلاقيات الممارسة</a>
+                <span style="color: rgba(255,255,255,0.3);">|</span>
+                <a href="tuition-fees.html" style="color: var(--white); text-decoration: none; font-size: 0.85rem;">الرسوم الدراسية</a>
+            </div>
+
+            <div class="top-brand-mark" style="flex: 1; display: flex; justify-content: center;">
+                <a href="index.html">
+                    <img src="Albums/University_Assets/university-brand-mark.png" alt="University Brand Mark" style="height: 55px; filter: contrast(110%) brightness(120%);">
+                </a>
+            </div>
+
+            <div class="top-social-links" style="flex: 1; display: flex; align-items: center; justify-content: flex-end; gap: 12px;">
+                <a href="https://chat.whatsapp.com/KRol8QEQDD19LUhJ6BSoKi?mode=gi_t" target="_blank" style="color: var(--gold-light);"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://t.me/+_xQw-l_cFcpmNTU0" target="_blank" style="color: var(--gold-light);"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61576702401322" target="_blank" style="color: var(--gold-light);"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/@InternationalVirtuelUniversity" target="_blank" style="color: var(--gold-light);"><i class="fab fa-youtube"></i></a>
+                <a href="login.html" class="btn-login-nav" style="background: var(--gold-main); color: var(--primary-color); padding: 5px 12px; border-radius: 4px; font-weight: 700; text-decoration: none; font-size: 0.85rem; margin-inline-start: 10px;">
+                    <i class="fas fa-sign-in-alt"></i> دخول
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="header page-header">
+        <div class="container header-container" style="justify-content: space-between; display: flex; padding: 12px 0;">
+            <div class="logo">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+                    <img src="Albums/University_Assets/university-full-emblem.png" alt="University Logo" class="logo-image" style="height: 60px;">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="faculty.html" style="color: var(--gold-main); font-weight: bold;">الهيئة الأكاديمية</a></li>
+                    <li><a href="constitution.html">دستور الجامعة</a></li>
+                    <li><a href="student-regulations.html">لوائح الطلبة</a></li>
+                    <li><a href="curriculum.html">الخزانة الرقمية</a></li>
+                    <li><a href="tuition-fees.html">الرسوم الدراسية</a></li>
+                    <li><a href="medical-record.html">السجل الطبي</a></li>
+                    <li><a href="index.html#register" class="btn btn-primary" style="padding: 6px 15px; font-size: 0.9rem;">التسجيل الأكاديمي</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="faculty-hero">
+        <div class="hero-inner">
+            <span class="faculty-badge"><i class="fas fa-award"></i> السجل الأكاديمي والمهني المعتمد</span>
+            <h1>الهيئة الأكاديمية ونخبة الكوادر التدريسية</h1>
+            <p class="subtitle">
+                الدليل الرسمي المعتمد لأعضاء مجلس الإدارة وهيئة التدريس والخبراء الدوليين في الجامعة العالمية الافتراضية للطب الشمولي والعلوم التطبيقية.
+            </p>
+
+            <!-- Stats Strip -->
+            <div class="faculty-stats-strip">
+                <div class="stat-item">
+                    <div class="stat-number" id="statTotalCadres">12</div>
+                    <div class="stat-label">كادر وأستاذ معتمد</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">تخصصات علاجية وطبية</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">دول عربية وإقليمية</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">اعتمادات وتراخيص دولية</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Controls Section: Search & Filters -->
+    <section class="faculty-controls">
+        <div class="controls-card">
+            <div class="search-and-count-bar">
+                <div class="search-box-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="facultySearchInput" class="faculty-search-input" placeholder="ابحث باسم الكادر، التخصص، الدرجة العلمية أو الدولة...">
+                </div>
+                <div class="results-badge-indicator" id="resultsCount">
+                    عرض <span id="displayedCount">12</span> من أصل <span id="totalCount">12</span> كادر
+                </div>
+            </div>
+            <div class="filter-pills" id="filterPillsContainer">
+                <button class="filter-pill active" data-filter="all">
+                    <span>جميع الكوادر</span>
+                    <span class="count-tag" id="count-all">0</span>
+                </button>
+                <button class="filter-pill" data-filter="leadership">
+                    <span><i class="fas fa-landmark" style="color: var(--gold-accent);"></i> قيادة الجامعة</span>
+                    <span class="count-tag" id="count-leadership">0</span>
+                </button>
+                <button class="filter-pill" data-filter="herbal">
+                    <span>علم الأعشاب والعقاقير</span>
+                    <span class="count-tag" id="count-herbal">0</span>
+                </button>
+                <button class="filter-pill" data-filter="chiropractic">
+                    <span>العلاج اليدوي والكايروبركتيك</span>
+                    <span class="count-tag" id="count-chiropractic">0</span>
+                </button>
+                <button class="filter-pill" data-filter="neuro">
+                    <span>المسارات العصبية والشمولية</span>
+                    <span class="count-tag" id="count-neuro">0</span>
+                </button>
+                <button class="filter-pill" data-filter="rehab">
+                    <span>الحجامة وسم النحل والتأهيل</span>
+                    <span class="count-tag" id="count-rehab">0</span>
+                </button>
+                <button class="filter-pill" data-filter="nutrition">
+                    <span>التغذية العلاجية</span>
+                    <span class="count-tag" id="count-nutrition">0</span>
+                </button>
+                <button class="filter-pill" data-filter="psychology">
+                    <span>العلوم النفسية والتوجيه</span>
+                    <span class="count-tag" id="count-psychology">0</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty Cards Grid -->
+    <main class="faculty-grid-container">
+        <div class="faculty-grid" id="facultyGrid">
+            <!-- Dynamic JavaScript Render -->
+        </div>
+    </main>
+
+    <!-- Interactive Profile / CV Modal -->
+    <div class="faculty-modal-overlay" id="facultyModalOverlay">
+        <div class="faculty-modal" id="facultyModal">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="إغلاق"><i class="fas fa-times"></i></button>
+            <div class="modal-header-banner" id="modalHeaderBanner">
+                <!-- Injected via JS -->
+            </div>
+            <div class="modal-body-content" id="modalBodyContent">
+                <!-- Injected via JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-view-profile" onclick="window.print()" style="max-width: 160px; background: #ffffff; color: var(--primary-navy); border-color: #cbd5e1;">
+                    <i class="fas fa-print"></i> طباعة السيرة
+                </button>
+                <button class="btn-view-profile" id="modalCloseActionBtn" style="max-width: 120px;">
+                    إغلاق
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact-footer" class="footer" style="background: var(--primary-color); color: var(--white); padding: 50px 0 20px; border-top: 4px solid var(--gold-main);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <div>
+                    <img src="Albums/University_Assets/university-full-emblem.png" alt="University Logo" style="height: 70px; margin-bottom: 15px;">
+                    <p style="color: #ccc; line-height: 1.8; font-size: 0.95rem;">
+                        الجامعة العالمية الافتراضية للطب الشمولي والعلوم التطبيقية - صرح أكاديمي رائد يجمع بين أصالة الطب التكميلي وأحدث التطورات العلمية والتقنية.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--gold-main); margin-bottom: 20px; font-family: 'Amiri', serif; font-size: 1.3rem;">روابط دستورية وأكاديمية</h4>
+                    <ul style="list-style: none; padding: 0; line-height: 2;">
+                        <li><a href="faculty.html" style="color: #fff; text-decoration: none;"><i class="fas fa-chevron-left" style="color: var(--gold-main); font-size: 0.8rem; margin-inline-end: 8px;"></i> الهيئة الأكاديمية والكوادر</a></li>
+                        <li><a href="constitution.html" style="color: #fff; text-decoration: none;"><i class="fas fa-chevron-left" style="color: var(--gold-main); font-size: 0.8rem; margin-inline-end: 8px;"></i> دستور الجامعة والنظام الداخلي</a></li>
+                        <li><a href="ethics.html" style="color: #fff; text-decoration: none;"><i class="fas fa-chevron-left" style="color: var(--gold-main); font-size: 0.8rem; margin-inline-end: 8px;"></i> ميثاق أخلاقيات الممارسة</a></li>
+                        <li><a href="curriculum.html" style="color: #fff; text-decoration: none;"><i class="fas fa-chevron-left" style="color: var(--gold-main); font-size: 0.8rem; margin-inline-end: 8px;"></i> الخزانة الرقمية للمناهج</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--gold-main); margin-bottom: 20px; font-family: 'Amiri', serif; font-size: 1.3rem;">قنوات التواصل الرسمية</h4>
+                    <ul style="list-style: none; padding: 0; line-height: 2.2;">
+                        <li><i class="fab fa-whatsapp" style="color: var(--gold-main); margin-inline-end: 10px;"></i> <a href="https://chat.whatsapp.com/KRol8QEQDD19LUhJ6BSoKi?mode=gi_t" target="_blank" style="color: #fff; text-decoration: none;">مجتمع واتساب الرسمي</a></li>
+                        <li><i class="fab fa-telegram-plane" style="color: var(--gold-main); margin-inline-end: 10px;"></i> <a href="https://t.me/+_xQw-l_cFcpmNTU0" target="_blank" style="color: #fff; text-decoration: none;">قناة التليغرام الرسمية</a></li>
+                        <li><i class="fas fa-envelope" style="color: var(--gold-main); margin-inline-end: 10px;"></i> <a href="mailto:holisticmedicineinternationaun@gmail.com" style="color: #fff; text-decoration: none;">holisticmedicineinternationaun@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); color: #aaa; font-size: 0.9rem;">
+                &copy; 2026 جميع الحقوق محفوظة - الجامعة العالمية الافتراضية للطب الشمولي والعلوم التطبيقية.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic Script -->
+    <script>
+        // Global Safe Avatar Error Handler
+        function onAvatarImgError(img, initials) {
+            if (!img) return;
+            const container = img.parentElement;
+            if (container) {
+                container.innerHTML = '<span class="faculty-avatar-monogram">' + (initials || 'جامعة') + '</span>';
+            }
+        }
+
+        // Global Modal Open & Close Functions
+        window.openFacultyModal = function(id) {
+            if (!window.facultyData) return;
+            const member = window.facultyData.find(m => m.id === id);
+            if (!member) return;
+
+            const modalOverlay = document.getElementById('facultyModalOverlay');
+            const modalHeaderBanner = document.getElementById('modalHeaderBanner');
+            const modalBodyContent = document.getElementById('modalBodyContent');
+            if (!modalOverlay || !modalHeaderBanner || !modalBodyContent) return;
+
+            const isLeadership = member.badgeType === 'leadership';
+            const avatarHtml = member.photo 
+                ? '<img src="' + member.photo + '" alt="' + member.nameAr + '" class="modal-avatar-img" onerror="onAvatarImgError(this, \'' + member.initials + '\')">'
+                : '<span class="modal-avatar-monogram">' + member.initials + '</span>';
+
+            modalHeaderBanner.innerHTML = 
+                '<div class="modal-header-content">' +
+                    '<div class="modal-avatar-wrapper">' + avatarHtml + '</div>' +
+                    '<div class="modal-title-info">' +
+                        '<span class="modal-role-badge"><i class="fas fa-shield-alt"></i> ' + member.status + '</span>' +
+                        '<h2>' + (member.fullNameAr || member.nameAr) + '</h2>' +
+                        '<div style="color: var(--gold-light); font-size: 0.95rem; font-weight: 600;">' +
+                            member.roleAr + (member.roleEn ? ' | ' + member.roleEn : '') +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+
+            const credentialsHtml = (member.credentials && member.credentials.length > 0)
+                ? member.credentials.map(c => '<li class="modal-credential-item"><i class="fas fa-check-circle"></i><span>' + c + '</span></li>').join('')
+                : '<li class="modal-credential-item"><i class="fas fa-info-circle"></i><span>المؤهلات التفصيلية موثقة ومعتمدة من عمادة الجامعة.</span></li>';
+
+            let contactsHtml = '';
+            if (member.location) {
+                contactsHtml += 
+                    '<div class="modal-contact-card">' +
+                        '<i class="fas fa-map-marker-alt"></i>' +
+                        '<div><div style="font-size: 0.75rem; color: #64748b;">الإقامة والدولة</div><div>' + member.location + '</div></div>' +
+                    '</div>';
+            }
+            if (member.email) {
+                contactsHtml += 
+                    '<a href="mailto:' + member.email + '" class="modal-contact-card">' +
+                        '<i class="fas fa-envelope"></i>' +
+                        '<div><div style="font-size: 0.75rem; color: #64748b;">البريد الإلكتروني</div><div style="direction: ltr; text-align: right;">' + member.email + '</div></div>' +
+                    '</a>';
+            }
+            if (member.phone) {
+                let cleanPhone = member.phone.replace(/[^0-9]/g, '');
+                if (cleanPhone.startsWith('00')) cleanPhone = cleanPhone.substring(2);
+                contactsHtml += 
+                    '<a href="https://wa.me/' + cleanPhone + '" target="_blank" rel="noopener noreferrer" class="modal-contact-card">' +
+                        '<i class="fab fa-whatsapp" style="color: #22c55e;"></i>' +
+                        '<div><div style="font-size: 0.75rem; color: #64748b;">واتساب والاتصال</div><div style="direction: ltr; text-align: right;">' + member.phone + '</div></div>' +
+                    '</a>';
+            }
+            if (member.telegram) {
+                const tgUrl = member.telegram.startsWith('http') ? member.telegram : 'https://' + member.telegram;
+                contactsHtml += 
+                    '<a href="' + tgUrl + '" target="_blank" rel="noopener noreferrer" class="modal-contact-card">' +
+                        '<i class="fab fa-telegram-plane" style="color: #0284c7;"></i>' +
+                        '<div><div style="font-size: 0.75rem; color: #64748b;">تليغرام</div><div>قناة / حساب معتمد</div></div>' +
+                    '</a>';
+            }
+
+            modalBodyContent.innerHTML = 
+                '<div>' +
+                    '<h4 class="modal-section-title"><i class="fas fa-user-circle"></i> النبذة المهنية والتعريفية</h4>' +
+                    '<div class="modal-summary-text">' + (member.summaryAr || 'عضو الهيئة التدريسية والأكاديمية المعتمد بالجامعة.') + '</div>' +
+                '</div>' +
+                '<div>' +
+                    '<h4 class="modal-section-title"><i class="fas fa-stethoscope"></i> التوصيف والتخصص الأكاديمي</h4>' +
+                    '<div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px;">' +
+                        '<div style="font-weight: 700; color: var(--primary-navy); font-size: 1rem; margin-bottom: 4px;">' + member.specializationAr + '</div>' +
+                        '<div style="color: #64748b; font-size: 0.88rem; direction: ltr; text-align: right;">' + member.specializationEn + '</div>' +
+                    '</div>' +
+                '</div>' +
+                '<div>' +
+                    '<h4 class="modal-section-title"><i class="fas fa-graduation-cap"></i> المؤهلات الأكاديمية والشهادات والاعتمادات</h4>' +
+                    '<ul class="modal-credentials-list">' + credentialsHtml + '</ul>' +
+                '</div>' +
+                (contactsHtml ? '<div><h4 class="modal-section-title"><i class="fas fa-address-book"></i> قنوات التواصل والمعلومات الرسمية</h4><div class="modal-contact-grid">' + contactsHtml + '</div></div>' : '');
+
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeFacultyModal = function() {
+            const modalOverlay = document.getElementById('facultyModalOverlay');
+            if (modalOverlay) {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const facultyGrid = document.getElementById('facultyGrid');
+            const searchInput = document.getElementById('facultySearchInput');
+            const filterPills = document.querySelectorAll('.filter-pill');
+            const displayedCountEl = document.getElementById('displayedCount');
+            const totalCountEl = document.getElementById('totalCount');
+            const statTotalCadresEl = document.getElementById('statTotalCadres');
+            const modalOverlay = document.getElementById('facultyModalOverlay');
+            const modalCloseBtn = document.getElementById('modalCloseBtn');
+            const modalCloseActionBtn = document.getElementById('modalCloseActionBtn');
+
+            let currentFilter = 'all';
+            let searchQuery = '';
+
+            // Update Counts in UI
+            function updateCounts() {
+                if (!window.facultyData) return;
+                const total = window.facultyData.length;
+                if (totalCountEl) totalCountEl.textContent = total;
+                if (statTotalCadresEl) statTotalCadresEl.textContent = total;
+
+                const countAll = document.getElementById('count-all');
+                if (countAll) countAll.textContent = total;
+
+                const countLeadership = document.getElementById('count-leadership');
+                if (countLeadership) {
+                    countLeadership.textContent = window.facultyData.filter(m => m.badgeType === 'leadership').length;
+                }
+
+                ['herbal', 'chiropractic', 'neuro', 'rehab', 'nutrition', 'psychology'].forEach(cat => {
+                    const el = document.getElementById('count-' + cat);
+                    if (el) {
+                        el.textContent = window.facultyData.filter(m => m.category === cat).length;
+                    }
+                });
+            }
+
+            // Render Faculty Cards
+            function renderFaculty() {
+                if (!window.facultyData || !facultyGrid) return;
+
+                const filtered = window.facultyData.filter(member => {
+                    let matchesCategory = true;
+                    if (currentFilter === 'leadership') {
+                        matchesCategory = member.badgeType === 'leadership';
+                    } else if (currentFilter !== 'all') {
+                        matchesCategory = member.category === currentFilter;
+                    }
+                    
+                    const q = searchQuery.toLowerCase().trim();
+                    const matchesSearch = !q || 
+                        (member.nameAr && member.nameAr.toLowerCase().includes(q)) || 
+                        (member.fullNameAr && member.fullNameAr.toLowerCase().includes(q)) ||
+                        (member.roleAr && member.roleAr.toLowerCase().includes(q)) ||
+                        (member.roleEn && member.roleEn.toLowerCase().includes(q)) ||
+                        (member.specializationAr && member.specializationAr.toLowerCase().includes(q)) || 
+                        (member.specializationEn && member.specializationEn.toLowerCase().includes(q)) ||
+                        (member.location && member.location.toLowerCase().includes(q)) ||
+                        (member.summaryAr && member.summaryAr.toLowerCase().includes(q));
+
+                    return matchesCategory && matchesSearch;
+                });
+
+                if (displayedCountEl) displayedCountEl.textContent = filtered.length;
+
+                if (filtered.length === 0) {
+                    facultyGrid.innerHTML = 
+                        '<div class="empty-state">' +
+                            '<i class="fas fa-search-minus"></i>' +
+                            '<h3>لم يتم العثور على نتائج مطابقة</h3>' +
+                            '<p>يرجى تجربة كلمات بحث أخرى أو اختيار تصنيف أكاديمي مختلف.</p>' +
+                        '</div>';
+                    return;
+                }
+
+                facultyGrid.innerHTML = filtered.map(member => {
+                    const isLeadership = member.badgeType === 'leadership';
+                    const avatarHtml = member.photo 
+                        ? '<img src="' + member.photo + '" alt="' + member.nameAr + '" class="faculty-avatar-img" onerror="onAvatarImgError(this, \'' + member.initials + '\')">'
+                        : '<span class="faculty-avatar-monogram">' + member.initials + '</span>';
+                    
+                    const credentialsList = (member.credentials && member.credentials.length > 0)
+                        ? member.credentials.slice(0, 2).map(c => 
+                            '<div class="credentials-item"><i class="fas fa-check-circle"></i><span>' + c + '</span></div>'
+                          ).join('')
+                        : '<div class="credentials-item"><i class="fas fa-certificate"></i><span>معتمد وموثق لدى المجلس العلمي للجامعة</span></div>';
+
+                    let contactButtons = '';
+                    if (member.phone) {
+                        let cleanPhone = member.phone.replace(/[^0-9]/g, '');
+                        if (cleanPhone.startsWith('00')) cleanPhone = cleanPhone.substring(2);
+                        contactButtons += '<a href="https://wa.me/' + cleanPhone + '" target="_blank" rel="noopener noreferrer" class="quick-contact-btn" title="تواصل عبر واتساب"><i class="fab fa-whatsapp"></i></a>';
+                    }
+                    if (member.email) {
+                        contactButtons += '<a href="mailto:' + member.email + '" class="quick-contact-btn" title="مراسلة عبر البريد الإلكتروني"><i class="fas fa-envelope"></i></a>';
+                    }
+                    if (member.telegram) {
+                        const tgUrl = member.telegram.startsWith('http') ? member.telegram : 'https://' + member.telegram;
+                        contactButtons += '<a href="' + tgUrl + '" target="_blank" rel="noopener noreferrer" class="quick-contact-btn" title="قناة / حساب تليغرام"><i class="fab fa-telegram-plane"></i></a>';
+                    }
+
+                    return '<div class="faculty-card" data-id="' + member.id + '">' +
+                        '<div class="card-top-banner">' +
+                            '<span class="faculty-status-badge ' + (isLeadership ? 'leadership' : '') + '">' +
+                                '<i class="fas ' + (isLeadership ? 'fa-crown' : 'fa-check-circle') + '" style="color: ' + (isLeadership ? '#0f1e36' : '#4ade80') + ';"></i> ' +
+                                member.status +
+                            '</span>' +
+                            (member.location ? '<span class="location-tag-banner"><i class="fas fa-map-marker-alt"></i> ' + member.location.split('،')[0] + '</span>' : '') +
+                            '<div class="faculty-avatar-container">' + avatarHtml + '</div>' +
+                        '</div>' +
+                        '<div class="card-body">' +
+                            '<h3 class="faculty-name-ar">' + member.nameAr + '</h3>' +
+                            '<div class="faculty-role-text"><i class="fas fa-user-tie"></i> ' + member.roleAr + '</div>' +
+                            '<div><span class="specialization-tag"><i class="fas fa-bookmark" style="margin-left: 5px;"></i> ' + member.specializationAr + '</span></div>' +
+                            '<div class="specialization-en-tag">' + member.specializationEn + '</div>' +
+                            '<div class="card-summary-preview">' + (member.summaryAr || 'عضو الهيئة التدريسية المعتمدة بالجامعة العالمية للطب الشمولي.') + '</div>' +
+                            '<div class="card-credentials-preview">' + credentialsList + '</div>' +
+                            '<div class="card-actions-bar">' +
+                                '<button type="button" class="btn-view-profile" onclick="openFacultyModal(\'' + member.id + '\')">' +
+                                    '<i class="fas fa-id-card"></i> السيرة الذاتية الكاملة' +
+                                '</button>' +
+                                '<div class="quick-contact-icons">' + contactButtons + '</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+                }).join('');
+            }
+
+            // Event Delegation for Grid Clicks
+            if (facultyGrid) {
+                facultyGrid.addEventListener('click', function (e) {
+                    const btn = e.target.closest('.btn-view-profile');
+                    if (btn) {
+                        const card = btn.closest('.faculty-card');
+                        if (card && card.dataset.id) {
+                            openFacultyModal(card.dataset.id);
+                        }
+                    }
+                });
+            }
+
+            // Modal Close Listeners
+            if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeFacultyModal);
+            if (modalCloseActionBtn) modalCloseActionBtn.addEventListener('click', closeFacultyModal);
+            if (modalOverlay) {
+                modalOverlay.addEventListener('click', function (e) {
+                    if (e.target === modalOverlay) closeFacultyModal();
+                });
+            }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeFacultyModal();
+            });
+
+            // Filter pills listener
+            filterPills.forEach(pill => {
+                pill.addEventListener('click', function() {
+                    filterPills.forEach(p => p.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter;
+                    renderFaculty();
+                });
+            });
+
+            // Search input listener
+            if (searchInput) {
+                searchInput.addEventListener('input', function(e) {
+                    searchQuery = e.target.value;
+                    renderFaculty();
+                });
+            }
+
+            // Initial render
+            updateCounts();
+            renderFaculty();
+        });
+    </script>
+</body>
+
+</html>
+
